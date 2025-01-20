@@ -6,7 +6,7 @@ const Card = ({ data }) => {
 
   return (
     <div
-      className="max-w-full md:max-w-[360px] w-full md:w-3/4 pb-4 bg-gray-100 rounded-xl cursor-pointer shadow-sm relative overflow-hidden"
+      className=" w-full pb-4 bg-gray-100 rounded-xl cursor-pointer relative overflow-hidden"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
@@ -44,7 +44,7 @@ const Card = ({ data }) => {
       </div>
 
       {/* Image */}
-      <div>
+      <div className="h-[200px] relative overflow-hidden">
         <img
           src={hover ? data?.image : data?.hoverImage}
           alt="Product"
@@ -79,16 +79,18 @@ const Card = ({ data }) => {
 
       <div className="p-4">
         {/* Discount */}
-        <div className="m-2 text-left text-sm font-outfitLight text-gray-500">
+        <div className="mb-1 text-[12px] uppercase text-left text-sm font-outfitMedium text-black">
           {data?.type}
         </div>
         {/* Name */}
-        <div className="m-2 text-lg font-outfitSemiBold line-clamp-1 text-gray-900">
+        <div className="mb-2 text-[20px] font-outfitSemiBold text-black leading-[normal]">
           {data?.name}
         </div>
-        <div className="m-2 text-lg font-outfitSemiBold line-clamp-1 text-gray-900 flex space-x-3 items-center">
-          <span className="text-gray-900 font-outfitBold text-2xl">$29.00</span>
-          <span className="text-gray-500 font-outfitRegular text-lg line-through">
+        <div className="  font-outfitSemiBold text-gray-900 flex space-x-3 items-center">
+          <span className="text-gray-900 font-outfitBold text-[16px]">
+            $29.00
+          </span>
+          <span className="text-gray-500 font-outfitRegular text-[13px] line-through">
             $39.00
           </span>
         </div>

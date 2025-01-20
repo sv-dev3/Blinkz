@@ -5,7 +5,7 @@ import thirdImage from "src/assets/images/carousel2.webp";
 
 const BentoGrid = () => {
   return (
-    <div className="py-10 md:py-20">
+    <div className="pb-20 ">
       <div className="container mx-auto">
         <div className="flex flex-col items-center justify-center space-y-4 text-center font-outfitSemiBold">
           {/* First row */}

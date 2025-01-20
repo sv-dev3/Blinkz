@@ -2,33 +2,27 @@ import React from "react";
 
 const CardLayout = ({ data }) => {
   return (
-    <div className="flex container mx-auto w-screen justify-between p-4">
+    <div className="grid grid-cols-3 w-[1000px] mx-auto justify-start py-[30px] gap-4 flex-wrap ">
       {data &&
         data.map((item, index) => (
           <div
             key={index}
-            className="relative flex flex-row h-96 rounded-2xl overflow-hidden cursor-pointer shadow-md"
+            className="relative isolate overflow-hidden rounded-2xl"
           >
-            {/* Background Image */}
             <img
               src={item.img}
               alt={item.heading}
               className="w-full h-full object-cover"
             />
-
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black/10"></div>
-
-            {/* Content */}
-            <div className="absolute inset-0 flex flex-col justify-between text-white p-4">
-              {/* Heading */}
-              <h1 className="text-xl font-bold">{item.heading}</h1>
-
-              {/* Subheading */}
-              <h2 className="text-lg font-semibold">{item.subheading}</h2>
-
-              {/* Button */}
-              <button className="mt-4 bg-purple-600 hover:bg-purple-700 text-sm font-medium px-4 py-2 rounded">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black-900/10"></div>
+            <div className="absolute bottom-[20px] left-[20px]">
+              <h3 class="z-10 mt-3 text-[20px] font-bold text-white capitalize">
+                {item.heading}
+              </h3>
+              <div class="z-10 gap-y-1 text-white overflow-hidden text-[16px] leading-6 text-gray-300 capitalize">
+                {item.subheading}
+              </div>
+              <button className="mt-4 bg-purple-600 hover:bg-purple-700 text-sm font-medium text-white px-4 py-2 rounded-full">
                 Learn More
               </button>
             </div>

@@ -2,52 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "outfit-Black";
+  src: url("./assets/fonts/Outfit-Black.ttf") format("truetype");
+  font-weight: black;
+  font-style: normal;
+}
+@font-face {
+  font-family: "outfit-bold";
+  src: url("./assets/fonts/Outfit-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "outfit-extraBold";
+  src: url("./assets/fonts/Outfit-ExtraBold.ttf") format("truetype");
+  font-weight: bolder;
+  font-style: normal;
+}
+@font-face {
+  font-family: "outfit-light";
+  src: url("./assets/fonts/Outfit-Light.ttf") format("truetype");
+  font-weight: light;
+  font-style: normal;
+}
+@font-face {
+  font-family: "outfit-thin";
+  src: url("./assets/fonts/Outfit-Thin.ttf") format("truetype");
+  font-weight: thin;
+  font-style: normal;
+}
+@font-face {
+  font-family: "outfit-medium";
+  src: url("./assets/fonts/Outfit-Medium.ttf") format("truetype");
+  font-weight: medium;
+  font-style: normal;
+}
+@font-face {
+  font-family: "outfit-regular";
+  src: url("./assets/fonts/Outfit-Regular.ttf") format("truetype");
+  font-weight: regular;
+  font-style: normal;
+}
+@font-face {
+  font-family: "outfit-semiBold";
+  src: url("./assets/fonts/Outfit-SemiBold.ttf") format("truetype");
+  font-weight: semiBold;
+  font-style: normal;
+}
 
-@font-face {
-    font-family: "outfit-Black";
-    src: url("./assets/fonts/Outfit-Black.ttf") format("truetype");
-    font-weight: black;
-    font-style: normal;
-  }
-@font-face {
-    font-family: "outfit-bold";
-    src: url("./assets/fonts/Outfit-Bold.ttf") format("truetype");
-    font-weight: bold;
-    font-style: normal;
-  }
-@font-face {
-    font-family: "outfit-extraBold";
-    src: url("./assets/fonts/Outfit-ExtraBold.ttf") format("truetype");
-    font-weight: bolder;
-    font-style: normal;
-  }
-@font-face {
-    font-family: "outfit-light";
-    src: url("./assets/fonts/Outfit-Light.ttf") format("truetype");
-    font-weight: light;
-    font-style: normal;
-  }
-@font-face {
-    font-family: "outfit-thin";
-    src: url("./assets/fonts/Outfit-Thin.ttf") format("truetype");
-    font-weight: thin;
-    font-style: normal;
-  }
-@font-face {
-    font-family: "outfit-medium";
-    src: url("./assets/fonts/Outfit-Medium.ttf") format("truetype");
-    font-weight: medium;
-    font-style: normal;
-  }
-@font-face {
-    font-family: "outfit-regular";
-    src: url("./assets/fonts/Outfit-Regular.ttf") format("truetype");
-    font-weight: regular;
-    font-style: normal;
-  }
-@font-face {
-    font-family: "outfit-semiBold";
-    src: url("./assets/fonts/Outfit-SemiBold.ttf") format("truetype");
-    font-weight: semiBold;
-    font-style: normal;
-  }
+.swiper-pagination.swiper-pagination-bullets {
+  position: static;
+  margin: 15px 0 0;
+}
+
+span.swiper-pagination-bullet {
+  width: 13px;
+  height: 13px;
+  border-radius: 100px;
+}
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  width: 40px;
+}

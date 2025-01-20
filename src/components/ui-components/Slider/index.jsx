@@ -19,11 +19,11 @@ const Slider = ({
   canShowFooter = false,
   imgHeight = "h-[500px]",
   sliderImages,
- rounded = "rounded-xl",
-centeredSlide = true,
+  rounded = "rounded-xl",
+  centeredSlide = true,
 }) => {
   return (
-    <div className="py-0 md:py-12">
+    <div className="pt-12">
       <div className="mx-auto p-0">
         <Swiper
           modules={[Autoplay, Virtual, Navigation, Pagination, Thumbs]}
@@ -33,7 +33,7 @@ centeredSlide = true,
           centeredSlides={centeredSlide}
           autoplay={{ delay: 2000000000 }}
           className="relative"
-          pagination={false}
+          pagination={true}
           observer={"true"}
           breakpoints={breakpoints}
           style={{ height: "100%" }}

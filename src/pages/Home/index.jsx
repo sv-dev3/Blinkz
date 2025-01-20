@@ -23,10 +23,10 @@ const Home = () => {
       <SaleLayout />
       <BentoGrid />
       {/* middle section  */}
-      <div className="py-10 md:py-20 bg-purple-100">
+      <div className="py-10 bg-purple-100">
         <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row flex-wrap items-center my-8">
-            <div className="w-full md:w-2/5 flex items-center md:items-start space-y-3 md:space-y-6 justify-center flex-col px-2 md:px-32 mb-10 md:mb-0">
+          <div className="flex flex-col md:flex-row flex-wrap my-8">
+            <div className="w-full md:w-2/5 flex items-center md:items-start space-y-3 md:space-y-6 flex-col px-2 md:px-32 mb-10 md:mb-0">
               <span className="text-lg text-gray-900 font-outfitRegular">
                 Care for your skin
               </span>
@@ -46,6 +46,10 @@ const Home = () => {
                 rounded={"rounded-3xl"}
                 imgHeight={"h-96"}
                 centeredSlide={false}
+                pagination={{
+                  nextEl: ".swiper-button-next",
+                  prevEl: ".swiper-button-prev",
+                }}
               />
             </div>
           </div>

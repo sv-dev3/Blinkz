@@ -12,10 +12,10 @@ const MegaMenu = ({ menuItems }) => {
         <div className="bg-white shadow-lg mt-4 h-fit">
           {menuItems.map((item, index) => (
             <div key={index}>
-              <div className="Ayaj">
-              {item.subMenu && item?.subMenuCardData && (
-                <CardLayout data={item?.subMenuCardData} />
-              )}
+              <div>
+                {item.subMenu && item?.subMenuCardData && (
+                  <CardLayout data={item?.subMenuCardData} />
+                )}
               </div>
               {item?.subMenu && item?.subMenuGridData && (
                 <GridLayout data={item?.subMenuGridData} />

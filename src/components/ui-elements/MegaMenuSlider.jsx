@@ -50,7 +50,7 @@ const MegaMenuSlider = ({
         >
           {sliderImages.map((item, index) => (
             <SwiperSlide key={index} className="relative">
-              <div className="bg-white rounded-3xl w-[350px]">
+              <div className="bg-white rounded-3xl w-full">
                 <Card data={item} />
               </div>
             </SwiperSlide>
