@@ -55,25 +55,23 @@ const Card = ({ data }) => {
             transition: "transform 0.8s ease-in-out", // Change '1s' to your desired duration
           }}
         />
-        <div className="relative w-full">
-          <div
-            className={`absolute h-16 inset-x-0 bottom-0 flex items-center justify-center bg-transparent bg-opacity-5 transition-all transform ${
-              hover ? "translate-y-0 opacity-80" : "translate-y-full opacity-0"
-            }`}
+        <div
+          className={`absolute h-16 inset-x-0 bottom-0 flex items-center justify-center bg-transparent bg-opacity-5 transition-all transform ${
+            hover ? "translate-y-0 opacity-80" : "translate-y-full opacity-0"
+          }`}
+          style={{
+            transition: "transform 0.6s ease-in-out, opacity 1s ease-in-out",
+          }}
+        >
+          <button
+            className="text-lg font-outfitBold bg-black w-full mx-8 text-white px-6 py-2 rounded-full shadow-md hover:bg-gray-200 hover:text-black transition"
             style={{
-              transition: "transform 0.6s ease-in-out, opacity 1s ease-in-out",
+              transition:
+                "background-color 1s ease-in-out, color 1s ease-in-out",
             }}
           >
-            <button
-              className="text-lg font-outfitBold bg-black w-full mx-8 text-white px-6 py-2 rounded-full shadow-md hover:bg-gray-200 hover:text-black transition"
-              style={{
-                transition:
-                  "background-color 1s ease-in-out, color 1s ease-in-out",
-              }}
-            >
-              Add to Cart
-            </button>
-          </div>
+            Add to Cart
+          </button>
         </div>
       </div>
 
