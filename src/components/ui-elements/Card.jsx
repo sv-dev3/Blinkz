@@ -11,7 +11,7 @@ const Card = ({ data }) => {
       onMouseLeave={() => setHover(false)}
     >
       {/* Tags */}
-      <div className="absolute top-2 left-2 space-x-2 flex flex-wrap gap-2">
+      <div className="absolute top-[15px] left-[15px] space-x-2 flex flex-wrap gap-2 z-[100]">
         {data?.tags &&
           data?.tags.map((tag, index) => {
             const bgColor =
@@ -34,7 +34,7 @@ const Card = ({ data }) => {
 
       {/* Search Button */}
       <div
-        className={`absolute top-2 right-2 transition-all duration-1000 z-30 transform ${
+        className={`absolute top-[15px] right-[15px] transition-all duration-1000 z-30 transform ${
           hover ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
         }`}
       >

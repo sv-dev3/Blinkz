@@ -23,22 +23,24 @@ const Home = () => {
       <SaleLayout />
       <BentoGrid />
       {/* middle section  */}
-      <div className="py-10 bg-purple-100">
-        <div className="container mx-auto">
+      <div className="px-4  py-10 bg-[#f3eee8]">
+        <div className="container mx-auto relative">
           <div className="flex flex-col md:flex-row flex-wrap my-8">
-            <div className="w-full md:w-2/5 flex items-center md:items-start space-y-3 md:space-y-6 flex-col px-2 md:px-32 mb-10 md:mb-0">
-              <span className="text-lg text-gray-900 font-outfitRegular">
-                Care for your skin
-              </span>
-              <p className="text-xl md:text-4xl font-outfitSemiBold text-gray-900">
-                Natural self care products
-              </p>
-              <p className=" text-center md:text-start text-base font-outfitLight text-gray-500">
-                We create safe products that really work and are designed to
-                make you feel good
-              </p>
+            <div className="w-full md:w-1/2 lg:w-2/5 mb-10 md:mb-0">
+              <div className="md:pr-[100px]">
+                <span className="text-lg text-gray-900 font-outfitRegular inline-block mb-6">
+                  Care for your skin
+                </span>
+                <p className="text-[40px] font-outfitMedium text-gray-900 leading-[48px] mb-4">
+                  Natural self care products
+                </p>
+                <p className=" text-center md:text-start text-base font-outfitLight text-black w-[300px]">
+                  We create safe products that really work and are designed to
+                  make you feel good
+                </p>
+              </div>
             </div>
-            <div className="w-full md:w-3/5">
+            <div className="w-full md:w-1/2 lg:w-3/5 pagination-hide">
               <Slider
                 sliderPerView={sliderPerView}
                 canShowFooter={true}
@@ -46,10 +48,6 @@ const Home = () => {
                 rounded={"rounded-3xl"}
                 imgHeight={"h-96"}
                 centeredSlide={false}
-                pagination={{
-                  nextEl: ".swiper-button-next",
-                  prevEl: ".swiper-button-prev",
-                }}
               />
             </div>
           </div>

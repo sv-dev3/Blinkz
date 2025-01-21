@@ -10,35 +10,37 @@ const BentoGrid = () => {
         <div className="flex flex-col items-center justify-center space-y-4 text-center font-outfitSemiBold">
           {/* First row */}
           <div className="flex items-center justify-center space-x-4">
-            <span className="text-lg md:text-5xl font-semibold">
+            <span className="text-[14px] md:text-[24px] lg:text-5xl font-semibold inline-block">
               Make you look
             </span>
-            <div className="w-30 md:w-40 h-20 rounded-full overflow-hidden">
+            <div className="w-[80px] h-[45px] md:w-40 md:h-20 rounded-full overflow-hidden inline-block">
               <img
                 src={firstImage} // Replace with your image URL
                 alt="Happy person"
                 className="w-full h-full object-cover transition-transform duration-700 ease-in-out transform hover:scale-110 hover:rotate-1 cursor-pointer"
               />
             </div>
-            <span className="text-lg md:text-5xl font-semibold">and</span>
+            <span className="text-[14px] md:text-[24px] lg:text-5xl font-semibold inline-block">
+              and
+            </span>
           </div>
 
           {/* Second row */}
           <div className="flex items-center justify-center space-x-4">
-            <span className="text-lg md:text-5xl font-semibold">
+            <span className="text-[14px] md:text-[24px] lg:text-5xl font-semibold inline-block">
               feel glowy
             </span>
-            <div className="w-30 md:w-40 h-20 rounded-full overflow-hidden">
+            <div className="w-[80px] h-[45px] md:w-40 md:h-20 rounded-full overflow-hidden cursor-pointer inline-block">
               <img
                 src={secondImage} // Replace with your image URL
                 alt="Glow product"
                 className="w-full h-full object-cover transition-transform duration-700 ease-in-out transform hover:scale-110 hover:rotate-1 cursor-pointer"
               />
             </div>
-            <span className="text-lg md:text-5xl font-semibold">
+            <span className="text-[14px] md:text-[24px] lg:text-5xl font-semibold inline-block">
               and healthy
             </span>
-            <div className="w-30 md:w-40 h-20 rounded-full overflow-hidden cursor-pointer">
+            <div className="w-[80px] h-[45px] md:w-40 md:h-20 rounded-full overflow-hidden cursor-pointer inline-block">
               <img
                 src={thirdImage} // Replace with your image URL
                 alt="Healthy skin"

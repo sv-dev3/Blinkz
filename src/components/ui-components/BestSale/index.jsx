@@ -89,7 +89,7 @@ const BestSale = () => {
     },
   ];
   return (
-    <div className="grid grid-cols-4 flex-row flex-wrap gap-x-[30px] gap-y-8 mt-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 flex-row flex-wrap sm:gap-x-[15px] lg:gap-x-[30px] gap-y-8 mt-6">
       {dummyData.map((item, index) => (
         <Card data={item} />
       ))}

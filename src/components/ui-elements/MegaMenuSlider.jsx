@@ -22,14 +22,6 @@ const MegaMenuSlider = ({
   return (
     <div className="py-0">
       <div className="mx-auto p-0">
-        <div className="container flex justify-end items-center space-x-2 pb-4">
-          <button className="custom_prev cursor-pointer">
-            <ChevronLeft className="custom_prev w-8 h-8 cursor-pointer" />
-          </button>
-          <button className="custom_next cursor-pointer">
-            <ChevronRight className="custom_next w-8 h-8 cursor-pointer" />
-          </button>
-        </div>
         <Swiper
           modules={[Autoplay, Virtual, Navigation, Pagination, Thumbs]}
           spaceBetween={12}
@@ -56,6 +48,14 @@ const MegaMenuSlider = ({
             </SwiperSlide>
           ))}
         </Swiper>
+        <div className="container flex justify-end items-center space-x-2 pb-4">
+          <button className="custom_prev cursor-pointer">
+            <ChevronLeft className="custom_prev w-8 h-8 cursor-pointer" />
+          </button>
+          <button className="custom_next cursor-pointer">
+            <ChevronRight className="custom_next w-8 h-8 cursor-pointer" />
+          </button>
+        </div>
       </div>
     </div>
   );

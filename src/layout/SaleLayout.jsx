@@ -14,14 +14,25 @@ const SaleLayout = () => {
   return (
     <div className="pt-16 pb-16">
       <div className="container mx-auto">
-        <header className="bg-white p-0 flex gap-x-0 md:gap-x-3 items-center">
+        <div className="text-center mb-12 px-4">
+          <h2 class="text-[30px] uppercase text-black mb-3 font-outfitMedium leading-[normal]">
+            Featured Product
+          </h2>
+          <p className="max-w-[700px] mx-auto text-[#707070] font-outfitRegular text-[14px]">
+            Nam liber tempor cum soluta nobis eleifend option congue nihil
+            <br class="hidden md:inline-block" /> doming id quod mazim placerat
+            facer possim assum typi non habent claritatem insitam.
+          </p>
+        </div>
+
+        <header className="bg-white px-4 flex gap-x-0 md:gap-x-3 items-center mb-12">
           <button
             onClick={() => handleButtonClick(1)}
             className={`${
               selectedPage === 1
-                ? "text-[16px] text-purple-900 font-outfitMedium border-purple-500"
-                : " text-gray-400 text-[16px] font-outfitMedium  border-white "
-            } bg-white py-2 px-4 transition duration-300 hover:text-purple-900 uppercase border  rounded-full hover:border-purple-500`}
+                ? "text-[12px] md:text-[16px] text-white outfit-bold bg-black border-[#000]"
+                : "text-black text-[12px] md:text-[16px] outfit-bold border-white "
+            }  mr-[5px] hover:bg-black py-1 px-[5px]  md:px-3 transition duration-300 hover:text-white uppercase border hover:border-black font-bold rounded`}
           >
             Best Sale
           </button>
@@ -29,9 +40,9 @@ const SaleLayout = () => {
             onClick={() => handleButtonClick(2)}
             className={`${
               selectedPage === 2
-                ? "text-[16px] text-purple-900 font-outfitMedium border-purple-500"
-                : " text-gray-400 text-[16px] font-outfitMedium border-white"
-            } bg-white py-2 px-4 transition duration-300 hover:text-purple-900 uppercase border  rounded-full hover:border-purple-500`}
+                ? "text-[12px] md:text-[16px] text-white outfit-bold bg-black border-[#000]"
+                : "text-black text-[12px] md:text-[16px] outfit-bold border-white "
+            }  mr-[5px] hover:bg-black py-1 px-[5px]  md:px-3 transition duration-300 hover:text-white uppercase border hover:border-black font-bold rounded`}
           >
             Hot Sale
           </button>
@@ -39,23 +50,23 @@ const SaleLayout = () => {
             onClick={() => handleButtonClick(3)}
             className={`${
               selectedPage === 3
-                ? "text-[16px] text-purple-900 font-outfitMedium border-purple-500"
-                : "text-gray-400 text-[16px] font-outfitMedium border-white"
-            } bg-white py-2 px-4 transition duration-300 hover:text-purple-900 uppercase border  rounded-full hover:border-purple-500`}
+                ? "text-[12px] md:text-[16px] text-white outfit-bold bg-black border-[#000]"
+                : "text-black text-[12px] md:text-[16px] outfit-bold border-white"
+            }  mr-[5px] hover:bg-black py-1 px-[5px]  md:px-3 transition duration-300 hover:text-white uppercase border hover:border-black font-bold rounded`}
           >
             New Sale
           </button>
           <Link
             to="/About"
-            className="text-[16px] block px-4 py-2 border border-purple-500 rounded text-purple-900 hover:text-white bg-white hover:bg-purple-600 font-outfitRegular ml-auto"
+            className="text-[12px] md:text-[16px] inline-block   border-b border-black hover:border-purple-600 text-black hover:text-purple-600 font-outfitRegular ml-auto"
           >
             {" "}
-            View all
+            Shop All Products
             <span className="absolute bottom-0 left-0 w-full h-[2px] bg-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-all duration-300"></span>
           </Link>
         </header>
 
-        <div className="p-0">
+        <div className="px-4">
           {selectedPage === 1 && <BestSale />}
           {selectedPage === 2 && <HotSale />}
           {selectedPage === 3 && <NewSale />}

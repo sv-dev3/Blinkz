@@ -81,7 +81,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sticky bg-gray-100 text-black p-4 w-full z-[1039]`}
+      className={`sticky bg-gray-100 text-black p-4 w-full z-[1039] mb-12`}
       style={{ top: "0" }}
     >
       <div className="container mx-auto flex items-center justify-between">
