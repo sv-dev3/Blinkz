@@ -90,7 +90,7 @@ const GridLayout = ({ data }) => {
     },
   ];
   return (
-    <div className="container mx-auto flex flex-col md:flex-row pt-6">
+    <div className="container mx-auto flex flex-col md:flex-row pt-6 pb-4">
       <div className="grid md:grid-cols-3 gap-6 w-full md:w-[55%]">
         {Object.keys(data)
           .filter((key) => key.startsWith("row"))
