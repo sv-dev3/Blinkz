@@ -70,7 +70,7 @@ const Footer = () => {
           </div>
 
           <div class="flex-1 flex flex-wrap pl-[0px] lg:pl-[100px]">
-            <div class="md:w-1/3 w-1/2 mb-10 lg:mb-0">
+            <div class="md:w-1/3 w-full mb-10 lg:mb-0">
               <div class="mb-5">
                 <h6 class="text-[24px] font-500 text-[#2F2F2F]">Feature</h6>
               </div>
@@ -104,7 +104,7 @@ const Footer = () => {
               </div>
             </div>
 
-            <div class="md:w-1/3 lg:flex lg:flex-col w-1/2 mb-10 lg:mb-0">
+            <div class="md:w-1/3 lg:flex lg:flex-col w-full mb-10 lg:mb-0">
               <div>
                 <div class="mb-5">
                   <h6 class="text-[24px] font-500 text-[#2F2F2F]">
@@ -142,7 +142,7 @@ const Footer = () => {
               </div>
             </div>
 
-            <div class="md:w-1/3 lg:flex lg:flex-col w-1/2 mb-10 lg:mb-0">
+            <div class="md:w-1/3 lg:flex lg:flex-col w-full mb-10 lg:mb-0">
               <div>
                 <div class="mb-5">
                   <h6 class="text-[24px] font-500 text-[#2F2F2F]">Helpful</h6>

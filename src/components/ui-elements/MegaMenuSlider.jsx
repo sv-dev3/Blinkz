@@ -22,6 +22,20 @@ const MegaMenuSlider = ({
   return (
     <div className="py-0">
       <div className="mx-auto p-0">
+        <div className="flex justify-between mb-4">
+          <div className="">
+            <h4 className="font-outfitMedium text-[22px]">Trend This Week</h4>
+          </div>
+          <div className="flex justify-end items-center space-x-2 pb-4">
+            <button className="custom_prev cursor-pointer">
+              <ChevronLeft className="custom_prev w-6 h-6 cursor-pointer" />
+            </button>
+            <button className="custom_next cursor-pointer">
+              <ChevronRight className="custom_next w-6 h-6 cursor-pointer" />
+            </button>
+          </div>
+        </div>
+
         <Swiper
           modules={[Autoplay, Virtual, Navigation, Pagination, Thumbs]}
           spaceBetween={12}
@@ -43,19 +57,11 @@ const MegaMenuSlider = ({
           {sliderImages.map((item, index) => (
             <SwiperSlide key={index} className="relative">
               <div className="bg-white rounded-3xl w-full">
-                <Card data={item} />
+                <Card data={item} height="h-[150px]" animateButtons={false} />
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="container flex justify-end items-center space-x-2 pb-4">
-          <button className="custom_prev cursor-pointer">
-            <ChevronLeft className="custom_prev w-8 h-8 cursor-pointer" />
-          </button>
-          <button className="custom_next cursor-pointer">
-            <ChevronRight className="custom_next w-8 h-8 cursor-pointer" />
-          </button>
-        </div>
       </div>
     </div>
   );

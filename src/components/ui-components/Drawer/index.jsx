@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { X, ChevronDown } from "lucide-react";
+import MegaMenu from "src/components/ui-elements/MegaMenu";
 
 const Drawer = ({ isOpen, onClose, menuItems }) => {
+  const [openSubMenuIndex, setOpenSubMenuIndex] = useState(null);
+
+  const handleToggleSubMenu = (index) => {
+    setOpenSubMenuIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
+
   return (
     <>
       <div
@@ -29,10 +36,13 @@ const Drawer = ({ isOpen, onClose, menuItems }) => {
         <ul className="p-4 space-y-4 font-outfitMedium">
           {menuItems.map((item, index) => (
             <li key={index} className="relative group">
-              <div className="flex items-center justify-between">
+              <div
+                className="flex items-center justify-between"
+                onClick={() => handleToggleSubMenu}
+              >
                 <Link
                   to={item.link}
-                  className="block text-lg text-gray-700 hover:text-purple-600 transition duration-300"
+                  className="block text-lg text-gray-700 hover:text-purple-600 transition duration-300 relative hover:text-purple-600 transition duration-300  font-outfitMedium"
                   onClick={onClose}
                 >
                   {item.name}
@@ -45,21 +55,26 @@ const Drawer = ({ isOpen, onClose, menuItems }) => {
                 )}
               </div>
               {/* Submenu */}
-              {item.subMenu && (
+              {/* {item.subMenu && (
                 <ul className="mt-2 space-y-2 pl-4">
-                  {/* {item.subMenu.map((subItem, subIndex) => (
-                    <li key={subIndex}>
-                      <Link
-                        to={subItem.link}
-                        className="block text-md text-gray-500 hover:text-purple-600 transition duration-300"
-                        onClick={onClose}
-                      >
-                        {subItem.name}
-                      </Link>
-                    </li>
-                  ))} */}
-                  Submenu will display here
+                  {item.drawerSubMenu &&
+                    item.drawerSubMenu.map((subItem, subIndex) => (
+                      <li key={subIndex}>
+                        <Link
+                          to={subItem.link}
+                          className="block text-md text-gray-500 hover:text-purple-600 transition duration-300"
+                          onClick={onClose}
+                        >
+                          {subItem.heading || "test"}
+                        </Link>
+                      </li>
+                    ))}
                 </ul>
+              )} */}
+              {item.subMenu && openSubMenuIndex === index && (
+                <div className="absolute left-0 w-full hidden group-hover:block hover:block">
+                  <MegaMenu menuItems={[item]} />
+                </div>
               )}
             </li>
           ))}

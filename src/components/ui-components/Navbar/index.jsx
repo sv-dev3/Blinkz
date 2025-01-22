@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import Drawer from "../Drawer";
 import MegaMenu from "src/components/ui-elements/MegaMenu";
 import third from "src/assets/images/card8.webp";
+import SkinOne from "src/assets/images/menu-collection-1-min.webp";
+import SkinTwo from "src/assets/images/menu-collection-2-min.webp";
+import SkinThree from "src/assets/images/menu-collection-3-min.webp";
 import { homeSliderData } from "src/helpers/dummyData";
 
 const Navbar = () => {
@@ -22,33 +25,65 @@ const Navbar = () => {
       subMenuGridData: {
         name: "About Grid",
         row1: [
-          { name: "Test", link: "/test" },
-          { name: "Row1", link: "/test" },
-          { name: "Row1", link: "/test" },
+          { heading: "Best Sellers", link: "/test" },
+          { heading: "New Arrivals", link: "/test" },
+          { heading: "Bundles", link: "/test" },
+          { heading: "Trending", link: "/test" },
         ],
         row2: [
-          { name: "About", link: "/test" },
-          { name: "Row 2", link: "/test" },
-          { name: "Test 2", link: "/test" },
+          { heading: "Skincare", link: "/test" },
+          { name: "Cleansers", link: "/test" },
+          { name: "Treatments", link: "/test" },
+          { name: "Eye care", link: "/test" },
+          { name: "Moisturizers", link: "/test" },
+          { name: "Accessories", link: "/test" },
+          { name: "Shop All", link: "/test" },
         ],
         row3: [
-          { name: "About", link: "/test" },
-          { name: "Row 3", link: "/test" },
-          { name: "Test 3", link: "/test" },
-          { name: "Test 3", link: "/test" },
-          { name: "Test 3", link: "/test" },
+          { heading: "Makeup", link: "/test" },
+          { name: "Face", link: "/test" },
+          { name: "Cheek", link: "/test" },
+          { name: "Lip", link: "/test" },
+          { name: "Eye", link: "/test" },
+          { name: "Makeup Remover", link: "/test" },
+          { name: "Accessories", link: "/test" },
+          { name: "Shop All", link: "/test" },
         ],
         carouselData: homeSliderData,
       },
+      drawerSubMenu: [
+        { heading: "Best Sellers", link: "/test" },
+        { heading: "New Arrivals", link: "/test" },
+        { heading: "Bundles", link: "/test" },
+        { heading: "Trending", link: "/test" },
+      ],
     },
     {
       name: "Services",
       link: "/services",
       subMenu: true,
       subMenuCardData: [
-        { heading: "test", subheading: "Middle Heading", img: third },
-        { heading: "test 2", subheading: "Middle Heading 2", img: third },
-        { heading: "test 3", subheading: "Middle Heading 3", img: third },
+        {
+          heading: "Sensitive Skin",
+          subheading: "Care for Your Skin",
+          img: SkinOne,
+        },
+        {
+          heading: "Sensitive Skin",
+          subheading: "Skincare Advance",
+          img: SkinTwo,
+        },
+        {
+          heading: "Sensitive Skin",
+          subheading: "Natural Self Care",
+          img: SkinThree,
+        },
+      ],
+      drawerSubMenu: [
+        { heading: "Sensitive Skin", link: "/test" },
+        { heading: "Sensitive Skin", link: "/test" },
+        { heading: "BunSensitive Skin", link: "/test" },
+        { heading: "Sensitive Skin", link: "/test" },
       ],
     },
     {

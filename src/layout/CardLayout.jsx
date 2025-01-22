@@ -2,29 +2,30 @@ import React from "react";
 
 const CardLayout = ({ data }) => {
   return (
-    <div className="grid grid-cols-3 w-[1000px] mx-auto justify-start py-[30px] gap-4 flex-wrap ">
+    <div className="grid grid-cols-3 container mx-auto justify-start py-[30px] gap-4 flex-wrap ">
       {data &&
         data.map((item, index) => (
           <div
             key={index}
-            className="relative isolate overflow-hidden rounded-2xl"
+            className="relative isolate overflow-hidden rounded-2xl h-[240px]"
           >
             <img
               src={item.img}
               alt={item.heading}
               className="w-full h-full object-cover"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black-900/10"></div>
-            <div className="absolute bottom-[20px] left-[20px]">
-              <h3 class="z-10 mt-3 text-[20px] font-bold text-white capitalize">
-                {item.heading}
-              </h3>
-              <div class="z-10 gap-y-1 text-white overflow-hidden text-[16px] leading-6 text-gray-300 capitalize">
-                {item.subheading}
+            <div className="absolute inset-0 flex items-center flex-wrap">
+              <div className="p-4">
+                <h6 class="z-10 mt-3 text-[16px] text-black capitalize font-outfitMedium tracking-[2px] mb-2">
+                  {item.heading}
+                </h6>
+                <h4 class="z-10 gap-y-1 text-black overflow-hidden text-[32px] leading-[normal] capitalize font-outfitMedium w-[180px] mb-2">
+                  {item.subheading}
+                </h4>
+                <button className="inline-block px-5 py-2 bg-black hover:bg-white border border-[#000] text-white hover:text-black transition rounded-full mt-3 text-[14px] font-outfitSemiBold uppercase">
+                  Shop Now
+                </button>
               </div>
-              <button className="mt-4 bg-purple-600 hover:bg-purple-700 text-sm font-medium text-white px-4 py-2 rounded-full">
-                Learn More
-              </button>
             </div>
           </div>
         ))}

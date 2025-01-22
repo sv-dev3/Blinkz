@@ -6,7 +6,7 @@ const MegaMenu = ({ menuItems }) => {
   return (
     <div className="absolute group">
       <div
-        className="absolute left-0 w-screen   z-50 opacity-0 transform translate-y-[-100%] group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 ease-out"
+        className="absolute left-0 right-0 md:w-screen   z-50 opacity-0 transform translate-y-[-100%] group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 ease-out"
         style={{ top: "80%" }}
       >
         <div className="bg-white shadow-lg mt-4 h-fit">

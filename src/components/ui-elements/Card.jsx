@@ -1,7 +1,7 @@
 import { Search } from "lucide-react";
 import { useState } from "react";
 
-const Card = ({ data }) => {
+const Card = ({ data, height = "h-[300px]", animateButtons = true }) => {
   const [hover, setHover] = useState(false);
 
   return (
@@ -33,46 +33,50 @@ const Card = ({ data }) => {
       </div>
 
       {/* Search Button */}
-      <div
-        className={`absolute top-[15px] right-[15px] transition-all duration-1000 z-30 transform ${
-          hover ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
-        }`}
-      >
-        <button className="bg-white text-gray-800 p-2 rounded-full shadow-md hover:bg-gray-200 transition duration-1000">
-          <Search />
-        </button>
-      </div>
+      {animateButtons && (
+        <div
+          className={`absolute top-[15px] right-[15px] transition-all duration-1000 z-30 transform ${
+            hover ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+          }`}
+        >
+          <button className="bg-white text-gray-800 p-2 rounded-full shadow-md hover:bg-gray-200 transition duration-1000">
+            <Search />
+          </button>
+        </div>
+      )}
 
       {/* Image */}
-      <div className="h-[200px] relative overflow-hidden">
+      <div className={`${height} relative overflow-hidden`}>
         <img
           src={hover ? data?.image : data?.hoverImage}
           alt="Product"
           // className="w-full h-64 object-cover rounded-md cursor-pointer transition-transform duration-600 ease-in-out transform hover:scale-110 hover:rotate-1"
-          className="w-full h-64 object-cover rounded-md cursor-pointer transform hover:scale-110 hover:rotate-1"
+          className="h-full w-full object-cover rounded-md cursor-pointer transform hover:scale-110 hover:rotate-1"
           style={{
             willChange: "transform",
             transition: "transform 0.8s ease-in-out", // Change '1s' to your desired duration
           }}
         />
-        <div
-          className={`absolute h-16 inset-x-0 bottom-0 flex items-center justify-center bg-transparent bg-opacity-5 transition-all transform ${
-            hover ? "translate-y-0 opacity-80" : "translate-y-full opacity-0"
-          }`}
-          style={{
-            transition: "transform 0.6s ease-in-out, opacity 1s ease-in-out",
-          }}
-        >
-          <button
-            className="text-lg font-outfitBold bg-black w-full mx-8 text-white px-6 py-2 rounded-full shadow-md hover:bg-gray-200 hover:text-black transition"
+        {animateButtons && (
+          <div
+            className={`absolute h-16 inset-x-0 bottom-0 flex items-center justify-center bg-transparent bg-opacity-5 transition-all transform ${
+              hover ? "translate-y-0 opacity-80" : "translate-y-full opacity-0"
+            }`}
             style={{
-              transition:
-                "background-color 1s ease-in-out, color 1s ease-in-out",
+              transition: "transform 0.6s ease-in-out, opacity 1s ease-in-out",
             }}
           >
-            Add to Cart
-          </button>
-        </div>
+            <button
+              className="text-lg font-outfitBold bg-black w-full mx-8 text-white px-6 py-2 rounded-full shadow-md hover:bg-gray-200 hover:text-black transition"
+              style={{
+                transition:
+                  "background-color 1s ease-in-out, color 1s ease-in-out",
+              }}
+            >
+              Add to Cart
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="p-4">

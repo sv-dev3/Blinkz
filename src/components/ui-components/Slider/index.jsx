@@ -28,10 +28,13 @@ const Slider = ({
       <Swiper
         modules={[Autoplay, Virtual, Navigation, Pagination, Thumbs]}
         spaceBetween={12}
+        autoplay={{
+          delay: 1500, // Adjust delay as needed
+          disableOnInteraction: false,
+        }}
         slidesPerView={sliderPerView}
         loop={true}
         centeredSlides={centeredSlide}
-        autoplay={{ delay: 2000000000 }}
         className="relative"
         pagination={{ clickable: true }}
         observer={true}
