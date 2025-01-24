@@ -65,12 +65,12 @@ const Slider = ({
                     <h3 class="font-outfitSemiBold text-center md:text-left text-[40px] lg:text-[50px] leading-[normal]">
                       Get the skin you want to feel
                     </h3>
-                    <a
-                      href="javascript:void(0);"
+                    <Link
+                      href="/"
                       className="inline-block px-7 py-2.5 bg-black hover:bg-white border border-[#000] text-white hover:text-black transition rounded-full mt-8 text-[16px] font-outfitSemiBold uppercase"
                     >
                       Shop Now
-                    </a>
+                    </Link>
                   </div>
                 </div>
               )}

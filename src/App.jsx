@@ -4,6 +4,7 @@ import About from "src/pages/About";
 import Navbar from "src/components/ui-components/Navbar";
 import Marquee from "src/components/ui-elements/Marquee";
 import ComingSoon from "src/pages/ComingSoon";
+import Profile from "./pages/Profile";
 
 function App() {
   const marqueeData = ["Call Us +91 8448033658"];
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<ComingSoon />} />
       </Routes>
     </BrowserRouter>

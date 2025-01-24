@@ -1,17 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ChevronDown, Search, ShoppingCart, User, Menu } from "lucide-react"; // Import Lucide icons
 import logo from "src/assets/images/logo.png";
 import { Link } from "react-router-dom";
-import Drawer from "../Drawer";
+import NavDrawer from "../Drawer/NavDrawer";
 import MegaMenu from "src/components/ui-elements/MegaMenu";
-import third from "src/assets/images/card8.webp";
 import SkinOne from "src/assets/images/menu-collection-1-min.webp";
 import SkinTwo from "src/assets/images/menu-collection-2-min.webp";
 import SkinThree from "src/assets/images/menu-collection-3-min.webp";
 import { homeSliderData } from "src/helpers/dummyData";
+import SearchDrawer from "../Drawer/SearchDrawer";
+import CartDrawer from "../Drawer/CartDrawer";
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isSearchDrawerOpen, setIsSearchDrawerOpen] = useState(false);
+  const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+
+  const updateCartCount = () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Calculate the total quantity of items in the cart
+    const totalQuantity = cart.reduce(
+      (sum, item) => sum + (item.quantity || 1),
+      0
+    );
+
+    setCartCount(totalQuantity);
+  };
+
+  // UseEffect to update on mount and when the custom event fires
+  useEffect(() => {
+    // Set the initial cart count
+    updateCartCount();
+    const handleStorageChange = () => updateCartCount();
+    window.addEventListener("cartUpdated", handleStorageChange);
+    return () => window.removeEventListener("cartUpdated", handleStorageChange);
+  }, []);
 
   const menuItems = [
     {
@@ -92,27 +117,9 @@ const Navbar = () => {
     },
   ];
 
-  // Icons
-  const icons = [
-    {
-      name: "Search",
-      icon: <Search size={24} />,
-      action: () => alert("Search clicked"),
-    },
-    {
-      name: "Cart",
-      icon: <ShoppingCart size={24} />,
-      action: () => alert("Cart clicked"),
-      count: 2,
-    },
-    {
-      name: "Profile",
-      icon: <User size={24} />,
-      action: () => alert("Profile clicked"),
-    },
-  ];
-
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
+  const toggleSearchDrawer = () => setIsSearchDrawerOpen(!isSearchDrawerOpen);
+  const toggleCartDrawer = () => setIsCartDrawerOpen(!isCartDrawerOpen);
 
   return (
     <nav
@@ -145,7 +152,7 @@ const Navbar = () => {
 
               {/* Mega Menu will show only when parent li is hovered */}
               {item.subMenu && (
-                <div className="absolute left-0 w-full hidden group-hover:block hover:block">
+                <div className="absolute left-0 right-0 w-full hidden group-hover:block hover:block">
                   <MegaMenu menuItems={[item]} />
                 </div>
               )}
@@ -155,21 +162,38 @@ const Navbar = () => {
 
         {/* Right Section: Icons */}
         <div className="flex space-x-6">
-          {icons.map((icon, index) => (
-            <button
-              key={index}
-              onClick={icon.action}
-              className="relative text-xl hover:text-purple-600 transition duration-300"
-              title={icon.name}
-            >
-              {icon.icon}
-              {icon.count > 0 && (
-                <span className="absolute top-0 font-outfitRegular -right-4 text-xs w-4 h-4 bg-red-600 text-white rounded-full flex items-center justify-center -translate-x-1/2 -translate-y-1/2">
-                  {icon.count}
-                </span>
-              )}
-            </button>
-          ))}
+          {/* search button  */}
+          <button
+            onClick={toggleSearchDrawer}
+            className="relative text-xl hover:text-purple-600 transition duration-300"
+            title={"Search"}
+          >
+            <Search size={24} />
+          </button>
+
+          {/* cart button  */}
+          <button
+            onClick={toggleCartDrawer}
+            className="relative text-xl hover:text-purple-600 transition duration-300"
+            title={"Search"}
+          >
+            <ShoppingCart size={24} />
+            <span className="absolute top-0 font-outfitRegular -right-4 text-xs w-4 h-4 bg-red-600 text-white rounded-full flex items-center justify-center -translate-x-1/2 -translate-y-1/2">
+              {cartCount}
+            </span>
+          </button>
+
+          <button
+            // onClick={}
+            className="relative text-xl hover:text-purple-600 transition duration-300"
+            title={"Search"}
+          >
+            <Link to={"/profile"}>
+              <User size={24} />
+            </Link>
+          </button>
+
+          {/* Drawer Menu button  */}
           <button
             className="block md:hidden text-xl hover:text-purple-600 transition duration-300"
             onClick={toggleDrawer}
@@ -179,12 +203,17 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Drawer Component */}
-      <Drawer
+      {/* Nav Drawer */}
+      <NavDrawer
         isOpen={isDrawerOpen}
         onClose={toggleDrawer}
         menuItems={menuItems}
       />
+
+      {/* search Drawer  */}
+      <SearchDrawer isOpen={isSearchDrawerOpen} onClose={toggleSearchDrawer} />
+      {/* cart drawer  */}
+      <CartDrawer isOpen={isCartDrawerOpen} onClose={toggleCartDrawer} />
     </nav>
   );
 };

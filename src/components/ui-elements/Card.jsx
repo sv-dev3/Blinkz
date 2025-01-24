@@ -1,8 +1,45 @@
 import { Search } from "lucide-react";
 import { useState } from "react";
+import CartDrawer from "../ui-components/Drawer/CartDrawer";
+import ChooseOptionsModal from "../ui-components/Drawer/ChooseOptionsDrawer";
 
 const Card = ({ data, height = "h-[300px]", animateButtons = true }) => {
   const [hover, setHover] = useState(false);
+  const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
+  const [isOptionDrawerOpen, setIsOptionDrawerOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedQuantity, setSelectedQuantity] = useState("");
+
+  const toggleCartDrawer = () => setIsCartDrawerOpen(!isCartDrawerOpen);
+  const toggleOptionDrawer = () => {
+    setIsOptionDrawerOpen(!isOptionDrawerOpen);
+  };
+
+  const handleAddToCart = (data, selectedQuantity = "50ml") => {
+    // Retrieve the existing cart from localStorage or initialize it as an empty array
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingItemIndex = cart.findIndex((item) => item.name === data.name);
+
+    if (existingItemIndex !== -1) {
+      // If the item exists, increment its quantity
+      cart[existingItemIndex].quantity += 1;
+    } else {
+      // If the item does not exist, add it with a default quantity of 1
+      cart.push({ ...data, selectedQuantity, quantity: 1 });
+    }
+
+    // Update the cart in localStorage
+    localStorage.setItem("cart", JSON.stringify(cart));
+    window.dispatchEvent(new Event("cartUpdated"));
+    toggleCartDrawer();
+    setSelectedQuantity("");
+    setSelectedItem(null);
+  };
+
+  const handleChooseOptions = (item) => {
+    setSelectedItem(item);
+    toggleOptionDrawer();
+  };
 
   return (
     <div
@@ -50,7 +87,6 @@ const Card = ({ data, height = "h-[300px]", animateButtons = true }) => {
         <img
           src={hover ? data?.image : data?.hoverImage}
           alt="Product"
-          // className="w-full h-64 object-cover rounded-md cursor-pointer transition-transform duration-600 ease-in-out transform hover:scale-110 hover:rotate-1"
           className="h-full w-full object-cover rounded-md cursor-pointer transform hover:scale-110 hover:rotate-1"
           style={{
             willChange: "transform",
@@ -66,15 +102,31 @@ const Card = ({ data, height = "h-[300px]", animateButtons = true }) => {
               transition: "transform 0.6s ease-in-out, opacity 1s ease-in-out",
             }}
           >
-            <button
-              className="text-lg font-outfitBold bg-black w-full mx-8 text-white px-6 py-2 rounded-full shadow-md hover:bg-gray-200 hover:text-black transition"
-              style={{
-                transition:
-                  "background-color 1s ease-in-out, color 1s ease-in-out",
-              }}
-            >
-              Add to Cart
-            </button>
+            {data?.multipleQuantity ? (
+              // choose option if quantity is multiple
+              <button
+                className="text-lg font-outfitBold bg-black w-full mx-8 text-white px-6 py-2 rounded-full shadow-md hover:bg-gray-200 hover:text-black transition"
+                onClick={() => handleChooseOptions(data)}
+                style={{
+                  transition:
+                    "background-color 1s ease-in-out, color 1s ease-in-out",
+                }}
+              >
+                Choose options
+              </button>
+            ) : (
+              // if not then directly add to cart
+              <button
+                className="text-lg font-outfitBold bg-black w-full mx-8 text-white px-6 py-2 rounded-full shadow-md hover:bg-gray-200 hover:text-black transition"
+                onClick={() => handleAddToCart(data)}
+                style={{
+                  transition:
+                    "background-color 1s ease-in-out, color 1s ease-in-out",
+                }}
+              >
+                Add to Cart
+              </button>
+            )}
           </div>
         )}
       </div>
@@ -90,13 +142,25 @@ const Card = ({ data, height = "h-[300px]", animateButtons = true }) => {
         </div>
         <div className="  font-outfitSemiBold text-gray-900 flex space-x-3 items-center">
           <span className="text-gray-900 font-outfitBold text-[16px]">
-            $29.00
+            {`${data?.price}`}
           </span>
           <span className="text-gray-500 font-outfitRegular text-[13px] line-through">
-            $39.00
+            {`${data?.price}`}
           </span>
         </div>
       </div>
+
+      <CartDrawer isOpen={isCartDrawerOpen} onClose={toggleCartDrawer} />
+      <ChooseOptionsModal
+        isOpen={isOptionDrawerOpen}
+        onClose={toggleOptionDrawer}
+        item={selectedItem}
+        onAddToCart={(selectedQuantity) =>
+          handleAddToCart(data, selectedQuantity)
+        }
+        setSelectedQuantity={setSelectedQuantity}
+        selectedQuantity={selectedQuantity}
+      />
     </div>
   );
 };

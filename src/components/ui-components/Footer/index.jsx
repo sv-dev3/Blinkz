@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import SocialIcons from "src/components/ui-elements/SocialIcons";
 
 const Footer = () => {
@@ -8,26 +7,6 @@ const Footer = () => {
     setIsDropdownVisible((prevState) => !prevState);
   };
 
-  const aboutMenus = [
-    { name: "About us", url: "/about" },
-    { name: "Carrers", url: "/carrers" },
-    { name: "Blog", url: "/blog" },
-    { name: "Sustanability", url: "/sustanability" },
-  ];
-
-  const shopMenus = [
-    { name: "New Arrivals", url: "/new" },
-    { name: "Best Sellers", url: "/bestseller" },
-    { name: "Sale", url: "/sale" },
-    { name: "Gift", url: "/gift" },
-  ];
-
-  const customerCare = [
-    { name: "Contact Us", url: "/contact" },
-    { name: "FAQs", url: "/faq" },
-    { name: "Return And Exchange", url: "/return" },
-    { name: "Shipping info", url: "/info" },
-  ];
   return (
     <footer className=" mt-0 md:mt-8 font-outfitRegular  border-gray-500 py-10">
       <div className="container mx-auto px-4">
@@ -219,6 +198,7 @@ const Footer = () => {
                     <img
                       src="https://readymadeui.com/usa_flag.webp"
                       class="w-6 mr-3"
+                      alt="flag"
                     />
                     USA
                   </div>
@@ -228,6 +208,7 @@ const Footer = () => {
                     <img
                       src="https://readymadeui.com/uk_flag.webp"
                       class="w-6 mr-3"
+                      alt="flag"
                     />
                     England
                   </div>
@@ -237,6 +218,7 @@ const Footer = () => {
                     <img
                       src="https://readymadeui.com/india_flag.webp"
                       class="w-6 mr-3"
+                      alt="flag"
                     />
                     India
                   </div>
@@ -246,6 +228,7 @@ const Footer = () => {
                     <img
                       src="https://readymadeui.com/singapore_flag.webp"
                       class="w-6 mr-3"
+                      alt="flag"
                     />
                     Singapore
                   </div>
