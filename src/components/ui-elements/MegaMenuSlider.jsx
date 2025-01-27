@@ -27,11 +27,11 @@ const MegaMenuSlider = ({
             <h4 className="font-outfitMedium text-[22px]">Trend This Week</h4>
           </div>
           <div className="flex justify-end items-center space-x-2 pb-4">
-            <button className="custom_prev cursor-pointer">
-              <ChevronLeft className="custom_prev w-6 h-6 cursor-pointer" />
+            <button className="prev cursor-pointer">
+              <ChevronLeft className="prev w-6 h-6 cursor-pointer" />
             </button>
-            <button className="custom_next cursor-pointer">
-              <ChevronRight className="custom_next w-6 h-6 cursor-pointer" />
+            <button className="next cursor-pointer">
+              <ChevronRight className="next w-6 h-6 cursor-pointer" />
             </button>
           </div>
         </div>
@@ -50,8 +50,8 @@ const MegaMenuSlider = ({
           style={{ height: "100%" }}
           grabCursor={true}
           navigation={{
-            nextEl: ".custom_next",
-            prevEl: ".custom_prev",
+            nextEl: ".next",
+            prevEl: ".prev",
           }}
         >
           {sliderImages.map((item, index) => (

@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { X } from "lucide-react";
+import { homeSliderData } from "src/helpers/dummyData";
+import ChooseOptionSlider from "src/components/ui-elements/ChooseOptionsSlider";
 
 const ChooseOptionsModal = ({
   isOpen,
@@ -8,10 +10,12 @@ const ChooseOptionsModal = ({
   onAddToCart,
   setSelectedQuantity,
   selectedQuantity,
+  quantity,
+  setQuantity,
 }) => {
   const handleAddToCartClick = () => {
     if (!item || !item.quantityOptions || !setSelectedQuantity) return;
-    onAddToCart(selectedQuantity);
+    onAddToCart(selectedQuantity, quantity);
     onClose();
   };
 
@@ -24,6 +28,18 @@ const ChooseOptionsModal = ({
       setSelectedQuantity(item.quantityOptions[0]); // Set first quantity option as default
     }
   }, [item, selectedQuantity, setSelectedQuantity]);
+
+  const handleIncrement = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const handleDecrement = (item) => {
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  };
+
+  const handleQuantityChange = (item, newValue) => {
+    setQuantity(newValue);
+  };
 
   return (
     <>
@@ -49,37 +65,77 @@ const ChooseOptionsModal = ({
           </button>
         </div>
 
-        <div className="flex flex-col items-center p-4">
-          <img
-            src={item?.image}
-            alt={item?.name}
-            className="w-full h-56 object-cover rounded-md mb-4"
-          />
+        <div className="overflow-auto h-full pb-24 font-outfitRegular">
+          <div className="flex flex-col p-4">
+            <ChooseOptionSlider sliderImages={homeSliderData} />
 
-          {/* Quantity Options */}
-          <div className="space-x-4 mb-4">
-            {item?.quantityOptions?.map((option, index) => (
+            {/* Product name  */}
+            <h4 className="font-outfitMedium text-3xl mb-4">{item?.name}</h4>
+            <div className="  font-outfitSemiBold text-gray-900 flex space-x-3 items-center">
+              <span className="text-red-500 font-outfit text-[20px]">
+                {`${item?.price}`}
+              </span>
+              <span className="text-gray-500 font-outfitRegular text-[18px] line-through">
+                {`${item?.price}`}
+              </span>
+            </div>
+            <p className="text-md font-outfitRegular">{item?.description}</p>
+            <div className="flex flex-row my-4">
+              <span className="font-outfitBold">Size : </span>
+              <span className="mx-4">{selectedQuantity}</span>
+            </div>
+            {/* Quantity Options */}
+            <div className="space-x-4 mb-4">
+              {item?.quantityOptions?.map((option, index) => (
+                <button
+                  key={index}
+                  className={`px-4 py-2 border rounded-full hover:bg-black hover:text-white ${
+                    selectedQuantity === option
+                      ? "bg-black text-white"
+                      : "bg-white text-black"
+                  }`}
+                  onClick={() => setSelectedQuantity(option)}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+
+            <div className="flex items-center space-x-4 mb-4">
               <button
-                key={index}
-                className={`px-4 py-2 border rounded ${
-                  selectedQuantity === option
-                    ? "bg-gray-700 text-white"
-                    : "bg-gray-200"
-                }`}
-                onClick={() => setSelectedQuantity(option)}
+                onClick={() => handleDecrement(item)}
+                className="px-2 py-1 bg-gray-300 text-black rounded"
               >
-                {option}
+                -
               </button>
-            ))}
-          </div>
+              <input
+                type="number"
+                value={quantity}
+                min="1"
+                className="w-12 text-center border border-gray-300 rounded"
+                onChange={(e) =>
+                  handleQuantityChange(
+                    item,
+                    Math.max(1, parseInt(e.target.value, 10) || 1) // Handle invalid input gracefully
+                  )
+                }
+              />
+              <button
+                onClick={() => handleIncrement(item)}
+                className="px-2 py-1 bg-gray-300 text-black rounded"
+              >
+                +
+              </button>
 
-          {/* Add to Cart Button */}
-          <button
-            onClick={handleAddToCartClick}
-            className="bg-black text-white py-2 px-6 rounded-full shadow-md w-48"
-          >
-            Add to Cart
-          </button>
+              {/* Add to Cart Button */}
+              <button
+                onClick={handleAddToCartClick}
+                className="bg-black text-white py-2 px-6 rounded-full shadow-md w-72 sm:w-96"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </>

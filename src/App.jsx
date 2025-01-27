@@ -4,7 +4,9 @@ import About from "src/pages/About";
 import Navbar from "src/components/ui-components/Navbar";
 import Marquee from "src/components/ui-elements/Marquee";
 import ComingSoon from "src/pages/ComingSoon";
-import Profile from "./pages/Profile";
+import Profile from "src/pages/Profile";
+import AllCategoryProducts from "src/pages/Category/all";
+import DynamicCategory from "./pages/Category/DynamicCategory";
 
 function App() {
   const marqueeData = ["Call Us +91 8448033658"];
@@ -24,6 +26,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/category/all" element={<AllCategoryProducts />} />
+        <Route path="/category/:categoryName" element={<DynamicCategory />} />
         <Route path="*" element={<ComingSoon />} />
       </Routes>
     </BrowserRouter>

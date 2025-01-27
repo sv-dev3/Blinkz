@@ -9,23 +9,25 @@ const Card = ({ data, height = "h-[300px]", animateButtons = true }) => {
   const [isOptionDrawerOpen, setIsOptionDrawerOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedQuantity, setSelectedQuantity] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
   const toggleCartDrawer = () => setIsCartDrawerOpen(!isCartDrawerOpen);
   const toggleOptionDrawer = () => {
     setIsOptionDrawerOpen(!isOptionDrawerOpen);
   };
 
-  const handleAddToCart = (data, selectedQuantity = "50ml") => {
+  const handleAddToCart = (data, selectedQuantity = "50ml", quantity = 1) => {
     // Retrieve the existing cart from localStorage or initialize it as an empty array
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const existingItemIndex = cart.findIndex((item) => item.name === data.name);
 
     if (existingItemIndex !== -1) {
       // If the item exists, increment its quantity
-      cart[existingItemIndex].quantity += 1;
+      cart[existingItemIndex].quantity += quantity;
+      cart[existingItemIndex].selectedQuantity = selectedQuantity;
     } else {
       // If the item does not exist, add it with a default quantity of 1
-      cart.push({ ...data, selectedQuantity, quantity: 1 });
+      cart.push({ ...data, selectedQuantity, quantity });
     }
 
     // Update the cart in localStorage
@@ -155,11 +157,13 @@ const Card = ({ data, height = "h-[300px]", animateButtons = true }) => {
         isOpen={isOptionDrawerOpen}
         onClose={toggleOptionDrawer}
         item={selectedItem}
-        onAddToCart={(selectedQuantity) =>
-          handleAddToCart(data, selectedQuantity)
+        onAddToCart={(selectedQuantity, quantity) =>
+          handleAddToCart(data, selectedQuantity, quantity)
         }
         setSelectedQuantity={setSelectedQuantity}
         selectedQuantity={selectedQuantity}
+        quantity={quantity}
+        setQuantity={setQuantity}
       />
     </div>
   );

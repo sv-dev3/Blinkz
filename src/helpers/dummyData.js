@@ -81,7 +81,8 @@ export const dummyData = [
     ],
     hoverImage: eight,
     multipleQuantity: true,
-    quantityOptions: ["100ml", "200ml", "300ml"],
+    quantityOptions: ["100ml", "250ml"],
+    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine."
   },
   {
     image: two,
@@ -91,7 +92,8 @@ export const dummyData = [
     discount: "-20% Discount",
     tags: [{ type: "highlight", value: "New Arrival" }],
     hoverImage: seven,
-    multipleQuantity: false
+    multipleQuantity: false,
+    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine."
   },
   {
     image: three,
@@ -100,7 +102,9 @@ export const dummyData = [
     price: "$99.99",
     discount: "-10% Discount",
     hoverImage: six,
-    multipleQuantity: false
+    multipleQuantity: true,
+    quantityOptions: ["50ml", "100ml"],
+    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine."
   },
   {
     image: four,
@@ -111,7 +115,8 @@ export const dummyData = [
     tags: [{ type: "highlight", value: "Exclusive" }],
     hoverImage: five,
     multipleQuantity: true,
-    quantityOptions: ["100ml", "200ml", "300ml"],
+    quantityOptions: ["100ml", "150ml"],
+    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine."
   },
   {
     image: five,
@@ -122,6 +127,7 @@ export const dummyData = [
     hoverImage: two,
     multipleQuantity: true,
     quantityOptions: ["100ml", "200ml", "300ml"],
+    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine."
   },
   {
     image: six,
@@ -131,17 +137,19 @@ export const dummyData = [
     discount: "-5% Discount",
     tags: [{ type: "highlight", value: "Limited Stock" }],
     hoverImage: one,
-    multipleQuantity: false
+    multipleQuantity: false,
+    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine."
   },
   {
     image: seven,
     type: "oil",
-    name: "Nutrient face oil",
+    name: "Moisture oil",
     price: "$149.99",
     discount: "-5% Discount",
     tags: [{ type: "discount", value: "-5%" }],
     hoverImage: third,
-    multipleQuantity: false
+    multipleQuantity: false,
+    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine."
   },
   {
     image: eight,
@@ -155,6 +163,7 @@ export const dummyData = [
     ],
     hoverImage: two,
     multipleQuantity: true,
-    quantityOptions: ["100ml", "200ml", "300ml"],
+    quantityOptions: ["100ml", "200ml"],
+    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine."
   },
 ];
