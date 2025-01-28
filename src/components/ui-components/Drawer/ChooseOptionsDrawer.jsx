@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { X } from "lucide-react";
 import { homeSliderData } from "src/helpers/dummyData";
 import ChooseOptionSlider from "src/components/ui-elements/ChooseOptionsSlider";
+import { useNavigate } from "react-router-dom";
 
 const ChooseOptionsModal = ({
   isOpen,
@@ -13,9 +14,15 @@ const ChooseOptionsModal = ({
   quantity,
   setQuantity,
 }) => {
+  const navigate = useNavigate();
   const handleAddToCartClick = () => {
     if (!item || !item.quantityOptions || !setSelectedQuantity) return;
     onAddToCart(selectedQuantity, quantity);
+    onClose();
+  };
+
+  const handleViewDetails = () => {
+    navigate(`/product/${item?.id}`);
     onClose();
   };
 
@@ -73,10 +80,10 @@ const ChooseOptionsModal = ({
             <h4 className="font-outfitMedium text-3xl mb-4">{item?.name}</h4>
             <div className="  font-outfitSemiBold text-gray-900 flex space-x-3 items-center">
               <span className="text-red-500 font-outfit text-[20px]">
-                {`${item?.price}`}
+                {`$${item?.price}`}
               </span>
               <span className="text-gray-500 font-outfitRegular text-[18px] line-through">
-                {`${item?.price}`}
+                {`$${item?.price}`}
               </span>
             </div>
             <p className="text-md font-outfitRegular">{item?.description}</p>
@@ -133,6 +140,24 @@ const ChooseOptionsModal = ({
                 className="bg-black text-white py-2 px-6 rounded-full shadow-md w-72 sm:w-96"
               >
                 Add to Cart
+              </button>
+            </div>
+
+            {/* Buy Now  */}
+            <div>
+              <button
+                // onClick={handleAddToCartClick}
+                className="bg-black text-white py-2 px-6 rounded-full w-full hover:bg-white hover:text-black border border-black"
+              >
+                Buy Now
+              </button>
+            </div>
+            <div className="mt-4">
+              <button
+                onClick={handleViewDetails}
+                className="bg-black text-white py-2 px-6 rounded-full w-full hover:bg-white hover:text-black border border-black"
+              >
+                View Details
               </button>
             </div>
           </div>

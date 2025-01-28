@@ -16,10 +16,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
     // Calculate the total quantity and total price
     const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
     const totalPrice = cart.reduce(
-      (sum, item) =>
-        sum +
-        item.quantity *
-          parseFloat(item.price.replace("$", "").replace(",", "")),
+      (sum, item) => sum + item.quantity * item?.price,
       0
     );
     setCartCount(totalQuantity);

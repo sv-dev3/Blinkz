@@ -70,10 +70,11 @@ export const middleBannerData = [
 
 export const dummyData = [
   {
+    id: 1,
     image: one,
-    type: "cream",
+    type: "Skincare",
     name: "Light work rosehip toner",
-    price: "$199.99",
+    price: 10,
     discount: "-15% Discount",
     tags: [
       { type: "discount", value: "30% OFF" },
@@ -82,80 +83,101 @@ export const dummyData = [
     hoverImage: eight,
     multipleQuantity: true,
     quantityOptions: ["100ml", "250ml"],
-    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine."
+    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    inStock: true, // Added inStock property
+    outOfStock: false, // Added outOfStock property
   },
   {
+    id: 2,
     image: two,
     type: "oil",
     name: "Nutrient face oil",
-    price: "$299.99",
+    price: 89.99,
     discount: "-20% Discount",
     tags: [{ type: "highlight", value: "New Arrival" }],
     hoverImage: seven,
     multipleQuantity: false,
-    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine."
+    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    inStock: false, // Added inStock property
+    outOfStock: true, // Added outOfStock property
   },
   {
+    id: 3,
     image: three,
-    type: "cream",
+    type: "Cream",
     name: "Dream bio retinol",
-    price: "$99.99",
+    price: 99.99,
     discount: "-10% Discount",
     hoverImage: six,
     multipleQuantity: true,
     quantityOptions: ["50ml", "100ml"],
-    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine."
+    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    inStock: true, // Added inStock property
+    outOfStock: false, // Added outOfStock property
   },
   {
+    id: 4,
     image: four,
-    type: "oil",
+    type: "Oil",
     name: "Protective day oil",
-    price: "$149.99",
+    price: 69.99,
     discount: "-5% Discount",
     tags: [{ type: "highlight", value: "Exclusive" }],
     hoverImage: five,
     multipleQuantity: true,
     quantityOptions: ["100ml", "150ml"],
-    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine."
+    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    inStock: true, // Added inStock property
+    outOfStock: false, // Added outOfStock property
   },
   {
+    id: 5,
     image: five,
-    type: "cream",
+    type: "Cream",
     name: "Rose quartz facial polish",
-    price: "$149.99",
+    price: 29.99,
     discount: "-5% Discount",
     hoverImage: two,
     multipleQuantity: true,
     quantityOptions: ["100ml", "200ml", "300ml"],
-    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine."
+    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    inStock: true, // Added inStock property
+    outOfStock: false, // Added outOfStock property
   },
   {
+    id: 6,
     image: six,
     type: "Serum",
     name: "Hydrating serum",
-    price: "$149.99",
+    price: 149.99,
     discount: "-5% Discount",
     tags: [{ type: "highlight", value: "Limited Stock" }],
     hoverImage: one,
     multipleQuantity: false,
-    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine."
+    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    inStock: true, // Added inStock property
+    outOfStock: false, // Added outOfStock property
   },
   {
+    id: 7,
     image: seven,
-    type: "oil",
-    name: "Moisture oil",
-    price: "$149.99",
+    type: "Skincare",
+    name: "Skincare Cream",
+    price: 149.99,
     discount: "-5% Discount",
     tags: [{ type: "discount", value: "-5%" }],
     hoverImage: third,
     multipleQuantity: false,
-    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine."
+    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    inStock: false, // Added inStock property
+    outOfStock: true, // Added outOfStock property
   },
   {
+    id: 8,
     image: eight,
-    type: "oil",
-    name: "Nutrient face oil",
-    price: "$149.99",
+    type: "Oil",
+    name: "Moisture oil",
+    price: 149.99,
     discount: "-8% Discount",
     tags: [
       { type: "highlight", value: "Exclusive" },
@@ -163,7 +185,9 @@ export const dummyData = [
     ],
     hoverImage: two,
     multipleQuantity: true,
-    quantityOptions: ["100ml", "200ml"],
-    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine."
+    quantityOptions: ["50ml", "100ml", "200ml"],
+    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    inStock: false, // Added inStock property
+    outOfStock: true, // Added outOfStock property
   },
 ];

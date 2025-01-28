@@ -95,7 +95,7 @@ const Card = ({ data, height = "h-[300px]", animateButtons = true }) => {
             transition: "transform 0.8s ease-in-out", // Change '1s' to your desired duration
           }}
         />
-        {animateButtons && (
+        {animateButtons && !data?.outOfStock && (
           <div
             className={`absolute h-16 inset-x-0 bottom-0 flex items-center justify-center bg-transparent bg-opacity-5 transition-all transform ${
               hover ? "translate-y-0 opacity-80" : "translate-y-full opacity-0"
@@ -144,10 +144,10 @@ const Card = ({ data, height = "h-[300px]", animateButtons = true }) => {
         </div>
         <div className="  font-outfitSemiBold text-gray-900 flex space-x-3 items-center">
           <span className="text-gray-900 font-outfitBold text-[16px]">
-            {`${data?.price}`}
+            {`$${data?.price}`}
           </span>
           <span className="text-gray-500 font-outfitRegular text-[13px] line-through">
-            {`${data?.price}`}
+            {`$${data?.price}`}
           </span>
         </div>
       </div>

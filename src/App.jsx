@@ -7,6 +7,7 @@ import ComingSoon from "src/pages/ComingSoon";
 import Profile from "src/pages/Profile";
 import AllCategoryProducts from "src/pages/Category/all";
 import DynamicCategory from "./pages/Category/DynamicCategory";
+import ProductDetails from "./pages/Product/ProductDetails";
 
 function App() {
   const marqueeData = ["Call Us +91 8448033658"];
@@ -28,6 +29,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/category/all" element={<AllCategoryProducts />} />
         <Route path="/category/:categoryName" element={<DynamicCategory />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="*" element={<ComingSoon />} />
       </Routes>
     </BrowserRouter>

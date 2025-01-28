@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const CategoryLayout = ({ children }) => {
@@ -29,17 +29,9 @@ const CategoryLayout = ({ children }) => {
   };
 
   // Redirect user based on the category
-  useEffect(() => {
-    const pathSegments = location.pathname.split("/").filter(Boolean);
-    if (pathSegments.length > 1) {
-      const category = pathSegments[1];
-      // Logic to navigate if category changes (you can customize this)
-      navigate(`/category/${category}`);
-    }
-  }, [location, navigate]);
 
   return (
-    <div>
+    <div className="container mx-auto">
       <div className="breadcrumb flex justify-center items-center space-x-2">
         {generateBreadcrumbs().map((breadcrumb, index) => (
           <div key={index}>
