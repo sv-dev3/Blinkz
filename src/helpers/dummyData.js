@@ -67,7 +67,6 @@ export const middleBannerData = [
   },
 ];
 
-
 export const dummyData = [
   {
     id: 1,
@@ -83,9 +82,18 @@ export const dummyData = [
     hoverImage: eight,
     multipleQuantity: true,
     quantityOptions: ["100ml", "250ml"],
-    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    description:
+      "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
     inStock: true, // Added inStock property
     outOfStock: false, // Added outOfStock property
+    sliderImages: [
+      {
+        imageUrl: one,
+      },
+      {
+        imageUrl: eight,
+      },
+    ],
   },
   {
     id: 2,
@@ -97,9 +105,24 @@ export const dummyData = [
     tags: [{ type: "highlight", value: "New Arrival" }],
     hoverImage: seven,
     multipleQuantity: false,
-    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    description:
+      "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
     inStock: false, // Added inStock property
     outOfStock: true, // Added outOfStock property
+    sliderImages: [
+      {
+        imageUrl: two,
+      },
+      {
+        imageUrl: seven,
+      },
+      {
+        imageUrl: two,
+      },
+      {
+        imageUrl: two,
+      },
+    ],
   },
   {
     id: 3,
@@ -111,9 +134,18 @@ export const dummyData = [
     hoverImage: six,
     multipleQuantity: true,
     quantityOptions: ["50ml", "100ml"],
-    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    description:
+      "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
     inStock: true, // Added inStock property
     outOfStock: false, // Added outOfStock property
+    sliderImages: [
+      {
+        imageUrl: three,
+      },
+      {
+        imageUrl: six,
+      },
+    ],
   },
   {
     id: 4,
@@ -126,9 +158,18 @@ export const dummyData = [
     hoverImage: five,
     multipleQuantity: true,
     quantityOptions: ["100ml", "150ml"],
-    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    description:
+      "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
     inStock: true, // Added inStock property
     outOfStock: false, // Added outOfStock property
+    sliderImages: [
+      {
+        imageUrl: four,
+      },
+      {
+        imageUrl: five,
+      },
+    ],
   },
   {
     id: 5,
@@ -140,9 +181,18 @@ export const dummyData = [
     hoverImage: two,
     multipleQuantity: true,
     quantityOptions: ["100ml", "200ml", "300ml"],
-    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    description:
+      "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
     inStock: true, // Added inStock property
     outOfStock: false, // Added outOfStock property
+    sliderImages: [
+      {
+        imageUrl: five,
+      },
+      {
+        imageUrl: two,
+      },
+    ],
   },
   {
     id: 6,
@@ -154,9 +204,18 @@ export const dummyData = [
     tags: [{ type: "highlight", value: "Limited Stock" }],
     hoverImage: one,
     multipleQuantity: false,
-    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    description:
+      "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
     inStock: true, // Added inStock property
     outOfStock: false, // Added outOfStock property
+    sliderImages: [
+      {
+        imageUrl: six,
+      },
+      {
+        imageUrl: one,
+      },
+    ],
   },
   {
     id: 7,
@@ -168,9 +227,18 @@ export const dummyData = [
     tags: [{ type: "discount", value: "-5%" }],
     hoverImage: third,
     multipleQuantity: false,
-    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    description:
+      "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
     inStock: false, // Added inStock property
     outOfStock: true, // Added outOfStock property
+    sliderImages: [
+      {
+        imageUrl: seven,
+      },
+      {
+        imageUrl: third,
+      },
+    ],
   },
   {
     id: 8,
@@ -186,8 +254,17 @@ export const dummyData = [
     hoverImage: two,
     multipleQuantity: true,
     quantityOptions: ["50ml", "100ml", "200ml"],
-    description: "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    description:
+      "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
     inStock: false, // Added inStock property
     outOfStock: true, // Added outOfStock property
+    sliderImages: [
+      {
+        imageUrl: eight,
+      },
+      {
+        imageUrl: two,
+      },
+    ],
   },
 ];

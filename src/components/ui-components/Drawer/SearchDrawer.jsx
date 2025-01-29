@@ -21,12 +21,12 @@ const SearchDrawer = ({ isOpen, onClose }) => {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-full sm:w-[450px] bg-white shadow-lg z-30 transform font-outfit ${
+        className={`fixed top-0 right-0 h-full w-full sm:w-[450px] px-2 bg-white shadow-lg z-30 transform font-outfit ${
           isOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
         <div className="flex items-center justify-between px-4 py-8 ">
-        <h1 className="text-[14px] md:text-[24px] lg:text-2xl font-semibold text-center font-outfitSemiBold">Search</h1>
+        <h1 className="text-[14px] md:text-[24px] lg:text-2xl text-center font-outfitSemiBold">Search</h1>
           <button
             onClick={onClose}
             className="text-gray-600 hover:text-gray-800"
@@ -37,7 +37,7 @@ const SearchDrawer = ({ isOpen, onClose }) => {
 
         <div className="overflow-auto h-full">
           {/* Search Box */}
-          <div className="px-4 py-8  relative border-b">
+          <div className="px-4 py-4  relative border-b">
             <input
               type="text"
               placeholder="Search by name..."
@@ -45,12 +45,12 @@ const SearchDrawer = ({ isOpen, onClose }) => {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-12 py-4 border rounded-full border-1 bg-gray-100 text-black  font-outfitRegular placeholder:text-[#707070]"
             />
-            <div className="absolute top-[50px] left-[33px]">
+            <div className="absolute top-[34px] left-[33px]">
               <Search />
             </div>
           </div>
-          <div className="pt-2 pb-4 mx-4">
-            <h1 className="font-outfitRegular">Most Searched Products</h1>
+          <div className="p-4 ">
+            <h1 className="text-lg font-outfitMedium">Most Searched Products</h1>
           </div>
 
           {/* Product List */}

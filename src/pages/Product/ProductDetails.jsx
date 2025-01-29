@@ -1,67 +1,241 @@
+import { LoaderCircle, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import CartDrawer from "src/components/ui-components/Drawer/CartDrawer";
+import ChooseOptionSlider from "src/components/ui-elements/ChooseOptionsSlider";
+import Rating from "src/components/ui-elements/Rating";
 import { dummyData } from "src/helpers/dummyData";
-// import { dummyData } from "./dummyData"; // Import your dummyData array
 
 const ProductDetails = () => {
-  const { id } = useParams(); // Get the product ID from the URL params
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedSize, setSelectedSize] = useState(null); // Default to the first size
+  const [quantity, setQuantity] = useState(1);
+
+  const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
+  const toggleCartDrawer = () => setIsCartDrawerOpen(!isCartDrawerOpen);
+
+  const handleSizeSelect = (size) => {
+    setSelectedSize(size); // Update the selected size
+  };
 
   useEffect(() => {
-    setLoading(true); // Start loading
-    // Simulate a delay to mimic fetching from an API
+    setLoading(true);
     setTimeout(() => {
       const foundProduct =
         dummyData &&
-        dummyData.find(
-          (item) => item.id.toString() === id.toString() // Convert id to number for comparison
-        );
+        dummyData.find((item) => item.id.toString() === id.toString());
       setProduct(foundProduct);
-      setLoading(false); // Stop loading
-    }, 500); // Adjust delay as needed
+      setLoading(false);
+    }, 500);
   }, [id]);
 
+  useEffect(() => {
+    if (product && product.quantityOptions?.length > 0) {
+      setSelectedSize(product.quantityOptions[0]);
+    }
+  }, [product]);
+
+  const handleDecrement = () => {
+    setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1)); // Prevent going below 1
+  };
+
+  const handleIncrement = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1); // Increment quantity
+  };
+
+  const handleQuantityChange = (item, newQuantity) => {
+    setQuantity(newQuantity); // Update quantity from the input
+  };
+
+  const handleAddToCartClick = () => {
+    const dataItem = { ...product, quantity, selectedQuantity: selectedSize };
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingItemIndex = cart.findIndex(
+      (item) => item.name === product.name
+    );
+
+    if (existingItemIndex !== -1) {
+      cart[existingItemIndex].quantity += quantity;
+      cart[existingItemIndex].selectedQuantity = selectedSize;
+    } else {
+      cart.push(dataItem);
+    }
+    // Update the cart in localStorage
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // Trigger cart update event
+    window.dispatchEvent(new Event("cartUpdated"));
+    // alert("Item Added To Cart Successfully");
+    setIsCartDrawerOpen(true);
+    setSelectedSize(null);
+    setQuantity(1);
+  };
+
   if (loading) {
-    return <div>Loading...</div>; // Display a loading message or spinner
+    return (
+      <div className="flex justify-center items-center h-96">
+        <LoaderCircle size={48} className="animate-spin text-black font-bold" />
+      </div>
+    );
   }
 
   if (!product) {
-    return <div>Product not found.</div>; // Display message if product is not found
+    return <div>Product not found.</div>;
   }
 
+  const openModal = (imageUrl) => {
+    setModalOpen(true);
+  };
+
   return (
-    <div className="product-details">
-      <h1>{product.name}</h1>
-      <img src={product.image} alt={product.name} height={100} width={100} />
-      <p>{product.description}</p>
-      <p>Price: ${product.price}</p>
-      <p>Discount: {product.discount}</p>
-      <p>Type: {product.type}</p>
-      <p>In Stock: {product.inStock ? "Yes" : "No"}</p>
-      <p>Out of Stock: {product.outOfStock ? "Yes" : "No"}</p>
-      {product.multipleQuantity && (
-        <div>
-          <p>Available Sizes:</p>
-          <ul>
-            {product.quantityOptions.map((size, index) => (
-              <li key={index}>{size}</li>
-            ))}
-          </ul>
+    <div className="container mx-auto px-4 py-8">
+      {/* Responsive Layout */}
+      <div className="flex flex-col md:flex-row gap-8">
+        {/* Left Side - Product Image */}
+        <div className="md:w-1/2 flex flex-col items-center">
+          <img
+            loading="lazy"
+            src={product?.image}
+            alt={product.name}
+            className="w-full max-w-[500px] max-h-[400px] cursor-pointer rounded-xl"
+            onClick={() => openModal(product?.image)}
+          />
+
+          {/* Horizontal Thumbnail Images */}
+          {product.sliderImages && product.sliderImages.length > 0 && (
+            <div className="flex flex-wrap justify-center gap-2 mt-4">
+              {product.sliderImages.map((img, index) => (
+                <img
+                  key={index}
+                  src={img.imageUrl}
+                  alt={`Thumbnail ${index + 1}`}
+                  className={`w-[220px] h-[220px] object-cover rounded-xl cursor-pointer border-2 hover:border-gray-500`}
+                  onClick={() => openModal(img.imageUrl)}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Right Side - Product Details */}
+        <div className="md:w-1/2 space-y-4 relative">
+          <div className="space-r-2 flex flex-wrap gap-2 z-[100]">
+            {product?.tags &&
+              product?.tags.map((tag, index) => {
+                const bgColor =
+                  tag.type === "discount"
+                    ? "bg-red-600"
+                    : tag.type === "highlight"
+                    ? "bg-green-600"
+                    : "bg-gray-800";
+
+                return (
+                  <span
+                    key={index}
+                    className={`text-sm font-outfitRegular ${bgColor} text-white px-2 py-1 rounded-full`}
+                  >
+                    {tag.value}
+                  </span>
+                );
+              })}
+          </div>
+          <h1 className="text-2xl font-bold">{product.name}</h1>
+          <Rating />
+          <p className="text-lg font-bold">${product.price}</p>
+          <p className="text-gray-700">{product.description}</p>
+          <p>Type : {product.type}</p>
+          <p>
+            <span
+              className={product.inStock ? "text-green-600" : "text-red-600"}
+            >
+              {product.inStock ? "In Stock" : "Out of Stock"}
+            </span>
+          </p>
+
+          {/* Available Sizes */}
+          {product?.multipleQuantity && product?.quantityOptions.length > 0 && (
+            <div>
+              <p className="font-semibold">Available Sizes:</p>
+              <div className="flex gap-2 mt-2">
+                {product?.quantityOptions &&
+                  product?.quantityOptions?.length > 0 &&
+                  product?.quantityOptions.map((size, index) => (
+                    <span
+                      key={index}
+                      onClick={() => handleSizeSelect(size)} // Handle size selection
+                      className={`px-3 py-1 text-sm rounded-full cursor-pointer ${
+                        size === selectedSize
+                          ? "bg-black text-white" // Selected size
+                          : "bg-gray-200 text-black" // Non-selected size
+                      }`}
+                    >
+                      {size}
+                    </span>
+                  ))}
+              </div>
+            </div>
+          )}
+
+          <div className="flex items-center space-x-4 mb-4">
+            <button
+              onClick={() => handleDecrement(product)}
+              className="px-2 py-1 bg-gray-300 text-black rounded"
+            >
+              -
+            </button>
+            <input
+              type="number"
+              value={quantity}
+              min="1"
+              className="w-12 text-center border border-gray-300 rounded"
+              onChange={(e) =>
+                handleQuantityChange(
+                  product,
+                  Math.max(1, parseInt(e.target.value, 10) || 1) // Handle invalid input gracefully
+                )
+              }
+            />
+            <button
+              onClick={() => handleIncrement(product)}
+              className="px-2 py-1 bg-gray-300 text-black rounded"
+            >
+              +
+            </button>
+
+            {/* Add to Cart Button */}
+            <button
+              onClick={handleAddToCartClick}
+              disabled={product?.outOfStock}
+              className={`bg-black text-white py-2 px-6 rounded-full shadow-md w-72 sm:w-96 ${
+                product?.inStock ? "cursor-pointer" : ""
+              }`}
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+      {modalOpen && (
+        <div
+          className="fixed bg-white inset-0 flex items-center justify-center z-[2000]"
+          // onClick={() => setModalOpen(false)}
+        >
+          <div className="mt-8 p-4 pb-8 rounded-lg relative max-w-[600px] max-h-[400px] w-full h-full flex justify-center items-center">
+            <ChooseOptionSlider sliderImages={product?.sliderImages} />
+          </div>
+          <button
+            className="absolute top-10 right-10 text-gray-600 hover:text-black z-[20000]"
+            onClick={() => setModalOpen(false)}
+          >
+            <X size={24} />
+          </button>
         </div>
       )}
-      {product.tags && product.tags.length > 0 && (
-        <div>
-          <p>Tags:</p>
-          <ul>
-            {product.tags.map((tag, index) => (
-              <li key={index}>
-                {tag.type}: {tag.value}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <CartDrawer isOpen={isCartDrawerOpen} onClose={toggleCartDrawer} />
     </div>
   );
 };

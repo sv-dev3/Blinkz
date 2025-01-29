@@ -43,7 +43,7 @@ const NavDrawer = ({ isOpen, onClose, menuItems }) => {
                 >
                   <Link
                     to={item.link}
-                    className="block text-lg text-gray-700 hover:text-purple-600 transition duration-300 relative hover:text-purple-600 transition duration-300  font-outfitMedium"
+                    className="block text-lg text-gray-700 transition duration-300 relative hover:text-purple-600 font-outfitMedium"
                     onClick={onClose}
                   >
                     {item.name}

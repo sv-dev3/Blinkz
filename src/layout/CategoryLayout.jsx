@@ -32,11 +32,11 @@ const CategoryLayout = ({ children }) => {
 
   return (
     <div className="container mx-auto">
-      <div className="breadcrumb flex justify-center items-center space-x-2">
+      <div className="breadcrumb flex justify-center items-center space-x-2 text-md font-outfitLight text-gray-800">
         {generateBreadcrumbs().map((breadcrumb, index) => (
           <div key={index}>
             <Link
-              className="cursor-pointer text-black text-xl my-2"
+              className="cursor-pointer text-black my-2"
               onClick={() => {
                 // Navigate to the category if clicked
                 if (breadcrumb.toLowerCase() === "home") {

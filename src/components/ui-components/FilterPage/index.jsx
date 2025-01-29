@@ -149,7 +149,7 @@ const StockAndPriceFilter = () => {
           className="flex items-center justify-between cursor-pointer"
           onClick={() => setIsStockOpen(!isStockOpen)}
         >
-          <h2 className="text-lg font-semibold">Accessibility</h2>
+          <h2 className="text-xl font-outfitMedium text-gray-800">Availability</h2>
           {isStockOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
         </div>
         {isStockOpen && (
@@ -162,7 +162,7 @@ const StockAndPriceFilter = () => {
                   onChange={handleInStockChange}
                   className="form-checkbox bg-black h-5 w-5 text-black rounded focus:ring-black"
                 />
-                <span className="text-gray-700 font-medium">In Stock</span>
+                <span className="text-gray-800 font-outfitRegular text-md">In Stock</span>
               </label>
             </div>
             <div>
@@ -173,7 +173,7 @@ const StockAndPriceFilter = () => {
                   onChange={handleOutOfStockChange}
                   className="form-checkbox h-5 w-5 text-black border-gray-300 rounded focus:ring-black"
                 />
-                <span className="text-gray-700 font-medium">Out of Stock</span>
+                <span className="text-gray-800 font-outfitRegular text-md">Out of Stock</span>
               </label>
             </div>
           </div>
@@ -186,14 +186,14 @@ const StockAndPriceFilter = () => {
           className="flex items-center justify-between cursor-pointer mt-6"
           onClick={() => setIsPriceOpen(!isPriceOpen)}
         >
-          <h2 className="text-lg font-semibold">Price</h2>
+          <h2 className="text-xl font-outfitMedium text-gray-800">Price</h2>
           {isPriceOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
         </div>
         {isPriceOpen && (
           <div className="mt-4 flex flex-col space-y-4">
             <div className="flex flex-row justify-between">
               <div className="mb-4 mr-2">
-                <label className="block text-gray-700 font-medium mb-2">
+                <label className="block text-gray-800 font-outfitRegular text-md mb-2">
                   Min Price
                 </label>
                 <input
@@ -205,7 +205,7 @@ const StockAndPriceFilter = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-2">
+                <label className="block text-gray-800 font-outfitRegular text-md mb-2">
                   Max Price
                 </label>
                 <input
@@ -247,7 +247,7 @@ const StockAndPriceFilter = () => {
           className="flex items-center justify-between cursor-pointer"
           onClick={() => setIsSizeOpen(!isSizeOpen)}
         >
-          <h2 className="text-lg font-semibold">Size</h2>
+          <h2 className="text-xl font-outfitMedium text-gray-800">Size</h2>
           {isSizeOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
         </div>
         {isSizeOpen && (
@@ -274,7 +274,7 @@ const StockAndPriceFilter = () => {
           className="flex items-center justify-between cursor-pointer"
           onClick={() => setIsProductTypeOpen(!isProductTypeOpen)}
         >
-          <h2 className="text-lg font-semibold">Product Type</h2>
+          <h2 className="text-xl font-outfitSemiBold text-gray-800">Product Type</h2>
           {isProductTypeOpen ? (
             <ChevronUp size={20} />
           ) : (

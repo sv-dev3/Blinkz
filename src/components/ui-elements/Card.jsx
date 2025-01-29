@@ -2,6 +2,7 @@ import { Search } from "lucide-react";
 import { useState } from "react";
 import CartDrawer from "../ui-components/Drawer/CartDrawer";
 import ChooseOptionsModal from "../ui-components/Drawer/ChooseOptionsDrawer";
+import { Link } from "react-router-dom";
 
 const Card = ({ data, height = "h-[300px]", animateButtons = true }) => {
   const [hover, setHover] = useState(false);
@@ -45,7 +46,7 @@ const Card = ({ data, height = "h-[300px]", animateButtons = true }) => {
 
   return (
     <div
-      className=" w-full pb-4 bg-gray-100 rounded-xl cursor-pointer relative overflow-hidden"
+      className=" w-full pb-4 bg-gray-100 rounded-xl relative overflow-hidden"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
@@ -86,15 +87,17 @@ const Card = ({ data, height = "h-[300px]", animateButtons = true }) => {
 
       {/* Image */}
       <div className={`${height} relative overflow-hidden`}>
-        <img
-          src={hover ? data?.image : data?.hoverImage}
-          alt="Product"
-          className="h-full w-full object-cover rounded-md cursor-pointer transform hover:scale-110 hover:rotate-1"
-          style={{
-            willChange: "transform",
-            transition: "transform 0.8s ease-in-out", // Change '1s' to your desired duration
-          }}
-        />
+        <Link to={`/product/${data?.id}`}>
+          <img
+            src={hover ? data?.image : data?.hoverImage}
+            alt="Product"
+            className="h-full w-full object-cover rounded-md cursor-pointer transform hover:scale-110 hover:rotate-1"
+            style={{
+              willChange: "transform",
+              transition: "transform 0.8s ease-in-out", // Change '1s' to your desired duration
+            }}
+          />
+        </Link>
         {animateButtons && !data?.outOfStock && (
           <div
             className={`absolute h-16 inset-x-0 bottom-0 flex items-center justify-center bg-transparent bg-opacity-5 transition-all transform ${
@@ -133,14 +136,14 @@ const Card = ({ data, height = "h-[300px]", animateButtons = true }) => {
         )}
       </div>
 
-      <div className="p-4">
+      <div className="p-4 ">
         {/* Discount */}
         <div className="mb-1 text-[12px] uppercase text-left text-sm font-outfitMedium text-black">
           {data?.type}
         </div>
         {/* Name */}
-        <div className="mb-2 text-[20px] font-outfitSemiBold text-black leading-[normal]">
-          {data?.name}
+        <div className="mb-2 text-[20px] font-outfitSemiBold cursor-pointer text-black leading-[normal]">
+          <Link to={`/product/${data?.id}`}>{data?.name}</Link>
         </div>
         <div className="  font-outfitSemiBold text-gray-900 flex space-x-3 items-center">
           <span className="text-gray-900 font-outfitBold text-[16px]">

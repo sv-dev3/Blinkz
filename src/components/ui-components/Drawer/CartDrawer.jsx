@@ -96,18 +96,26 @@ const CartDrawer = ({ isOpen, onClose }) => {
           isOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
-        <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="text-2xl font-bold">Your Cart</h2>
+        <div className="flex items-center justify-between p-4 ">
+          <h2 className="text-[14px] md:text-[24px] lg:text-2xl font-outfitSemiBold flex items-center justify-center">
+            Your Cart{" "}
+            <span className=" ms-2 rounded-full grid place-items-center w-8 h-8 bg-black text-white text-base">
+              {cartCount}
+            </span>
+          </h2>
           <button
             onClick={onClose}
             className="text-gray-600 hover:text-gray-800"
           >
-            <X size={24} />
+            <X
+              size={24}
+              className="transition-transform duration-300 hover:rotate-90"
+            />
           </button>
         </div>
 
         {/* Cart Items */}
-        <div className="overflow-auto h-full px-4">
+        <div className="overflow-auto h-full px-4 py-4">
           {cartData.length === 0 ? (
             <div className="h-full flex items-center justify-center">
               <h1 className="font-bold text-2xl">Your cart is empty</h1>
@@ -168,74 +176,83 @@ const CartDrawer = ({ isOpen, onClose }) => {
               // </div>
               <div
                 key={index}
-                className="flex flex-col sm:flex-row items-center justify-between py-3 border-b overflow-auto"
+                className="flex flex-col sm:flex-row  py-4 gap-3 overflow-auto"
               >
                 <div className="flex flex-row items-center sm:items-start justify-left w-full sm:w-auto">
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-16 h-16 object-cover mb-2 sm:mb-0 mr-3"
+                    className="w-24 h-24 object-cover mb-2 rounded sm:mb-0 mr-3"
                   />
-                  <div className="flex flex-col text-left">
-                    <h4 className="font-semibold">{item.name}</h4>
-                    <p className="text-sm text-gray-600">{item.discount}</p>
-                    <p className="font-semibold">
-                      {item.price} * {item?.quantity}
-                    </p>
-                  </div>
                 </div>
-                <div className="flex items-center justify-center sm:justify-end space-x-2 mt-3 sm:mt-0 w-full sm:w-auto">
-                  <button
-                    onClick={() => handleDecrement(item)}
-                    className="px-2 py-1 bg-gray-300 text-black rounded"
-                  >
-                    -
-                  </button>
-                  <input
-                    type="number"
-                    value={item.quantity}
-                    min="1"
-                    className="w-12 text-center border border-gray-300 rounded"
-                    onChange={(e) =>
-                      handleQuantityChange(
-                        item,
-                        Math.max(1, parseInt(e.target.value))
-                      )
-                    }
-                  />
-                  <button
-                    onClick={() => handleIncrement(item)}
-                    className="px-2 py-1 bg-gray-300 text-black rounded"
-                  >
-                    +
-                  </button>
-
+                <div className="flex flex-col text-left gap-1 flex-1">
+                  <h4 className="font-outfitSemiBold text-lg text-gray-800">
+                    {item.name}
+                  </h4>
+                  <p className="text-base text-gray-600 font-outfitLight">
+                    {item.discount}
+                  </p>
+                  <p className="font-outfitSemiBold text-lg  text-gray-800">
+                    {item.price} * {item?.quantity}
+                  </p>
+                </div>
+                <div className="flex items-center flex-col gap-8 w-full sm:w-auto ">
                   <button
                     onClick={() => handleRemove(item)}
-                    className="ml-4 text-red-500 hover:text-red-700"
+                    className="ml-auto"
                   >
-                    Remove
+                    <X size={24} className=" size-4 stroke-gray-500" />
                   </button>
+                  <div className="border border-gray-200 rounded-full flex items-center px-2">
+                    <button
+                      onClick={() => handleDecrement(item)}
+                      className="  font-outfitRegular rounded text-gray-800 text-xl"
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      value={item.quantity}
+                      min="1"
+                      className="w-12 p-2 text-center text-xl appearance-none font-outfitRegular text-gray-800 "
+                      onChange={(e) =>
+                        handleQuantityChange(
+                          item,
+                          Math.max(1, parseInt(e.target.value))
+                        )
+                      }
+                    />
+                    <button
+                      onClick={() => handleIncrement(item)}
+                      className="font-outfitRegular   text-gray-800 rounded text-xl"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
             ))
           )}
           {/* Cart Summary */}
           {cartData && cartData.length > 0 && (
-            <div className="p-4 border-t">
-              <div className="flex justify-between text-lg font-semibold mt-2">
-                <h1 className="text-xl">Estimated Total</h1>
-                <h1 className="text-xl">${cartTotal}</h1>
+            <div className="px-4 py-12 border-t">
+              <div className="flex justify-between items-center text-lg font-semibold mt-2">
+                <h1 className="text-xl font-outfitRegular text-gray-800">
+                  Estimated Total
+                </h1>
+                <h1 className="text-2xl font-outfitRegular  text-gray-800 ">
+                  ${cartTotal}
+                </h1>
               </div>
-              <div className="flex justify-around mt-4">
+              <div className="flex gap-x-3 mt-6">
                 <button
-                  className="px-7 py-2.5 bg-gray-300 hover:bg-black hover:text-white text-black transition rounded-full mt-8 text-[16px] font-outfitSemiBold uppercase"
+                  className="px-7 py-3 bg-gray-100 hover:bg-black hover:text-white text-black transition rounded-full text-[16px] font-outfitSemiBold Capitalize"
                   onClick={() => alert("Handle View Cart")}
                 >
                   View Cart
                 </button>
                 <button
-                  className="px-12 py-2.5 bg-black border border-[#000] text-white transition rounded-full mt-8 text-[16px] font-outfitSemiBold uppercase"
+                  className="flex-1 px-12 py-3 bg-black border border-[#000] text-white transition rounded-full text-[16px] font-outfitSemiBold Capitalize"
                   onClick={() => alert("Handle Checkout")}
                 >
                   Checkout

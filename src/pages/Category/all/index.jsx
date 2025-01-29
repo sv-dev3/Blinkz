@@ -1,4 +1,4 @@
-import { Filter } from "lucide-react";
+import { Filter,X } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom"; // useNavigate for URL manipulation
 import FilterDrawer from "src/components/ui-components/Drawer/FilterDrawer";
@@ -120,7 +120,7 @@ const AppProducts = () => {
           <div className="lg:hidden">
             <button
               onClick={() => setIsFilterDrawerOpen(true)}
-              className="flex items-center bg-white text-black rounded-full border border-black px-4 py-2 rounded"
+              className="flex items-center bg-white text-black rounded-full border border-black px-4 py-2"
             >
               <Filter className="mr-2" />
               Filters
@@ -130,37 +130,37 @@ const AppProducts = () => {
           {/* Cards Section */}
           <div className="lg:col-span-9">
             {/* Display product count */}
-            <div className="flex justify-left items-center flex-wrap mb-4">
-              <p className="text-sm text-gray-700 mb-4">
+            <div className="flex flex-col justify-left items-left flex-wrap mb-4">
+              <p className="text-lg text-gray-800 font-outfitLight mb-4 ">
                 {filteredCount} of {totalProducts} products
               </p>
               {/* Filters Header Section */}
-              <div className="flex space-x-4 flex-wrap ml-2">
+              <div className="flex space-x-4 my-4 flex-wrap font-outfitRegular text-gray-800 text-md">
                 {minPrice && maxPrice && (
                   <button
                     onClick={removePriceFilter}
-                    className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-black"
+                    className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200 "
                   >
                     ${minPrice} - ${maxPrice}
-                    <span className="ml-2 text-black">x</span>
+                    <span className="ml-2 text-gray-500 font-outfitLight"> <X size={16} /></span>
                   </button>
                 )}
                 {inStock === "true" && (
                   <button
                     onClick={() => removeFilter("inStock")}
-                    className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-black"
+                    className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200"
                   >
                     In Stock
-                    <span className="ml-2 text-black">x</span>
+                    <span className="ml-2 text-gray-500 font-outfitLight"> <X size={16} /></span>
                   </button>
                 )}
                 {outOfStock === "true" && (
                   <button
                     onClick={() => removeFilter("outOfStock")}
-                    className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-black"
+                    className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200"
                   >
                     Out of Stock
-                    <span className="ml-2 text-black">x</span>
+                    <span className="ml-2 text-gray-500 font-outfitLight"> <X size={16} /></span>
                   </button>
                 )}
                 {selectedSizes.length > 0 && (
@@ -169,10 +169,10 @@ const AppProducts = () => {
                       <button
                         key={size}
                         onClick={() => removeSizeFilter(size)}
-                        className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-black"
+                        className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200"
                       >
                         {size}
-                        <span className="ml-2 text-black">x</span>
+                        <span className="ml-2 text-gray-500 font-outfitLight"> <X size={16} /></span>
                       </button>
                     ))}
                   </div>
@@ -184,10 +184,10 @@ const AppProducts = () => {
                       <button
                         key={type}
                         onClick={() => removeTypeFilter(type)}
-                        className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-black"
+                        className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200"
                       >
                         {type}
-                        <span className="ml-2 text-black">x</span>
+                        <span className="ml-2 text-gray-500 font-outfitLight"> <X size={16} /></span>
                       </button>
                     ))}
                   </div>
@@ -200,7 +200,7 @@ const AppProducts = () => {
                   selectedSizes.length > 0) && (
                   <button
                     onClick={removeAllFilters}
-                    className="bg-red-500 text-white px-3 py-1 rounded"
+                    className=" text-gray-800 text-base font-outfitRegular underline underline-offset-4 px-3 py-1"
                   >
                     Remove All
                   </button>
