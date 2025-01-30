@@ -12,7 +12,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { breakpoints } from "src/config/responsiveSize";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Card from "./Card";
+import GridCard from "./GridCard";
 
 const MegaMenuSlider = ({
   sliderPerView = 1,
@@ -57,7 +57,7 @@ const MegaMenuSlider = ({
           {sliderImages.map((item, index) => (
             <SwiperSlide key={index} className="relative">
               <div className="bg-white rounded-3xl w-full">
-                <Card data={item} height="h-[150px]" animateButtons={false} />
+                <GridCard data={item} height="h-[150px]" />
               </div>
             </SwiperSlide>
           ))}

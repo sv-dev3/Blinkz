@@ -18,12 +18,12 @@ const Rating = () => {
     <div className="flex flex-row items-center">
       <div className="">
         {stars.map((star, index) => (
-          <span key={index} style={{ fontSize: "1.6rem", color: "#FFD700" }}>
+          <span key={index} style={{ fontSize: "1.6rem", color: "#EBBF20" }}>
             {star}
           </span>
         ))}
       </div>
-      <div className="ml-2 items-center">({rating})</div>
+      <div className="ml-2 items-center font-outfitLight">({rating})</div>
     </div>
   );
 };

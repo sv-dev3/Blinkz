@@ -63,7 +63,7 @@ const ChooseOptionsModal = ({
         } transition-transform duration-300 ease-in-out`}
       >
         <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="text-2xl font-bold">Choose Options</h2>
+          <h2 className="text-[20px] md:text-[24px] lg:text-2xl font-outfitSemiBold flex items-center justify-center">Choose Options</h2>
           <button
             onClick={onClose}
             className="text-gray-600 hover:text-gray-800"
@@ -72,22 +72,25 @@ const ChooseOptionsModal = ({
           </button>
         </div>
 
-        <div className="overflow-auto h-full pb-24 font-outfitRegular">
+        <div className="overflow-auto h-full font-outfitRegular">
           <div className="flex flex-col p-4">
             <ChooseOptionSlider sliderImages={homeSliderData} />
 
             {/* Product name  */}
-            <h4 className="font-outfitMedium text-3xl mb-4">{item?.name}</h4>
-            <div className="  font-outfitSemiBold text-gray-900 flex space-x-3 items-center">
-              <span className="text-red-500 font-outfit text-[20px]">
+            <h4 className="font-outfitMedium text-4xl mb-4">{item?.name}</h4>
+            <div className="font-outfitSemiBold text-gray-900 flex space-x-3 items-center mb-4">
+              <span className="text-red-500 font-outfit text-[22px]">
                 {`$${item?.price}`}
               </span>
-              <span className="text-gray-500 font-outfitRegular text-[18px] line-through">
+              <span className="text-gray-500 font-outfitLight text-[18px] line-through">
                 {`$${item?.price}`}
               </span>
             </div>
-            <p className="text-md font-outfitRegular">{item?.description}</p>
-            <div className="flex flex-row my-4">
+            <div className="mb-4">
+            <p className="text-gray-800 text-md font-outfitRegular">{item?.description}</p>
+
+            </div>
+            <div className="flex flex-row mb-4">
               <span className="font-outfitBold">Size : </span>
               <span className="mx-4">{selectedQuantity}</span>
             </div>
@@ -109,9 +112,10 @@ const ChooseOptionsModal = ({
             </div>
 
             <div className="flex items-center space-x-4 mb-4">
+              <div className="flex-1 border border-gray-200 rounded-full flex items-center px-2">
               <button
                 onClick={() => handleDecrement(item)}
-                className="px-2 py-1 bg-gray-300 text-black rounded"
+                className="  font-outfitRegular rounded text-gray-800 text-xl"
               >
                 -
               </button>
@@ -119,7 +123,7 @@ const ChooseOptionsModal = ({
                 type="number"
                 value={quantity}
                 min="1"
-                className="w-12 text-center border border-gray-300 rounded"
+                className="w-12 p-2 text-center text-md sm:text-xl appearance-none font-outfitRegular text-gray-800 "
                 onChange={(e) =>
                   handleQuantityChange(
                     item,
@@ -129,15 +133,15 @@ const ChooseOptionsModal = ({
               />
               <button
                 onClick={() => handleIncrement(item)}
-                className="px-2 py-1 bg-gray-300 text-black rounded"
+                className="font-outfitRegular   text-gray-800 rounded text-xl"
               >
                 +
               </button>
-
+              </div>
               {/* Add to Cart Button */}
               <button
                 onClick={handleAddToCartClick}
-                className="bg-black text-white py-2 px-6 rounded-full shadow-md w-72 sm:w-96"
+                className="bg-gray-200 hover:bg-black hover:text-white text-black py-2 px-6 rounded-full w-72 sm:w-96"
               >
                 Add to Cart
               </button>
@@ -155,12 +159,12 @@ const ChooseOptionsModal = ({
             <div className="mt-4">
               <button
                 onClick={handleViewDetails}
-                className="bg-black text-white py-2 px-6 rounded-full w-full hover:bg-white hover:text-black border border-black"
+                className="text-black py-4 px-6 rounded-full w-full border"
               >
                 View Details
               </button>
             </div>
-          </div>
+          </div> 
         </div>
       </div>
     </>

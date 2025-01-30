@@ -25,8 +25,8 @@ const SearchDrawer = ({ isOpen, onClose }) => {
           isOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
-        <div className="flex items-center justify-between px-4 py-8 ">
-        <h1 className="text-[14px] md:text-[24px] lg:text-2xl text-center font-outfitSemiBold">Search</h1>
+        <div className="flex items-center justify-between px-4 py-4 sm:py-8 ">
+        <h1 className="text-[20px] md:text-[24px] lg:text-2xl text-center font-outfitSemiBold">Search</h1>
           <button
             onClick={onClose}
             className="text-gray-600 hover:text-gray-800"

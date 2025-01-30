@@ -97,7 +97,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
         } transition-transform duration-300 ease-in-out`}
       >
         <div className="flex items-center justify-between p-4 ">
-          <h2 className="text-[14px] md:text-[24px] lg:text-2xl font-outfitSemiBold flex items-center justify-center">
+          <h2 className="text-[20px] md:text-[24px] lg:text-2xl font-outfitSemiBold flex items-center justify-center">
             Your Cart{" "}
             <span className=" ms-2 rounded-full grid place-items-center w-8 h-8 bg-black text-white text-base">
               {cartCount}
@@ -176,27 +176,28 @@ const CartDrawer = ({ isOpen, onClose }) => {
               // </div>
               <div
                 key={index}
-                className="flex flex-col sm:flex-row  py-4 gap-3 overflow-auto"
+                className="flex sm:flex-row  mb-4 sm:mb-8 gap-3 overflow-auto"
               >
-                <div className="flex flex-row items-center sm:items-start justify-left w-full sm:w-auto">
+                <div className="flex flex-row items-start  justify-left sm:w-auto">
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-24 h-24 object-cover mb-2 rounded sm:mb-0 mr-3"
+                    className="w-20 h-20 sm:w-24 sm:h-24 object-cover mb-2 rounded sm:mb-0"
                   />
                 </div>
                 <div className="flex flex-col text-left gap-1 flex-1">
                   <h4 className="font-outfitSemiBold text-lg text-gray-800">
                     {item.name}
                   </h4>
-                  <p className="text-base text-gray-600 font-outfitLight">
+                  <p className="text-sm sm:text-base text-gray-600 font-outfitLight">
                     {item.discount}
                   </p>
-                  <p className="font-outfitSemiBold text-lg  text-gray-800">
-                    {item.price} * {item?.quantity}
+                  <p className="font-outfitSemiBold text-base sm:text-lg text-gray-800">
+                    {item.price}
+                    {/* {item.price} * {item?.quantity} */}
                   </p>
                 </div>
-                <div className="flex items-center flex-col gap-8 w-full sm:w-auto ">
+                <div className="flex items-center flex-col gap-4 sm:gap-8 sm:w-auto ">
                   <button
                     onClick={() => handleRemove(item)}
                     className="ml-auto"
@@ -214,7 +215,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
                       type="number"
                       value={item.quantity}
                       min="1"
-                      className="w-12 p-2 text-center text-xl appearance-none font-outfitRegular text-gray-800 "
+                      className="w-14 p-2 text-center text-base sm:text-md appearance-none font-outfitRegular text-gray-800 "
                       onChange={(e) =>
                         handleQuantityChange(
                           item,
@@ -235,7 +236,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
           )}
           {/* Cart Summary */}
           {cartData && cartData.length > 0 && (
-            <div className="px-4 py-12 border-t">
+            <div className=" py-8 sm:py-12 border-t">
               <div className="flex justify-between items-center text-lg font-semibold mt-2">
                 <h1 className="text-xl font-outfitRegular text-gray-800">
                   Estimated Total
