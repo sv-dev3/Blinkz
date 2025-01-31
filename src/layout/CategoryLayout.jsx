@@ -31,7 +31,7 @@ const CategoryLayout = ({ children }) => {
   // Redirect user based on the category
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-4 lg:px-0">
       <div className="breadcrumb flex justify-center items-center space-x-2 text-md font-outfitLight text-gray-800">
         {generateBreadcrumbs().map((breadcrumb, index) => (
           <div key={index}>
