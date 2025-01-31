@@ -43,7 +43,7 @@ const NavDrawer = ({ isOpen, onClose, menuItems }) => {
                 >
                   <Link
                     to={item.link}
-                    className="block text-lg text-gray-700 transition duration-300 relative hover:text-purple-600 font-outfitMedium"
+                    className="block text-lg text-black transition duration-300 relative hover:text-purple-600 font-outfitMedium"
                     onClick={onClose}
                   >
                     {item.name}
@@ -51,7 +51,7 @@ const NavDrawer = ({ isOpen, onClose, menuItems }) => {
                   {item.subMenu && (
                     <ChevronDown
                       size={16}
-                      className="ml-2 text-gray-500 group-hover:text-purple-600"
+                      className="ml-2  text-black group-hover:text-purple-600"
                     />
                   )}
                 </div>

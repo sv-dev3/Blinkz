@@ -5,6 +5,7 @@ import CartDrawer from "src/components/ui-components/Drawer/CartDrawer";
 import ChooseOptionSlider from "src/components/ui-elements/ChooseOptionsSlider";
 import Rating from "src/components/ui-elements/Rating";
 import { dummyData } from "src/helpers/dummyData";
+import Footer from "src/components/ui-components/Footer";
 
 
 const ProductDetails = () => {
@@ -94,9 +95,10 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div>
+    <div className="container mx-auto px-4">
       {/* Responsive Layout */}
-      <div className="flex flex-row m-4 gap-x-4 text-gray-800 justify-center items-center flex-wrap cursor-pointer font-outfitLight text-md mb-16">
+      <div className="flex flex-row gap-x-2 md:gap-x-4 text-black justify-start items-center flex-wrap cursor-pointer font-outfitLight text-[13px] md:text-[16px] mb-6 md:mb-16">
         <span>Home</span>
         <ChevronRight size={16}/>
         <span>Accessories</span>
@@ -110,19 +112,19 @@ const ProductDetails = () => {
             loading="lazy"
             src={product?.image}
             alt={product.name}
-            className="w-full max-w-[500px] max-h-[400px] cursor-pointer rounded-xl"
+            className="w-full max-w-full max-h-[350px] md:max-h-[600px] object-cover object-top cursor-pointer rounded-xl"
             onClick={() => openModal(product?.image)}
           />
 
           {/* Horizontal Thumbnail Images */}
           {product.sliderImages && product.sliderImages.length > 0 && (
-            <div className="flex flex-wrap justify-center gap-2 mt-4">
+            <div className="flex flex-wrap justify-center gap-2 mt-4 mb-0 lg:mb-16">
               {product.sliderImages.map((img, index) => (
                 <img
                   key={index}
                   src={img.imageUrl}
                   alt={`Thumbnail ${index + 1}`}
-                  className={`w-[220px] h-[220px] object-cover rounded-xl cursor-pointer border-2 hover:border-gray-500`}
+                  className={`w-[110px] h-[110px] md:w-[150px] md:h-[150px] object-cover rounded-xl cursor-pointer border-2 hover:border-gray-500`}
                   onClick={() => openModal(img.imageUrl)}
                 />
               ))}
@@ -131,7 +133,7 @@ const ProductDetails = () => {
         </div>
 
         {/* Right Side - Product Details */}
-        <div className="md:w-1/2 relative">
+        <div className="md:w-1/2 relative ps-[0] lg:ps-[50px]">
           <div className="space-r-2 flex flex-wrap gap-2 z-[100]">
             {product?.tags &&
               product?.tags.map((tag, index) => {
@@ -152,10 +154,10 @@ const ProductDetails = () => {
                 );
               })}
           </div>
-          <h1 className="text-5xl font-outfitSemiBold mb-3">{product.name}</h1>
+          <h1 className="text-[24px] leading-[normal] md:text-[36px] font-outfitSemiBold mb-3 mt-4">{product.name}</h1>
           <Rating className="mb-3" />
           <p className="font-outfitSemiBold text-2xl text-red-500 my-4">${product.price}</p>
-          <p className="text-gray-600 text-lg font-outfitRegular my-4">{product.description}</p>
+          <p className="text-gray-600 text-[14px] md:text-lg font-outfitRegular my-4">{product.description}</p>
           <p className="text-lg font-outfitSemiBold my-4">Type : <span className="text-lg font-outfitRegular">{product.type}</span></p>
           <div className="flex gap-2 items-center my-5">
             <span class="relative flex size-3">
@@ -192,11 +194,11 @@ const ProductDetails = () => {
             </div>
           )}
 
-          <div className="flex items-center space-x-4 my-3">
-            <div className=" border border-gray-200 rounded-full flex items-center px-2 my-4">
+          <div className="flex items-center space-x-4 my-3 border-t border-b py-4 mt-5">
+            <div className=" border border-gray-200 rounded-full flex items-center px-2  w-[120px] justify-between">
             <button
               onClick={() => handleDecrement(product)}
-              className={`  font-outfitRegular rounded text-gray-800 text-xl ${
+              className={` ms-2 font-outfitRegular rounded text-gray-800 text-xl ${
                 product?.inStock
                   ? "cursor-pointer"
                   : "cursor-not-allowed opacity-50"
@@ -224,7 +226,7 @@ const ProductDetails = () => {
             />
             <button
               onClick={() => handleIncrement(product)}
-              className={`font-outfitRegular text-gray-800 rounded text-xl ${
+              className={`mr-2 font-outfitRegular text-gray-800 rounded text-xl ${
                 product?.inStock
                   ? "cursor-pointer"
                   : "cursor-not-allowed opacity-50"
@@ -239,7 +241,7 @@ const ProductDetails = () => {
             <button
               onClick={handleAddToCartClick}
               disabled={product?.outOfStock}
-              className={`flex-1 px-12 py-3 font-outfitSemiBold bg-gray-200 hover:bg-black hover:text-white text-black  rounded-full w-72 sm:w-96 ${
+              className={`px-12 py-3 font-outfitSemiBold bg-gray-200 hover:bg-black hover:text-white text-black  rounded-full w-[200px] ${
                 product?.inStock
                   ? "cursor-pointer"
                   : "cursor-not-allowed opacity-50"
@@ -247,17 +249,16 @@ const ProductDetails = () => {
             >
               Add to Cart
             </button>
-          </div>
-          <div>
             <button
               // onClick={handleAddToCartClick}
-              className="bg-black text-white px-12 py-3 font-outfitSemiBold rounded-full w-full hover:bg-white hover:text-black border border-black"
+              className="bg-black text-white px-12 py-3 font-outfitSemiBold rounded-full w-[200px] hover:bg-white hover:text-black border border-black"
             >
               Buy Now
             </button>
           </div>
+          
           <div
-            className="flex items-center justify-between cursor-pointer mt-16"
+            className="flex items-center justify-between cursor-pointer mt-8"
             onClick={() => setIsOverViewOpen(!isOverViewOpen)}
           >
             <h2 className="text-2xl font-outfitSemiBold text-gray-800">
@@ -289,7 +290,12 @@ const ProductDetails = () => {
         </div>
       )}
       <CartDrawer isOpen={isCartDrawerOpen} onClose={toggleCartDrawer} />
+      
     </div>
+    <Footer />
+    </div>
+
+
   );
 };
 
