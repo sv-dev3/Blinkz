@@ -118,7 +118,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
         <div className="overflow-auto h-full px-4 py-4">
           {cartData.length === 0 ? (
             <div className="h-full flex items-center justify-center">
-              <h1 className="font-bold text-2xl">Your cart is empty</h1>
+              <h1 className="font-bold text-2xl font-outfitRegular">Your cart is empty</h1>
             </div>
           ) : (
             cartData.map((item, index) => (
