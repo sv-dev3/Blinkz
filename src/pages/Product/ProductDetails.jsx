@@ -194,7 +194,7 @@ const ProductDetails = () => {
             </div>
           )}
 
-          <div className="flex items-center space-x-4 my-3 border-t border-b py-4 mt-5">
+          <div className="flex flex-wrap items-center gap-4 my-3 border-t border-b py-4 mt-5">
             <div className=" border border-gray-200 rounded-full flex items-center px-2  w-[120px] justify-between">
             <button
               onClick={() => handleDecrement(product)}
@@ -251,7 +251,7 @@ const ProductDetails = () => {
             </button>
             <button
               // onClick={handleAddToCartClick}
-              className="bg-black text-white px-12 py-3 font-outfitSemiBold rounded-full w-[200px] hover:bg-white hover:text-black border border-black"
+              className="bg-black text-white px-12 py-3 font-outfitSemiBold rounded-full w-[200px] hover:bg-white hover:text-black border border-black "
             >
               Buy Now
             </button>
