@@ -112,7 +112,7 @@ const AppProducts = () => {
       <CategoryLayout>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
           {/* Filters Section */}
-          <div className="lg:col-span-3 hidden lg:block p-4 rounded">
+          <div className="lg:col-span-3 hidden lg:block pt-0  pr-4 rounded">
             <h3 className="font-semibold text-lg mb-4">Filters</h3>
             <FilterComponent />
           </div>
@@ -135,11 +135,11 @@ const AppProducts = () => {
                 {filteredCount} of {totalProducts} products
               </p>
               {/* Filters Header Section */}
-              <div className="flex space-x-4 my-4 flex-wrap font-outfitRegular text-gray-800 text-md">
+              <div className="flex gap-[15px] flex-wrap font-outfitRegular text-gray-800 text-md">
                 {minPrice && maxPrice && (
                   <button
                     onClick={removePriceFilter}
-                    className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200 "
+                    className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200 text-[14px]"
                   >
                     ${minPrice} - ${maxPrice}
                     <span className="ml-2 text-gray-500 font-outfitLight"> <X size={16} /></span>
@@ -148,7 +148,7 @@ const AppProducts = () => {
                 {inStock === "true" && (
                   <button
                     onClick={() => removeFilter("inStock")}
-                    className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200"
+                    className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200 text-[14px]"
                   >
                     In Stock
                     <span className="ml-2 text-gray-500 font-outfitLight"> <X size={16} /></span>
@@ -157,57 +157,53 @@ const AppProducts = () => {
                 {outOfStock === "true" && (
                   <button
                     onClick={() => removeFilter("outOfStock")}
-                    className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200"
+                    className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200 text-[14px]"
                   >
                     Out of Stock
                     <span className="ml-2 text-gray-500 font-outfitLight"> <X size={16} /></span>
                   </button>
                 )}
-                {selectedSizes.length > 0 && (
-                  <div className="flex space-x-2">
-                    {selectedSizes.map((size) => (
-                      <button
-                        key={size}
-                        onClick={() => removeSizeFilter(size)}
-                        className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200"
-                      >
-                        {size}
-                        <span className="ml-2 text-gray-500 font-outfitLight"> <X size={16} /></span>
-                      </button>
-                    ))}
-                  </div>
-                )}
+                <div className="flex gap-[5px] flex-wrap">
+  {selectedSizes.length > 0 && selectedSizes.map((size) => (
+    <button
+      key={size}
+      onClick={() => removeSizeFilter(size)}
+      className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200 text-[12px] lg:text-[14px]"
+    >
+      {size}
+      <span className="ml-2 text-gray-500 font-outfitLight"> <X size={14} /></span>
+    </button>
+  ))}
 
-                {productTypes.length > 0 && (
-                  <div className="flex space-x-2">
-                    {productTypes.map((type) => (
-                      <button
-                        key={type}
-                        onClick={() => removeTypeFilter(type)}
-                        className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200"
-                      >
-                        {type}
-                        <span className="ml-2 text-gray-500 font-outfitLight"> <X size={16} /></span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-
-                {(minPrice ||
+  {productTypes.length > 0 && productTypes.map((type) => (
+    <button
+      key={type}
+      onClick={() => removeTypeFilter(type)}
+      className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200  text-[12px] lg:text-[14px]"
+    >
+      {type}
+      <span className="ml-2 text-gray-500 font-outfitLight"> <X size={14} /></span>
+    </button>
+  ))}
+  {(minPrice ||
                   maxPrice ||
                   inStock ||
                   outOfStock ||
                   selectedSizes.length > 0) && (
                   <button
                     onClick={removeAllFilters}
-                    className=" text-gray-800 text-base font-outfitRegular underline underline-offset-4 px-3 py-1"
+                    className=" text-gray-800 text-[12px] font-outfitRegular underline underline-offset-4 px-3 py-1"
                   >
                     Remove All
                   </button>
                 )}
+</div>
+
+
+                
               </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8">
               {filteredProducts &&
                 filteredProducts.map((item, index) => (
                   <Card key={index} data={item} />
@@ -227,7 +223,7 @@ const AppProducts = () => {
         onClose={() => setIsFilterDrawerOpen(!isFilterDrawerOpen)}
       />
     </>
+    
   );
 };
-
 export default AppProducts;

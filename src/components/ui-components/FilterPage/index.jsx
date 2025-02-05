@@ -142,7 +142,7 @@ const StockAndPriceFilter = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="pt-4 pr-4">
       {/* Stock Filter Section */}
       <div className="border-b pb-4">
         <div
@@ -253,7 +253,7 @@ const StockAndPriceFilter = () => {
         {isSizeOpen && (
           <div className="mt-4 space-y-2">
             {["50ml", "100ml", "150ml", "200ml", "250ml"].map((size) => (
-              <label key={size} className="flex items-center space-x-2">
+              <label key={size} className="flex items-center space-x-2 font-outfitRegular text-[14px]">
                 <input
                   type="checkbox"
                   value={size}
@@ -284,7 +284,7 @@ const StockAndPriceFilter = () => {
         {isProductTypeOpen && (
           <div className="mt-4 space-y-2">
             {["Oil", "Serum", "Tools", "Skincare"].map((productType) => (
-              <label key={productType} className="flex items-center space-x-2">
+              <label key={productType} className="flex items-center space-x-2 font-outfitRegular text-[14px]">
                 <input
                   type="checkbox"
                   value={productType}

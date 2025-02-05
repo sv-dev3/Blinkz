@@ -76,6 +76,18 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 .pagination-hide .swiper-pagination {
   display: none;
 }
+/* For Chrome, Safari, Edge, and Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 
 @media (max-width: 767px) {
   body .swiper-horizontal > .swiper-pagination-bullets,
