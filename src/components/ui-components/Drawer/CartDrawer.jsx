@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
+import ProgressBar from "src/components/ui-elements/ProgressBar";
 
 const CartDrawer = ({ isOpen, onClose }) => {
   const [cartData, setCartData] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [cartTotal, setCartTotal] = useState(0);
+  const [progress, setProgress] = useState(0)
+
+  const freeShippingThreshold = 600;
 
   const getCartData = () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -81,6 +85,20 @@ const CartDrawer = ({ isOpen, onClose }) => {
     // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+
+    const remainingAmount = freeShippingThreshold - parseFloat(cartTotal);
+
+    // Calculate the progress percentage
+    if (remainingAmount > 0) {
+      const progressPercent = ((freeShippingThreshold - remainingAmount) / freeShippingThreshold) * 100;
+      setProgress(progressPercent);
+    } else {
+      setProgress(100); // If the cart total exceeds $400, set progress to 100%
+    }
+
+  },[cartTotal])
+
   return (
     <>
       <div
@@ -115,69 +133,29 @@ const CartDrawer = ({ isOpen, onClose }) => {
         </div>
 
         {/* Cart Items */}
-        <div className="overflow-auto h-full px-4 py-4">
+        <div className="overflow-auto h-[calc(100%-250px)] px-4 py-4 relative">
           {cartData.length === 0 ? (
             <div className="h-full flex items-center justify-center">
-              <h1 className="font-bold text-2xl font-outfitRegular">Your cart is empty</h1>
+              <h1 className=" text-2xl font-outfitRegular">Your cart is empty</h1>
             </div>
           ) : (
-            cartData.map((item, index) => (
-              // <div
-              //   key={index}
-              //   className="flex items-center justify-between py-3 border-b overflow-auto"
-              // >
-              //   <div className="flex items-center justify-between">
-              //     <img
-              //       src={item.image}
-              //       alt={item.name}
-              //       className="w-16 h-16 object-cover"
-              //     />
-              //     <div className="flex flex-col ml-3">
-              //       <h4 className="font-semibold">{item.name}</h4>
-              //       <p className="text-sm text-gray-600">{item.discount}</p>
-              //       <p className="font-semibold">
-              //         {item.price} * {item?.quantity}
-              //       </p>
-              //     </div>
-              //   </div>
-              //   <div className="flex items-center justify-end space-x-2">
-              //     <button
-              //       onClick={() => handleDecrement(item)}
-              //       className="px-2 py-1 bg-gray-300 text-black rounded"
-              //     >
-              //       -
-              //     </button>
-              //     <input
-              //       type="number"
-              //       value={item.quantity}
-              //       min="1"
-              //       className="w-12 text-center border border-gray-300 rounded"
-              //       onChange={(e) =>
-              //         handleQuantityChange(
-              //           item,
-              //           Math.max(1, parseInt(e.target.value))
-              //         )
-              //       }
-              //     />
-              //     <button
-              //       onClick={() => handleIncrement(item)}
-              //       className="px-2 py-1 bg-gray-300 text-black rounded"
-              //     >
-              //       +
-              //     </button>
-
-              //     <button
-              //       onClick={() => handleRemove(item)}
-              //       className="ml-4 text-red-500 hover:text-red-700"
-              //     >
-              //       Remove
-              //     </button>
-              //   </div>
-              // </div>
+            <>
+            {progress === 100 ? (
+              <h1 className="mb-2 font-outfitRegular">You are eligible for free shipping.</h1>
+            ) : (
+            <h1 className="mb-4 font-outfitLight">Spend 
+            <span className="font-outfitBold"> $
+{(freeShippingThreshold - cartTotal).toFixed(2)}{" "}
+            </span>
+             more to reach free shipping!</h1>
+            )}
+            <ProgressBar  progress={progress}/>
+            {cartData.map((item, index) => (
               <div
                 key={index}
                 className="flex sm:flex-row  mb-4 sm:mb-8 gap-3 overflow-auto"
               >
+                {/* progress bar  */}
                 <div className="flex flex-row items-start  justify-left sm:w-auto">
                   <img
                     src={item.image}
@@ -232,11 +210,14 @@ const CartDrawer = ({ isOpen, onClose }) => {
                   </div>
                 </div>
               </div>
-            ))
+            ))}
+            </>
           )}
           {/* Cart Summary */}
-          {cartData && cartData.length > 0 && (
-            <div className=" py-8 sm:py-12 border-t">
+         
+        </div>
+        {cartData && cartData.length > 0 && (
+            <div className=" pt-6 sm:pt-8 border-t left-0 right-0 bottom-[10%] px-4">
               <div className="flex justify-between items-center text-lg font-semibold mt-2">
                 <h1 className="text-xl font-outfitRegular text-gray-800">
                   Estimated Total
@@ -261,8 +242,8 @@ const CartDrawer = ({ isOpen, onClose }) => {
               </div>
             </div>
           )}
-        </div>
       </div>
+      
     </>
   );
 };

@@ -135,7 +135,7 @@ const AppProducts = () => {
                 {filteredCount} of {totalProducts} products
               </p>
               {/* Filters Header Section */}
-              <div className="flex gap-[15px] flex-wrap font-outfitRegular text-gray-800 text-md">
+              <div className="flex gap-[5px] flex-wrap font-outfitRegular text-gray-800 text-md">
                 {minPrice && maxPrice && (
                   <button
                     onClick={removePriceFilter}

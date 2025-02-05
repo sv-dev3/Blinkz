@@ -1,4 +1,4 @@
-import { ChevronRight, LoaderCircle, Minus, Plus, X } from "lucide-react";
+import { ChevronRight, LoaderCircle, Minus, Plus, X, Forward } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CartDrawer from "src/components/ui-components/Drawer/CartDrawer";
@@ -6,6 +6,8 @@ import ChooseOptionSlider from "src/components/ui-elements/ChooseOptionsSlider";
 import Rating from "src/components/ui-elements/Rating";
 import { dummyData } from "src/helpers/dummyData";
 import Footer from "src/components/ui-components/Footer";
+import DetailsSlider from "./DetailsSlider";
+import Modal from "src/components/ui-elements/ShareModal";
 
 
 const ProductDetails = () => {
@@ -16,6 +18,7 @@ const ProductDetails = () => {
   const [selectedSize, setSelectedSize] = useState(null); // Default to the first size
   const [quantity, setQuantity] = useState(1);
   const [isOverViewOpen, setIsOverViewOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
   const toggleCartDrawer = () => setIsCartDrawerOpen(!isCartDrawerOpen);
@@ -40,6 +43,8 @@ const ProductDetails = () => {
       setSelectedSize(product.quantityOptions[0]);
     }
   }, [product]);
+
+  const path = window.location.href
 
   const handleDecrement = () => {
     setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1)); // Prevent going below 1
@@ -77,6 +82,15 @@ const ProductDetails = () => {
     setSelectedSize(null);
     setQuantity(1);
   };
+
+  const inStock = product && product.inStock
+  const outOfStock = product && product.outOfStock
+
+  const handleShare = () => {
+
+    console.log("Share")
+    setIsModalOpen(true)
+  }
 
   if (loading) {
     return (
@@ -161,13 +175,13 @@ const ProductDetails = () => {
           <p className="text-lg font-outfitSemiBold my-4">Type : <span className="text-lg font-outfitRegular">{product.type}</span></p>
           <div className="flex gap-2 items-center my-5">
             <span class="relative flex size-3">
-              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-600 opacity-75"></span>
-              <span class="relative inline-flex size-3 rounded-full bg-green-600"></span>
+              <span class={`absolute inline-flex h-full w-full animate-ping rounded-full ${inStock ? "bg-green-600" : "bg-red-600"} opacity-75`}></span>
+              <span class={`relative inline-flex size-3 rounded-full ${inStock ? "bg-green-600" : "bg-red-600"}`}></span>
             </span> 
             <span
-              className={product.inStock ? "text-green-600 font-outfitLight text-md" : "text-red-600 font-outfitLight text-md"}
+              className={inStock ? "text-green-600 font-outfitLight text-md" : "text-red-600 font-outfitLight text-md"}
             >
-           {product.inStock ? "In Stock" : "Out of Stock"}
+           {inStock ? "In Stock" : "Out of Stock"}
             </span>
           </div>
           {/* Available Sizes */}
@@ -203,7 +217,7 @@ const ProductDetails = () => {
                   ? "cursor-pointer"
                   : "cursor-not-allowed opacity-50"
               }`}
-              disabled={product?.outOfStock}
+              disabled={outOfStock}
             >
               -
             </button>
@@ -211,7 +225,7 @@ const ProductDetails = () => {
               type="number"
               value={quantity}
               min="1"
-              readOnly={product?.outOfStock}
+              readOnly={outOfStock}
               className={`w-12 p-2 text-center text-md sm:text-xl appearance-none font-outfitRegular text-gray-800  ${
                 product?.inStock
                   ? "cursor-pointer"
@@ -231,7 +245,7 @@ const ProductDetails = () => {
                   ? "cursor-pointer"
                   : "cursor-not-allowed opacity-50"
               }`}
-              disabled={product?.outOfStock}
+              disabled={outOfStock}
             >
               +
             </button>
@@ -240,10 +254,10 @@ const ProductDetails = () => {
             {/* Add to Cart Button */}
             <button
               onClick={handleAddToCartClick}
-              disabled={product?.outOfStock}
-              className={`px-12 py-3 font-outfitSemiBold bg-gray-200 hover:bg-black hover:text-white text-black  rounded-full w-[200px] ${
+              disabled={outOfStock}
+              className={`px-12 py-3 font-outfitSemiBold bg-gray-200 text-black  rounded-full flex-1 ${
                 product?.inStock
-                  ? "cursor-pointer"
+                  ? "cursor-pointer hover:bg-black hover:text-white"
                   : "cursor-not-allowed opacity-50"
               }`}
             >
@@ -251,7 +265,12 @@ const ProductDetails = () => {
             </button>
             <button
               // onClick={handleAddToCartClick}
-              className="bg-black text-white px-12 py-3 font-outfitSemiBold rounded-full w-[200px] hover:bg-white hover:text-black border border-black "
+              disabled={outOfStock}
+              className={`bg-black text-white px-12 py-3 font-outfitSemiBold rounded-full w-full border border-black ${
+                product?.inStock
+                  ? "cursor-pointer hover:bg-white hover:text-black"
+                  : "cursor-not-allowed opacity-50"
+              }`}
             >
               Buy Now
             </button>
@@ -271,6 +290,12 @@ const ProductDetails = () => {
               <h1 className="text-md font-outfitRegular text-gray-500 ">{product.description}</h1>
             </div>
           )}
+
+{/* Share button  */}
+          <div className="my-10">
+            <button className="flex items-center justify-center font-outfitRegular" onClick={handleShare}> <Forward className="me-2"/>Share</button>
+            
+          </div>
         </div>
       </div>
       {modalOpen && (
@@ -290,9 +315,13 @@ const ProductDetails = () => {
         </div>
       )}
       <CartDrawer isOpen={isCartDrawerOpen} onClose={toggleCartDrawer} />
-      
+      <h1 className="text-[24px] text-center mt-8 leading-[normal] md:text-[36px] font-outfitSemiBold mb-3 ">You may also like</h1>
+    <div className="container w-full mt-12">
+        <DetailsSlider sliderImages={dummyData} sliderPerView={5} centeredSlide={true}/>
+      </div>
     </div>
     <Footer />
+    <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen} url={path}/>
     </div>
 
 

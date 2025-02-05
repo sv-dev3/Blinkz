@@ -12,7 +12,7 @@ const FilterDrawer = ({ isOpen, onClose }) => {
         onClick={onClose}
       ></div>
       <div
-        className={`fixed top-0 left-0 h-full w-full sm:w-[450px] bg-white shadow-lg z-[1100] transform ${
+        className={`fixed top-0 left-0 h-full w-full sm:w-[450px] bg-white shadow-lg z-[1100] transform p-2 sm:p-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
