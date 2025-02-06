@@ -7,7 +7,6 @@ import MegaMenu from "src/components/ui-elements/MegaMenu";
 import SkinOne from "src/assets/images/menu-collection-1-min.webp";
 import SkinTwo from "src/assets/images/menu-collection-2-min.webp";
 import SkinThree from "src/assets/images/menu-collection-3-min.webp";
-import { homeSliderData } from "src/helpers/dummyData";
 import SearchDrawer from "../Drawer/SearchDrawer";
 import CartDrawer from "../Drawer/CartDrawer";
 
@@ -44,8 +43,8 @@ const Navbar = () => {
       link: "/",
     },
     {
-      name: "About",
-      link: "/about",
+      name: "Shop",
+      link: "/category/all",
       subMenu: true,
       subMenuGridData: {
         name: "About Grid",
@@ -59,7 +58,7 @@ const Navbar = () => {
           { heading: "Skincare", link: "/category/skincare" },
           { name: "Cleansers", link: "/category/cleansers" },
           { name: "Treatments", link: "/category/treatments" },
-          { name: "Eye care", link: "/category/test" },
+          { name: "Eye Care", link: "/category/eye-care" },
           { name: "Moisturizers", link: "/category/moisturizers" },
           { name: "Accessories", link: "/category/accessories" },
           { name: "Shop All", link: "/category/all" },
@@ -74,7 +73,7 @@ const Navbar = () => {
           { name: "Accessories", link: "/test" },
           { name: "Shop All", link: "/test" },
         ],
-        carouselData: homeSliderData,
+        // carouselData: homeSliderData,
       },
       drawerSubMenu: [
         { heading: "Best Sellers", link: "/test" },
@@ -178,7 +177,7 @@ const Navbar = () => {
             title={"Search"}
           >
             <ShoppingCart size={24} />
-            <span className="absolute top-0 font-outfitRegular -right-4 text-xs w-4 h-4 bg-red-600 text-white rounded-full flex items-center justify-center -translate-x-1/2 -translate-y-1/2">
+            <span className="absolute top-0 font-outfitLight -right-7 text-[11px] p-2 w-5 h-5 bg-red-600 text-white rounded-full flex items-center justify-center -translate-x-1/2 -translate-y-1/2">
               {cartCount}
             </span>
           </button>
@@ -192,7 +191,6 @@ const Navbar = () => {
               <User size={24} />
             </Link>
           </button>
-
           {/* Drawer Menu button  */}
           <button
             className="block md:hidden text-xl hover:text-purple-600 transition duration-300"

@@ -10,16 +10,13 @@ import {
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { breakpoints } from "src/config/responsiveSize";
 import GridCard from "src/components/ui-elements/GridCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-
 
 const DetailsSlider = ({
   sliderPerView = 1,
   sliderImages,
-  centeredSlide = true,
+  centeredSlide = false,
 }) => {
   return (
     <div className="py-0">
@@ -49,7 +46,7 @@ const DetailsSlider = ({
               slidesPerView: 2,
             },
             1024: {
-              slidesPerView: 3,
+              slidesPerView: 4,
             },
           }}
           style={{ height: "100%" }}

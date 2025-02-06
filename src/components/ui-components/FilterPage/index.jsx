@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import MultiRangeSlider, { ChangeResult } from "multi-range-slider-react";
+// import PriceRangeSlider from "./Range";
 
 const StockAndPriceFilter = () => {
   let [searchParams] = useSearchParams();
@@ -48,8 +50,6 @@ const StockAndPriceFilter = () => {
       setTempMinPrice(0);
       setTempMaxPrice(400);
     }
-
-    // minPrice=205&maxPrice=400
 
     // Set selected product types from searchParams
     const productTypesFromParams = searchParams.getAll("productType");
@@ -141,15 +141,24 @@ const StockAndPriceFilter = () => {
     navigate(path);
   };
 
+  // const handlePriceRangeChange = (e) => {
+  //   console.log("===============");
+  //   console.log(e);
+  //   console.log("================");
+  //   // navigate(path);
+  // };
+
   return (
     <div className="pt-4 pr-4">
-      {/* Stock Filter Section */}
+      {/* {/ Stock Filter Section /} */}
       <div className="border-b pb-4">
         <div
           className="flex items-center justify-between cursor-pointer"
           onClick={() => setIsStockOpen(!isStockOpen)}
         >
-          <h2 className="text-xl font-outfitMedium text-gray-800">Availability</h2>
+          <h2 className="text-xl font-outfitMedium text-gray-800">
+            Availability
+          </h2>
           {isStockOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
         </div>
         {isStockOpen && (
@@ -162,7 +171,9 @@ const StockAndPriceFilter = () => {
                   onChange={handleInStockChange}
                   className="form-checkbox bg-black h-5 w-5 text-black rounded focus:ring-black"
                 />
-                <span className="text-gray-800 font-outfitRegular text-md">In Stock</span>
+                <span className="text-gray-800 font-outfitRegular text-md">
+                  In Stock
+                </span>
               </label>
             </div>
             <div>
@@ -173,14 +184,16 @@ const StockAndPriceFilter = () => {
                   onChange={handleOutOfStockChange}
                   className="form-checkbox h-5 w-5 text-black border-gray-300 rounded focus:ring-black"
                 />
-                <span className="text-gray-800 font-outfitRegular text-md">Out of Stock</span>
+                <span className="text-gray-800 font-outfitRegular text-md">
+                  Out of Stock
+                </span>
               </label>
             </div>
           </div>
         )}
       </div>
 
-      {/* Price Filter Section */}
+      {/* {/ Price Filter Section /} */}
       <div className="border-b pb-4">
         <div
           className="flex items-center justify-between cursor-pointer mt-6"
@@ -217,7 +230,7 @@ const StockAndPriceFilter = () => {
                 />
               </div>
             </div>
-            <div className="flex items-center space-x-4">
+            {/* <div className="flex items-center">
               <input
                 type="range"
                 min="0"
@@ -236,12 +249,37 @@ const StockAndPriceFilter = () => {
                 onMouseUp={handlePriceRangeChange}
                 className="w-full accent-black"
               />
-            </div>
+            </div> */}
+            <MultiRangeSlider
+              min={0}
+              max={100}
+              minValue={0}
+              maxValue={100}
+              canMinMaxValueSame={true}
+              onInput={(e) => {
+                console.log("Event : ", e);
+              }}
+              onChange={(e) => {
+                console.log("E : ", e);
+              }}
+              label={false}
+              ruler={false}
+              style={{
+                border: "none",
+                boxShadow: "none",
+                padding: "15px 10px",
+              }}
+              barLeftColor="#EFEFEF"
+              barInnerColor="black"
+              barRightColor="#EFEFEF"
+              thumbLeftColor="black"
+              thumbRightColor="black"
+            />
           </div>
         )}
       </div>
 
-      {/* Size Filter Section */}
+      {/* {/ Size Filter Section /} */}
       <div className="border-b pb-4 mt-4">
         <div
           className="flex items-center justify-between cursor-pointer"
@@ -253,7 +291,10 @@ const StockAndPriceFilter = () => {
         {isSizeOpen && (
           <div className="mt-4 space-y-2">
             {["50ml", "100ml", "150ml", "200ml", "250ml"].map((size) => (
-              <label key={size} className="flex items-center space-x-2 font-outfitRegular text-[14px]">
+              <label
+                key={size}
+                className="flex items-center space-x-2 font-outfitRegular text-[14px]"
+              >
                 <input
                   type="checkbox"
                   value={size}
@@ -268,13 +309,15 @@ const StockAndPriceFilter = () => {
         )}
       </div>
 
-      {/* Product Type Filter Section */}
+      {/* {/ Product Type Filter Section /} */}
       <div className="border-b pb-4 mt-4">
         <div
           className="flex items-center justify-between cursor-pointer"
           onClick={() => setIsProductTypeOpen(!isProductTypeOpen)}
         >
-          <h2 className="text-xl font-outfitSemiBold text-gray-800">Product Type</h2>
+          <h2 className="text-xl font-outfitSemiBold text-gray-800">
+            Product Type
+          </h2>
           {isProductTypeOpen ? (
             <ChevronUp size={20} />
           ) : (
@@ -284,7 +327,10 @@ const StockAndPriceFilter = () => {
         {isProductTypeOpen && (
           <div className="mt-4 space-y-2">
             {["Oil", "Serum", "Tools", "Skincare"].map((productType) => (
-              <label key={productType} className="flex items-center space-x-2 font-outfitRegular text-[14px]">
+              <label
+                key={productType}
+                className="flex items-center space-x-2 font-outfitRegular text-[14px]"
+              >
                 <input
                   type="checkbox"
                   value={productType}
@@ -298,6 +344,8 @@ const StockAndPriceFilter = () => {
           </div>
         )}
       </div>
+
+      {/* {/ Apply Icon  /} */}
     </div>
   );
 };

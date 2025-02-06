@@ -1,11 +1,11 @@
-import { Filter,X } from "lucide-react";
+import { Filter, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom"; // useNavigate for URL manipulation
 import FilterDrawer from "src/components/ui-components/Drawer/FilterDrawer";
 import FilterComponent from "src/components/ui-components/FilterPage";
 import Card from "src/components/ui-elements/Card";
 import { dummyData } from "src/helpers/dummyData";
-import CategoryLayout from "src/layout/CategoryLayout";
+import AllCategoryLayout from "./AllCategoryLayout";
 
 const AppProducts = () => {
   const location = useLocation();
@@ -14,6 +14,9 @@ const AppProducts = () => {
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [productTypes, setProductTypes] = useState([]);
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
+  const [sortOption, setSortOption] = useState("increaseAlphabetical");
+  const [viewData, setViewData] = useState([]);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -27,7 +30,7 @@ const AppProducts = () => {
     setSelectedSizes(sizeFilters);
     setProductTypes(types);
 
-    const filtered = dummyData.filter((item) => {
+    let filtered = dummyData.filter((item) => {
       const inStock = inStockFilter === "true" ? item.inStock : true;
       const outOfStock = outOfStockFilter === "true" ? item.outOfStock : true;
       const priceInRange =
@@ -58,8 +61,37 @@ const AppProducts = () => {
       );
     });
 
+    // Apply sorting
+    if (sortOption === "increaseAlphabetical") {
+      filtered = filtered.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortOption === "decreaseAlphabetical") {
+      filtered = filtered.sort((a, b) => b.name.localeCompare(a.name));
+    } else if (sortOption === "lowToHigh") {
+      filtered = filtered.sort((a, b) => a.price - b.price);
+    } else if (sortOption === "highToLow") {
+      filtered = filtered.sort((a, b) => b.price - a.price);
+    } else if (sortOption === "featured") {
+      filtered = filtered.filter((product) => product.isFeatured);
+    } else if (sortOption === "bestSeller") {
+      filtered = filtered.filter((product) => product.isBestSeller);
+    } else if (sortOption === "latest") {
+      filtered = filtered.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+    } else if (sortOption === "oldest") {
+      filtered = filtered.sort(
+        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+      );
+    }
+
     setFilteredProducts(filtered);
-  }, [location.search]);
+  }, [location.search, sortOption]);
+
+  useEffect(() => {
+    if (filteredProducts) {
+      setViewData(showAll ? filteredProducts : filteredProducts.slice(0, 6));
+    }
+  }, [filteredProducts, showAll]);
 
   const totalProducts = dummyData.length;
   const filteredCount = filteredProducts.length;
@@ -107,10 +139,22 @@ const AppProducts = () => {
   const inStock = urlParams.get("inStock");
   const outOfStock = urlParams.get("outOfStock");
 
+  // const sortingDropdownOptions = [{key : 'increaseAlphabetical', value : 'Alphabatical, A-z'}]
+  const sortingDropdownOptions = [
+    { key: "featured", value: "Featured" },
+    { key: "bestSeller", value: "Best Seller" },
+    { key: "increaseAlphabetical", value: "Alphabetical, A-Z" },
+    { key: "decreaseAlphabetical", value: "Alphabetical, Z-A" },
+    { key: "lowToHigh", value: "Price: Low to High" },
+    { key: "highToLow", value: "Price: High to Low" },
+    { key: "latest", value: "Date, New to Old" },
+    { key: "oldest", value: "Date, Old to New" },
+  ];
+
   return (
     <>
-      <CategoryLayout>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
+      <AllCategoryLayout>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-8">
           {/* Filters Section */}
           <div className="lg:col-span-3 hidden lg:block pt-0  pr-4 rounded">
             <h3 className="font-semibold text-lg mb-4">Filters</h3>
@@ -131,9 +175,24 @@ const AppProducts = () => {
           <div className="lg:col-span-9">
             {/* Display product count */}
             <div className="flex flex-col justify-left items-left flex-wrap mb-4">
-              <p className="text-lg text-gray-800 font-outfitLight mb-4 ">
-                {filteredCount} of {totalProducts} products
-              </p>
+              <div className="flex justify-between items-center">
+                <p className="text-sm sm:text-lg text-gray-800 font-outfitLight mb-4 ">
+                  {filteredCount} of {totalProducts} products
+                </p>
+                {/* sort products  */}
+                <div className="flex flex-wrap justify-between items-center mb-4">
+                  <p className="font-outfitMedium text-sm sm:text-base">Sort By: </p>
+                  <select
+                    className=" p-2"
+                    value={sortOption}
+                    onChange={(event) => setSortOption(event.target.value)}
+                  >
+                    {sortingDropdownOptions?.map((item) => (
+                      <option value={item?.key}>{item?.value}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
               {/* Filters Header Section */}
               <div className="flex gap-[5px] flex-wrap font-outfitRegular text-gray-800 text-md">
                 {minPrice && maxPrice && (
@@ -142,7 +201,10 @@ const AppProducts = () => {
                     className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200 text-[14px]"
                   >
                     ${minPrice} - ${maxPrice}
-                    <span className="ml-2 text-gray-500 font-outfitLight"> <X size={16} /></span>
+                    <span className="ml-2 text-gray-500 font-outfitLight">
+                      {" "}
+                      <X size={16} />
+                    </span>
                   </button>
                 )}
                 {inStock === "true" && (
@@ -151,7 +213,10 @@ const AppProducts = () => {
                     className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200 text-[14px]"
                   >
                     In Stock
-                    <span className="ml-2 text-gray-500 font-outfitLight"> <X size={16} /></span>
+                    <span className="ml-2 text-gray-500 font-outfitLight">
+                      {" "}
+                      <X size={16} />
+                    </span>
                   </button>
                 )}
                 {outOfStock === "true" && (
@@ -160,70 +225,104 @@ const AppProducts = () => {
                     className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200 text-[14px]"
                   >
                     Out of Stock
-                    <span className="ml-2 text-gray-500 font-outfitLight"> <X size={16} /></span>
+                    <span className="ml-2 text-gray-500 font-outfitLight">
+                      {" "}
+                      <X size={16} />
+                    </span>
                   </button>
                 )}
                 <div className="flex gap-[5px] flex-wrap">
-  {selectedSizes.length > 0 && selectedSizes.map((size) => (
-    <button
-      key={size}
-      onClick={() => removeSizeFilter(size)}
-      className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200 text-[12px] lg:text-[14px]"
-    >
-      {size}
-      <span className="ml-2 text-gray-500 font-outfitLight"> <X size={14} /></span>
-    </button>
-  ))}
+                  {selectedSizes.length > 0 &&
+                    selectedSizes.map((size) => (
+                      <button
+                        key={size}
+                        onClick={() => removeSizeFilter(size)}
+                        className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200 text-[12px] lg:text-[14px]"
+                      >
+                        {size}
+                        <span className="ml-2 text-gray-500 font-outfitLight">
+                          {" "}
+                          <X size={14} />
+                        </span>
+                      </button>
+                    ))}
 
-  {productTypes.length > 0 && productTypes.map((type) => (
-    <button
-      key={type}
-      onClick={() => removeTypeFilter(type)}
-      className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200  text-[12px] lg:text-[14px]"
-    >
-      {type}
-      <span className="ml-2 text-gray-500 font-outfitLight"> <X size={14} /></span>
-    </button>
-  ))}
-  {(minPrice ||
-                  maxPrice ||
-                  inStock ||
-                  outOfStock ||
-                  selectedSizes.length > 0) && (
-                  <button
-                    onClick={removeAllFilters}
-                    className=" text-gray-800 text-[12px] font-outfitRegular underline underline-offset-4 px-3 py-1"
-                  >
-                    Remove All
-                  </button>
-                )}
-</div>
-
-
-                
+                  {productTypes.length > 0 &&
+                    productTypes.map((type) => (
+                      <button
+                        key={type}
+                        onClick={() => removeTypeFilter(type)}
+                        className="bg-white text-black rounded-full px-3 py-1 flex items-center border border-gray-200  text-[12px] lg:text-[14px]"
+                      >
+                        {type}
+                        <span className="ml-2 text-gray-500 font-outfitLight">
+                          {" "}
+                          <X size={14} />
+                        </span>
+                      </button>
+                    ))}
+                  {(minPrice ||
+                    maxPrice ||
+                    inStock ||
+                    outOfStock ||
+                    selectedSizes.length > 0) && (
+                    <button
+                      onClick={removeAllFilters}
+                      className=" text-gray-800 text-[12px] font-outfitRegular underline underline-offset-4 px-3 py-1"
+                    >
+                      Remove All
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8">
-              {filteredProducts &&
-                filteredProducts.map((item, index) => (
-                  <Card key={index} data={item} />
-                ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 pb-8">
+              {viewData &&
+                viewData.map((item, index) => <Card key={index} data={item} />)} 
+                </div>
+                <div className="text-center">
+                {filteredProducts &&
+                !showAll &&
+                viewData.length < filteredProducts.length && (
+                  <button
+                    onClick={() => setShowAll(true)}
+                    className="bg-black text-white px-8 font-outfitRegular py-2 rounded-full"
+                  >
+                    Show All
+                  </button>
+                )}
+                </div>
 
               {/* When No Products Found  */}
               {filteredProducts && filteredProducts.length === 0 && (
-                <h1>No Products Found with applied Filters</h1>
+                <div className="flex flex-col items-center py-12 sm:py-24">
+                <h1>No products match those filters.</h1>
+                <p>Use fewer filters or</p>
+                {(minPrice ||
+                    maxPrice ||
+                    inStock ||
+                    outOfStock ||
+                    (productTypes && productTypes.length > 0) ||
+                    selectedSizes.length > 0) && (
+                    <button
+                      onClick={removeAllFilters}
+                      className="text-lg font-outfitRegular bg-black text-white rounded-full max-w-32 px-3 py-2"
+                    >
+                      Remove All
+                    </button>
+                  )}
+                </div>
               )}
-            </div>
+            
           </div>
         </div>
-      </CategoryLayout>
+      </AllCategoryLayout>
 
       <FilterDrawer
         isOpen={isFilterDrawerOpen}
         onClose={() => setIsFilterDrawerOpen(!isFilterDrawerOpen)}
       />
     </>
-    
   );
 };
 export default AppProducts;

@@ -110,7 +110,7 @@ const Card = ({ data, height = "h-[300px]", animateButtons = true }) => {
             {data?.multipleQuantity ? (
               // choose option if quantity is multiple
               <button
-                className="text-lg font-outfitBold bg-black w-full mx-8 text-white px-6 py-2 rounded-full shadow-md hover:bg-gray-200 hover:text-black transition"
+                className="text-lg font-outfitMedium bg-black w-full mx-8 text-white px-6 py-2 rounded-full shadow-md hover:bg-gray-200 hover:text-black transition"
                 onClick={() => handleChooseOptions(data)}
                 style={{
                   transition:

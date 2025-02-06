@@ -12,7 +12,7 @@ const FilterDrawer = ({ isOpen, onClose }) => {
         onClick={onClose}
       ></div>
       <div
-        className={`fixed top-0 left-0 h-full w-full sm:w-[450px] bg-white shadow-lg z-[1100] transform p-2 sm:p-0 ${
+        className={`fixed top-0 left-0 h-full w-full sm:w-[500px] bg-white shadow-lg z-[1100] transform p-2 sm:p-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
@@ -26,9 +26,19 @@ const FilterDrawer = ({ isOpen, onClose }) => {
             <X size={24} />
           </button>
         </div>
-        <div className="overflow-auto h-full">
-          <h3 className="font-semibold text-lg mb-4">Filters</h3>
-          <FilterComponent />
+        <div className="overflow-auto h-full pb-24">
+          <div className=" px-2">
+            {" "}
+            <FilterComponent />
+          </div>
+          <div className="w-full fixed bottom-2 left-0 px-8">
+            <button
+              className="bg-black w-full text-white p-2 rounded-full font-bold"
+              onClick={onClose}
+            >
+              Apply Filters
+            </button>
+          </div>
         </div>
       </div>
     </>

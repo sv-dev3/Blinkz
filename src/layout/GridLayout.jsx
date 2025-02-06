@@ -6,7 +6,7 @@ import { useWindowDimensions } from "src/hooks/useWindowdimension";
 
 const GridLayout = ({ data }) => {
   const [sliderPerView, setSlidesPerView] = useState(3);
-  const {width} = useWindowDimensions()
+  const { width } = useWindowDimensions();
   useEffect(() => {
     if (width < 991) {
       setSlidesPerView(1);
@@ -23,7 +23,9 @@ const GridLayout = ({ data }) => {
           .map((rowKey, index) => (
             <div key={index} className="pl-2 md:pl-0">
               <div
-                className={`md:space-y-2 space-y-1  ${index !== 0 ? "border-l pl-2 md:pl-4" : ""}`}
+                className={`md:space-y-2 space-y-1  ${
+                  index !== 0 ? "border-l pl-2 md:pl-4" : ""
+                }`}
               >
                 {data[rowKey].map((item, subIndex) => (
                   <div key={subIndex} className="bg-white">
@@ -53,7 +55,10 @@ const GridLayout = ({ data }) => {
           ))}
       </div>
       <div className="mt-4 md:mt-0 w-full md:w-[45%]">
-        <MegaMenuSlider sliderImages={dummyData} sliderPerView={sliderPerView} />
+        <MegaMenuSlider
+          sliderImages={dummyData}
+          sliderPerView={sliderPerView}
+        />
       </div>
     </div>
   );

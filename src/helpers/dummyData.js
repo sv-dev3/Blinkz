@@ -2,13 +2,13 @@ import first from "src/assets/images/carousel1.webp";
 import second from "src/assets/images/carousel2.webp";
 import third from "src/assets/images/carousel1.webp";
 
-import one from "src/assets/images/card1.webp";
-import two from "src/assets/images/card2.webp";
-import three from "src/assets/images/card3.webp";
-import four from "src/assets/images/card4.webp";
+import one from "src/assets/images/card5.webp";
+import two from "src/assets/images/card8.webp";
+import three from "src/assets/images/card5.webp";
+import four from "src/assets/images/card8.webp";
 import five from "src/assets/images/card5.webp";
-import six from "src/assets/images/card6.jpg";
-import seven from "src/assets/images/card7.jpg";
+import six from "src/assets/images/card5.webp";
+import seven from "src/assets/images/card8.webp";
 import eight from "src/assets/images/card8.webp";
 
 export const homeSliderData = [
@@ -94,6 +94,10 @@ export const dummyData = [
         imageUrl: eight,
       },
     ],
+    isFeatured: true,
+    isBestSeller: true,
+    category: 'Skincare',
+    createdAt: "2024-01-15T10:30:00Z",
   },
   {
     id: 2,
@@ -123,6 +127,9 @@ export const dummyData = [
         imageUrl: two,
       },
     ],
+    isFeatured: true,
+    category: 'Skincare',
+    createdAt: "2024-02-04T10:30:00Z",
   },
   {
     id: 3,
@@ -146,6 +153,9 @@ export const dummyData = [
         imageUrl: six,
       },
     ],
+    isBestSeller: true,
+    category: 'Skincare',
+    createdAt: "2023-12-17T10:30:00Z",
   },
   {
     id: 4,
@@ -170,9 +180,201 @@ export const dummyData = [
         imageUrl: five,
       },
     ],
+    isFeatured: true,
+    category: 'Treatments',
+    createdAt: "2023-08-15T10:30:00Z",
   },
   {
     id: 5,
+    image: four,
+    type: "Oil",
+    name: "Protective day oil",
+    price: 69.99,
+    discount: "-5% Discount",
+    tags: [{ type: "highlight", value: "Exclusive" }],
+    hoverImage: five,
+    multipleQuantity: true,
+    quantityOptions: ["100ml", "150ml"],
+    description:
+      "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    inStock: true, // Added inStock property
+    outOfStock: false, // Added outOfStock property
+    sliderImages: [
+      {
+        imageUrl: four,
+      },
+      {
+        imageUrl: five,
+      },
+    ],
+    isFeatured: true,
+    category: 'Treatments',
+    createdAt: "2023-08-15T10:30:00Z",
+  },
+  {
+    id: 6,
+    image: four,
+    type: "Oil",
+    name: "Protective day oil",
+    price: 69.99,
+    discount: "-5% Discount",
+    tags: [{ type: "highlight", value: "Exclusive" }],
+    hoverImage: five,
+    multipleQuantity: true,
+    quantityOptions: ["100ml", "150ml"],
+    description:
+      "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    inStock: true, // Added inStock property
+    outOfStock: false, // Added outOfStock property
+    sliderImages: [
+      {
+        imageUrl: four,
+      },
+      {
+        imageUrl: five,
+      },
+    ],
+    isFeatured: true,
+    category: 'Treatments',
+    createdAt: "2023-08-15T10:30:00Z",
+  },
+  {
+    id: 7,
+    image: four,
+    type: "Oil",
+    name: "Protective day oil",
+    price: 69.99,
+    discount: "-5% Discount",
+    tags: [{ type: "highlight", value: "Exclusive" }],
+    hoverImage: five,
+    multipleQuantity: true,
+    quantityOptions: ["100ml", "150ml"],
+    description:
+      "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    inStock: true, // Added inStock property
+    outOfStock: false, // Added outOfStock property
+    sliderImages: [
+      {
+        imageUrl: four,
+      },
+      {
+        imageUrl: five,
+      },
+    ],
+    isFeatured: true,
+    category: 'Treatments',
+    createdAt: "2023-08-15T10:30:00Z",
+  },
+  {
+    id: 8,
+    image: four,
+    type: "Oil",
+    name: "Protective day oil",
+    price: 69.99,
+    discount: "-5% Discount",
+    tags: [{ type: "highlight", value: "Exclusive" }],
+    hoverImage: five,
+    multipleQuantity: true,
+    quantityOptions: ["100ml", "150ml"],
+    description:
+      "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    inStock: true, // Added inStock property
+    outOfStock: false, // Added outOfStock property
+    sliderImages: [
+      {
+        imageUrl: four,
+      },
+      {
+        imageUrl: five,
+      },
+    ],
+    isFeatured: true,
+    category: 'Treatments',
+    createdAt: "2023-08-15T10:30:00Z",
+  },
+  {
+    id: 9,
+    image: four,
+    type: "Oil",
+    name: "Protective day oil",
+    price: 69.99,
+    discount: "-5% Discount",
+    tags: [{ type: "highlight", value: "Exclusive" }],
+    hoverImage: five,
+    multipleQuantity: true,
+    quantityOptions: ["100ml", "150ml"],
+    description:
+      "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    inStock: true, // Added inStock property
+    outOfStock: false, // Added outOfStock property
+    sliderImages: [
+      {
+        imageUrl: four,
+      },
+      {
+        imageUrl: five,
+      },
+    ],
+    isFeatured: true,
+    category: 'Treatments',
+    createdAt: "2023-08-15T10:30:00Z",
+  },
+  {
+    id: 10,
+    image: four,
+    type: "Oil",
+    name: "Protective day oil",
+    price: 69.99,
+    discount: "-5% Discount",
+    tags: [{ type: "highlight", value: "Exclusive" }],
+    hoverImage: five,
+    multipleQuantity: true,
+    quantityOptions: ["100ml", "150ml"],
+    description:
+      "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    inStock: true, // Added inStock property
+    outOfStock: false, // Added outOfStock property
+    sliderImages: [
+      {
+        imageUrl: four,
+      },
+      {
+        imageUrl: five,
+      },
+    ],
+    isFeatured: true,
+    category: 'Treatments',
+    createdAt: "2023-08-15T10:30:00Z",
+  },
+  {
+    id: 11,
+    image: four,
+    type: "Oil",
+    name: "Protective day oil",
+    price: 69.99,
+    discount: "-5% Discount",
+    tags: [{ type: "highlight", value: "Exclusive" }],
+    hoverImage: five,
+    multipleQuantity: true,
+    quantityOptions: ["100ml", "150ml"],
+    description:
+      "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
+    inStock: true, // Added inStock property
+    outOfStock: false, // Added outOfStock property
+    sliderImages: [
+      {
+        imageUrl: four,
+      },
+      {
+        imageUrl: five,
+      },
+    ],
+    isFeatured: true,
+    category: 'Treatments',
+    createdAt: "2023-08-15T10:30:00Z",
+  },
+  {
+    id: 12,
     image: five,
     type: "Cream",
     name: "Rose quartz facial polish",
@@ -193,9 +395,13 @@ export const dummyData = [
         imageUrl: two,
       },
     ],
+    isFeatured: true,
+    isBestSeller: true,
+    category: 'Treatments',
+    createdAt: "2024-01-20T10:30:00Z",
   },
   {
-    id: 6,
+    id: 13,
     image: six,
     type: "Serum",
     name: "Hydrating serum",
@@ -216,16 +422,20 @@ export const dummyData = [
         imageUrl: one,
       },
     ],
+    isFeatured: true,
+    isBestSeller: true,
+    category: "Cleansers",
+    createdAt: "2022-01-30T10:30:00Z",
   },
   {
-    id: 7,
+    id: 14,
     image: seven,
     type: "Skincare",
     name: "Skincare Cream",
     price: 149.99,
     discount: "-5% Discount",
     tags: [{ type: "discount", value: "-5%" }],
-    hoverImage: third,
+    hoverImage: one,
     multipleQuantity: false,
     description:
       "Whether organic, natural, or allergy-conscious, every serum, moisturizer, or treatment is clinically effective for every kind of clean beauty routine.",
@@ -239,9 +449,13 @@ export const dummyData = [
         imageUrl: third,
       },
     ],
+    isFeatured: true,
+    isBestSeller: true,
+    category: 'Treatments',
+    createdAt: "2020-04-15T10:30:00Z",
   },
   {
-    id: 8,
+    id: 15,
     image: eight,
     type: "Oil",
     name: "Moisture oil",
@@ -266,5 +480,27 @@ export const dummyData = [
         imageUrl: two,
       },
     ],
+    category: 'Eye Care',
+    createdAt: "2024-02-06T10:30:00Z",
   },
 ];
+
+export const allCategories = [
+  { name: "Skincare", link: "/category/skincare", img: second },
+  { name: "Cleansers", link: "/category/cleansers", img: third },
+  { name: "Treatments", link: "/category/treatments", img: second },
+  { name: "Eye Care", link: "/category/eye-care", img: third },
+  { name: "Moisturizers", link: "/category/moisturizers", img: five },
+  { name: "Accessories", link: "/category/accessories", img: six },
+  { name: "Makeup", link: "/category/makeup", img: seven },
+  { name: "Face", link: "/category/face", img: eight },
+  { name: "Cheek", link: "/category/cheek", img: one },
+  { name: "Lip", link: "/category/lip", img: two },
+  { name: "Eye", link: "/category/eye", img: three },
+  { name: "Makeup Remover", link: "/category/makeup-remover", img: four },
+  { name: "Accessories", link: "/category/accessories", img: five },
+  { name: "Best Sellers", link: "/category/best-sellers", img: six },
+  { name: "New Arrivals", link: "/category/new-arrivals", img: seven },
+  { name: "Bundles", link: "/category/bundles", img: one },
+  { name: "Trending", link: "/category/trending", img: two },
+]
