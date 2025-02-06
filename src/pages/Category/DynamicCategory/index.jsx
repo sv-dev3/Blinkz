@@ -229,15 +229,16 @@ const DynamicCategory = () => {
                     </button>
                   </div>
                   {/* sort products  */}
-                  <div className="flex flex-wrap items-center mb-4">
+                  <div className="flex flex-wrap gap-x-8 items-center">
                     {totalProducts > 0 && (
-                      <p className="text-lg text-gray-800 font-outfitLight mr-8 ">
+                      <p className="text-sm sm:text-base text-gray-800 font-outfitLight">
                         {filteredCount} of {totalProducts} products
                       </p>
                     )}
-                    <p className="mx-4">Sort By:</p>
+                    <div className="flex flex-wrap justify-between items-center">
+                    <p className="font-outfitMedium text-sm sm:text-base">Sort By:</p>
                     <select
-                      className="border border-black rounded-md p-2"
+                      className="p-2"
                       value={sortOption}
                       onChange={(event) => setSortOption(event.target.value)}
                     >
@@ -245,6 +246,7 @@ const DynamicCategory = () => {
                         <option value={item?.key}>{item?.value}</option>
                       ))}
                     </select>
+                    </div>
                   </div>
                 </div>
                 {/* Filters Header Section */}
