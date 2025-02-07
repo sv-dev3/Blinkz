@@ -3,7 +3,7 @@ import DynamicCategoryLayout from "./DynamicCategoryLayout";
 import { allCategories, dummyData } from "src/helpers/dummyData";
 import { capitalizeCategory } from "src/helpers/functions";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Filter, LoaderCircle, X } from "lucide-react";
+import { Filter, LoaderCircle, X, Bird   } from "lucide-react";
 import FilterDrawer from "src/components/ui-components/Drawer/FilterDrawer";
 import Card from "src/components/ui-elements/Card";
 
@@ -193,38 +193,38 @@ const DynamicCategory = () => {
       <div>
         {categoryData ? (
           <div className="mb-8">
-            <div className="relative isolate overflow-hidden rounded-2xl h-[200px] md:h-[350px] hover:cursor-pointer group">
+            <div className="relative isolate overflow-hidden rounded-2xl h-[150px] md:h-[350px] hover:cursor-pointer group">
               <img
                 src={categoryData.img}
                 alt={categoryData.name}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gray-800 opacity-20"></div>
+              <div className="absolute inset-0 bg-gray-800 opacity-30"></div>
               <div className="absolute inset-0 flex items-center justify-center px-3 py-2 rounded-md">
-                <h4 className="text-white text-[22px] md:text-[32px] capitalize font-outfitMedium">
+                <h4 className="text-white text-[24px] md:text-[52px] capitalize font-outfitMedium">
                   {categoryData.name}
                 </h4>
               </div>
             </div>
-            <h1 className="font-bold mt-4 text-[25px] md:text-[40px] font-outfitLight">
+            {/* <h1 className="font-bold mt-4 text-[25px] mb-2 md:text-[40px] font-outfitLight">
               {categoryData?.name}
-            </h1>
-            <p className="my-4 text-[15px] md:text-[22px] font-outfitLight">
+            </h1> */}
+            {/* <p className="my-4 text-[15px] md:text-[22px] font-outfitLight">
               Well cared for skin is the key to clean, natural beauty.{" "}
-            </p>
+            </p> */}
 
             {/* display products here  */}
-            <div className=""></div>
+            <div className="my-4 sm:my-10"></div>
             <div className="lg:col-span-9">
               {/* Display product count */}
               <div className="flex flex-col justify-left items-left flex-wrap mb-4">
                 <div className="flex justify-between flex-wrap">
-                  <div className="flex w-72 items-center">
+                  <div className="flex w-72 items-center mb-3">
                     <button
                       onClick={() => setIsFilterDrawerOpen(true)}
-                      className="flex items-center bg-white text-black rounded-full border border-black px-4 py-2"
+                      className="flex items-center bg-white text-black rounded-full border border-gray-300 px-3 sm:px-4 py-1 sm:py-2"
                     >
-                      <Filter className="mr-2" />
+                      <Filter size={16} className="mr-2" />
                       Filters
                     </button>
                   </div>
@@ -240,7 +240,7 @@ const DynamicCategory = () => {
                         Sort By:
                       </p>
                       <select
-                        className="p-2"
+                        className="p-2 text-sm sm:text-base"
                         value={sortOption}
                         onChange={(event) => setSortOption(event.target.value)}
                       >
@@ -326,7 +326,7 @@ const DynamicCategory = () => {
                       selectedSizes.length > 0) && (
                       <button
                         onClick={removeAllFilters}
-                        className=" text-gray-800 text-[12px] font-outfitRegular underline underline-offset-4 px-3 py-1"
+                        className=" text-gray-800 text-[12px] sm:text-[16px] font-outfitRegular underline underline-offset-4 px-3 py-1"
                       >
                         Remove All
                       </button>
@@ -334,7 +334,7 @@ const DynamicCategory = () => {
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 flex-row flex-wrap sm:gap-x-[15px] lg:gap-x-[30px] gap-y-8 mt-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 flex-row flex-wrap sm:gap-x-[15px] lg:gap-x-[30px] gap-y-8 mt-6 pb-8">
                 {viewData &&
                   viewData.map((item, index) => (
                     <Card key={index} data={item} />
@@ -345,18 +345,21 @@ const DynamicCategory = () => {
                   totalProducts > 0 &&
                   filteredProducts &&
                   filteredProducts.length === 0 && (
-                    <div className="flex flex-col w-full items-center py-12 sm:py-24">
-                      <h1>No Products Found with applied Filters</h1>
-                      <p>Use fewer filters or</p>
+                    <div className="flex flex-col w-full items-center py-12 sm:py-20">
+                       <div className="mb-3 text-center">
+                           <Bird size={64} className="mb-3 mx-auto"/>
+                          <h1>No Products Found with applied Filters</h1>
+                          <p>Use fewer filters or</p>
+                      </div>
                       {(minPrice ||
-                        maxPrice ||
+                        maxPrice || 
                         inStock ||
                         outOfStock ||
                         (productTypes && productTypes.length > 0) ||
                         selectedSizes.length > 0) && (
                         <button
                           onClick={removeAllFilters}
-                          className="text-lg font-outfitRegular bg-black text-white rounded-full max-w-32 px-3 py-2"
+                          className="text-[12px] sm:text-[16px] font-outfitRegular bg-black text-white rounded-full max-w-32 px-5 py-2"
                         >
                           Remove All
                         </button>
@@ -364,20 +367,25 @@ const DynamicCategory = () => {
                     </div>
                   )}
                 {categoryData && totalProducts === 0 && (
-                  <span>
+                <div className="text-center">
+                    <span className="text-md">
+                    <Bird size={64}  className="mb-3 mx-auto"/>
                     No Products associated with category{" "}
-                    <span className="font-bold">{categoryData?.name}</span>
+                    <span className="font-outfitSemiBold text-lg">{categoryData?.name}</span>
                   </span>
+                </div>
                 )}
               {filteredProducts &&
                 !showAll &&
                 viewData.length < filteredProducts.length && (
+                  <div className="text-center">
                   <button
                     onClick={() => setShowAll(true)}
-                    className="bg-black text-white p-2 rounded-full max-w-48 my-8"
+                    className="bg-black text-white px-8 font-outfitRegular py-2 rounded-full"
                   >
                     Show All
                   </button>
+                  </div>
                 )}
             </div>
           </div>

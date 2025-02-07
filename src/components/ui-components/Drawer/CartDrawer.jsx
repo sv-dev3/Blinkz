@@ -29,7 +29,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
   console.log("Count : ", cartCount);
 
   const handleQuantityChange = (item, newQuantity) => {
-    if (newQuantity < 1) return; // Prevent quantity from being less than 1
+    if (newQuantity < 1 || !newQuantity) return; // Prevent quantity from being less than 1
 
     // Find the index of the item in the cart
     const updatedCart = [...cartData];

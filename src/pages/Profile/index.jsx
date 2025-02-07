@@ -34,7 +34,7 @@ const Profile = () => {
               Email
             </label>
             <input
-              className="w-full  px-4 py-4 border rounded-full bg-gray-100 text-black  font-outfitRegular mb-4 placeholder:text-[#707070]"
+              className="w-full px-2 py-2 sm:px-4 sm:py-4 border rounded-full bg-gray-100 text-black  font-outfitRegular mb-4 placeholder:text-[#707070]"
               type="text"
               name="email"
               placeholder="Email"
@@ -48,7 +48,7 @@ const Profile = () => {
               Password
             </label>
             <input
-              className="w-full px-4 py-4 border rounded-full  bg-gray-100 font-outfitRegular  text-black mb-4 placeholder:text-[#707070]"
+              className="w-full px-2 py-2 sm:px-4 sm:py-4 border rounded-full  bg-gray-100 font-outfitRegular  text-black mb-4 placeholder:text-[#707070]"
               type="password"
               name="password"
               placeholder="Password"
@@ -59,11 +59,11 @@ const Profile = () => {
           </div>
           <Link
             to="/sign-up"
-            className="form__text--link text-center mt-6 text-gray-500 underline capitalize font-outfitLight"
+            className="form__text--link text-md text-center mt-6 text-gray-500 underline capitalize font-outfitLight"
           >
             Forgot your password?
           </Link>
-          <button className="w-full block px-7 py-2.5 bg-black hover:bg-white hover:text-black border border-[#000] text-white transition rounded-full mt-8 text-[16px] font-outfitSemiBold uppercase">
+          <button className="w-full block px-2 py-2 sm:px-4 sm:py-4 bg-black hover:bg-white hover:text-black border border-[#000] text-white transition rounded-full mt-8 text-[16px] font-outfitSemiBold">
             Sign In
           </button>
           <Link

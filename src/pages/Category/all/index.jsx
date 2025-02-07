@@ -1,4 +1,4 @@
-import { Filter, X } from "lucide-react";
+import { Filter, X,Bird } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom"; // useNavigate for URL manipulation
 import FilterDrawer from "src/components/ui-components/Drawer/FilterDrawer";
@@ -156,17 +156,19 @@ const AppProducts = () => {
       <AllCategoryLayout>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-8">
           {/* Filters Section */}
-          <div className="lg:col-span-3 hidden lg:block pt-0  pr-4 rounded">
+          <div className="lg:col-span-3 hidden lg:block pt-0 pr-4 rounded ">
+            <div className="sticky top-60">
             <h3 className="font-semibold text-lg mb-4">Filters</h3>
             <FilterComponent />
+          </div>
           </div>
 
           <div className="lg:hidden">
             <button
               onClick={() => setIsFilterDrawerOpen(true)}
-              className="flex items-center bg-white text-black rounded-full border border-black px-4 py-2"
+              className="flex items-center bg-white text-black rounded-full border border-gray-300 px-4 py-2"
             >
-              <Filter className="mr-2" />
+              <Filter size={16} className="mr-2" />
               Filters
             </button>
           </div>
@@ -183,7 +185,7 @@ const AppProducts = () => {
                 <div className="flex flex-wrap justify-between items-center mb-4">
                   <p className="font-outfitMedium text-sm sm:text-base">Sort By: </p>
                   <select
-                    className=" p-2"
+                    className=" p-2 text-sm sm:text-base"
                     value={sortOption}
                     onChange={(event) => setSortOption(event.target.value)}
                   >
@@ -268,7 +270,7 @@ const AppProducts = () => {
                     selectedSizes.length > 0) && (
                     <button
                       onClick={removeAllFilters}
-                      className=" text-gray-800 text-[12px] font-outfitRegular underline underline-offset-4 px-3 py-1"
+                      className=" text-gray-800 text-[12px] sm:text-[16px] font-outfitRegular underline underline-offset-4 px-3 py-1"
                     >
                       Remove All
                     </button>
@@ -295,9 +297,12 @@ const AppProducts = () => {
 
               {/* When No Products Found  */}
               {filteredProducts && filteredProducts.length === 0 && (
-                <div className="flex flex-col items-center py-12 sm:py-24">
-                <h1>No products match those filters.</h1>
-                <p>Use fewer filters or</p>
+                <div className="flex flex-col space-y-3 items-center py-12 sm:py-20">
+                <div className="mb-3 text-center">
+                  <Bird size={64} className="mb-3 mx-auto"/>
+                  <h1 className="mb-3 text-xl font-outfitMedium">No products match those filters.</h1>
+                  <p>Use fewer filters or</p>
+                </div>
                 {(minPrice ||
                     maxPrice ||
                     inStock ||
@@ -306,7 +311,7 @@ const AppProducts = () => {
                     selectedSizes.length > 0) && (
                     <button
                       onClick={removeAllFilters}
-                      className="text-lg font-outfitRegular bg-black text-white rounded-full max-w-32 px-3 py-2"
+                      className="text-[12px] sm:text-[16px] font-outfitRegular bg-black text-white rounded-full max-w-32 px-5 py-2"
                     >
                       Remove All
                     </button>

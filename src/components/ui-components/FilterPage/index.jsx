@@ -135,7 +135,7 @@ const StockAndPriceFilter = () => {
                   type="checkbox"
                   checked={inStock}
                   onChange={handleInStockChange}
-                  className="form-checkbox bg-black h-5 w-5 text-black rounded focus:ring-black"
+                  className="form-checkbox  checked:bg-black  h-5 w-5 text-black rounded focus:ring-black"
                 />
                 <span className="text-gray-800 font-outfitRegular text-md">
                   In Stock

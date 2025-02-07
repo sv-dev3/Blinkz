@@ -27,7 +27,7 @@ const FilterDrawer = ({ isOpen, onClose }) => {
           </button>
         </div>
         <div className="overflow-auto h-full pb-24">
-          <div className=" px-2">
+          <div className=" px-4">
             {" "}
             <FilterComponent />
           </div>

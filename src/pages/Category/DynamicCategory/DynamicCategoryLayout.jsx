@@ -17,7 +17,7 @@ const DynamicCategoryLayout = ({ children }) => {
   }, [location]);
 
   return (
-    <div className="container mx-auto px-4 lg:px-0 font-outfitLight">
+    <div className="container mx-auto px-2 sm:px-4 font-outfitLight">
       <div className="breadcrumb flex justify-center items-center flex-wrap space-x-2 text-md font-outfitLight text-gray-800">
         <Link to={"/"} className="cursor-pointer text-black my-2">
           Home

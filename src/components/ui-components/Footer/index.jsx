@@ -10,10 +10,10 @@ const Footer = () => {
   return (
     <footer className=" mt-0 md:mt-8 font-outfitRegular  border-gray-500 py-10">
       <div className="container mx-auto px-4">
-        <div class="lg:flex justify-between mb-[50px]">
+        <div class="lg:flex justify-between mb-[25px] sm:mb-[50px]">
           <div class="lg:w-[470px] ml-0 w-full mb-10 lg:mb-0">
             <div>
-              <h3 className="text-[30px] font-outfit font-medium mb-3 leading-[30px]">
+              <h3 className="text-[24px] sm:text-[30px] font-outfit font-medium mb-3 leading-[30px]">
                 Subscribe to get 10% OFF
               </h3>
               <p className="mb-5 font-outfitRegular text-black">
@@ -23,11 +23,11 @@ const Footer = () => {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="py-4 px-4 bg-gray-100 rounded-full text-gray-800"
+                  className="py-2 sm:py-4 px-2 sm:px-4 bg-gray-100 rounded-full text-gray-800"
                 />
                 <button
                   type="submit"
-                  className="bg-purple-600 absolute right-[10px] top-[8px] flex items-center justify-center rounded-full font-outfitRegular hover:bg-purple-800 transition text-white w-[40px] h-[40px]"
+                  className="bg-purple-600 absolute right-[10px] top-[4px] sm:top-[8px] flex items-center justify-center rounded-full font-outfitRegular hover:bg-purple-800 transition text-white w-[32px] sm:w-[40px] h-[32px] sm:h-[40px]"
                 >
                   <svg
                     class="icon icon-arrow icon--medium w-[24px] h-[24px]"
@@ -49,16 +49,16 @@ const Footer = () => {
           </div>
 
           <div class="flex-1 flex flex-wrap pl-[0px] lg:pl-[100px]">
-            <div class="md:w-1/3 w-full mb-10 lg:mb-0">
+            <div class="md:w-1/3 w-full mb-6 lg:mb-0">
               <div class="mb-5">
-                <h6 class="text-[24px] font-500 text-[#2F2F2F]">Feature</h6>
+                <h6 class="text-[18px] sm:text-[24px] font-500 text-[#2F2F2F]">Feature</h6>
               </div>
               <div>
                 <ul class="flex flex-col space-y-3">
                   <li>
                     <a
                       href="/about"
-                      className="text-[#000] text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
+                      className="text-gray-800 text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
                     >
                       About Us
                     </a>
@@ -66,7 +66,7 @@ const Footer = () => {
                   <li>
                     <a
                       href="/terms-condition"
-                      className="text-[#000] text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
+                      className="text-gray-800 text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
                     >
                       Terms Condition
                     </a>
@@ -74,7 +74,7 @@ const Footer = () => {
                   <li>
                     <a
                       href="/all-products"
-                      className="text-[#000] text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
+                      className="text-gray-800 text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
                     >
                       Best Products
                     </a>
@@ -83,10 +83,10 @@ const Footer = () => {
               </div>
             </div>
 
-            <div class="md:w-1/3 lg:flex lg:flex-col w-full mb-10 lg:mb-0">
+            <div class="md:w-1/3 lg:flex lg:flex-col w-full mb-6 lg:mb-0">
               <div>
                 <div class="mb-5">
-                  <h6 class="text-[24px] font-500 text-[#2F2F2F]">
+                  <h6 class="text-[18px] sm:text-[24px] font-500 text-[#2F2F2F]">
                     General Links
                   </h6>
                 </div>
@@ -95,7 +95,7 @@ const Footer = () => {
                     <li>
                       <a
                         href="/blogs"
-                        className="text-[#000] text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
+                        className="text-gray-800 text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
                       >
                         Blogs
                       </a>
@@ -103,7 +103,7 @@ const Footer = () => {
                     <li>
                       <a
                         href="/tracking-order"
-                        className="text-[#000] text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
+                        className="text-gray-800 text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
                       >
                         Tracking Order
                       </a>
@@ -111,7 +111,7 @@ const Footer = () => {
                     <li>
                       <a
                         href="/become-saller"
-                        className="text-[#000] text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
+                        className="text-gray-800 text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
                       >
                         Become Saller
                       </a>
@@ -121,17 +121,17 @@ const Footer = () => {
               </div>
             </div>
 
-            <div class="md:w-1/3 lg:flex lg:flex-col w-full mb-10 lg:mb-0">
+            <div class="md:w-1/3 lg:flex lg:flex-col w-full mb-6 lg:mb-0">
               <div>
                 <div class="mb-5">
-                  <h6 class="text-[24px] font-500 text-[#2F2F2F]">Helpful</h6>
+                  <h6 class="text-[18px] sm:text-[24px] font-500 text-[#2F2F2F]">Helpful</h6>
                 </div>
                 <div>
                   <ul class="flex flex-col space-y-3">
                     <li>
                       <a
                         href="/flash-sale"
-                        className="text-[#000] text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
+                        className="text-gray-800 text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
                       >
                         Flash Sale
                       </a>
@@ -139,7 +139,7 @@ const Footer = () => {
                     <li>
                       <a
                         href="/faq"
-                        className="text-[#000] text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
+                        className="text-gray-800 text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
                       >
                         FAQs
                       </a>
@@ -147,7 +147,7 @@ const Footer = () => {
                     <li>
                       <a
                         href="/about"
-                        className="text-[#000] text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
+                        className="text-gray-800 text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize"
                       >
                         About
                       </a>
@@ -159,14 +159,14 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-600 mt-8 pt-6 flex flex-col lg:flex-row justify-between items-center  gap-4">
+        <div className="border-t border-gray-600 mt-4 sm:mt-8 pt-6 flex flex-col lg:flex-row justify-between items-center gap-4">
           {/* Left Side */}
           <div class="relative font-[sans-serif] w-max">
             <button
               type="button"
               id="dropdownToggle"
               onClick={handleDropdownToggle}
-              class="rounded text-[#333] text-sm border-1 outline-none font-outfitRegular text-black"
+              class="rounded text-[#333] text-sm border-1 outline-none font-outfitRegular"
             >
               United States (USD $)
               <svg

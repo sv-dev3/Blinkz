@@ -151,7 +151,7 @@ const ProductDetails = () => {
                     key={index}
                     src={img.imageUrl}
                     alt={`Thumbnail ${index + 1}`}
-                    className={`w-[110px] h-[110px] md:w-[150px] md:h-[150px] object-cover rounded-xl cursor-pointer border-2 hover:border-gray-500`}
+                    className={`w-[110px] h-[110px] md:w-[150px] md:h-[150px] object-cover rounded-xl cursor-pointer `}
                     onClick={() => openModal(img.imageUrl)}
                   />
                 ))}
@@ -342,7 +342,7 @@ const ProductDetails = () => {
         {modalOpen && (
           <div
             className="fixed bg-white inset-0 flex items-center justify-center z-[2000]"
-            onClick={() => setModalOpen(false)}
+            // onClick={() => setModalOpen(false)}
           >
             <div className="mt-8 p-4 pb-8 rounded-lg relative max-w-[600px] max-h-[400px] w-full h-full flex justify-center items-center">
               <ChooseOptionSlider sliderImages={product?.sliderImages} />
