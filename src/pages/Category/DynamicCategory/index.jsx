@@ -236,16 +236,18 @@ const DynamicCategory = () => {
                       </p>
                     )}
                     <div className="flex flex-wrap justify-between items-center">
-                    <p className="font-outfitMedium text-sm sm:text-base">Sort By:</p>
-                    <select
-                      className="p-2"
-                      value={sortOption}
-                      onChange={(event) => setSortOption(event.target.value)}
-                    >
-                      {sortingDropdownOptions?.map((item) => (
-                        <option value={item?.key}>{item?.value}</option>
-                      ))}
-                    </select>
+                      <p className="font-outfitMedium text-sm sm:text-base">
+                        Sort By:
+                      </p>
+                      <select
+                        className="p-2"
+                        value={sortOption}
+                        onChange={(event) => setSortOption(event.target.value)}
+                      >
+                        {sortingDropdownOptions?.map((item) => (
+                          <option value={item?.key}>{item?.value}</option>
+                        ))}
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -337,12 +339,29 @@ const DynamicCategory = () => {
                   viewData.map((item, index) => (
                     <Card key={index} data={item} />
                   ))}
+                </div>
                 {/* When No Products Found  */}
                 {categoryData &&
                   totalProducts > 0 &&
                   filteredProducts &&
                   filteredProducts.length === 0 && (
-                    <h1>No Products Found with applied Filters</h1>
+                    <div className="flex flex-col w-full items-center py-12 sm:py-24">
+                      <h1>No Products Found with applied Filters</h1>
+                      <p>Use fewer filters or</p>
+                      {(minPrice ||
+                        maxPrice ||
+                        inStock ||
+                        outOfStock ||
+                        (productTypes && productTypes.length > 0) ||
+                        selectedSizes.length > 0) && (
+                        <button
+                          onClick={removeAllFilters}
+                          className="text-lg font-outfitRegular bg-black text-white rounded-full max-w-32 px-3 py-2"
+                        >
+                          Remove All
+                        </button>
+                      )}
+                    </div>
                   )}
                 {categoryData && totalProducts === 0 && (
                   <span>
@@ -350,7 +369,6 @@ const DynamicCategory = () => {
                     <span className="font-bold">{categoryData?.name}</span>
                   </span>
                 )}
-              </div>
               {filteredProducts &&
                 !showAll &&
                 viewData.length < filteredProducts.length && (

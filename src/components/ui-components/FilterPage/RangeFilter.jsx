@@ -1,70 +1,153 @@
-import { useState } from "react";
-import MultiRangeSlider from "multi-range-slider-react";
+import React, { useState, useEffect } from "react";
+import { Range } from "react-range";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
-export default function RangeFilter() {
-  const [minValue, setMinValue] = useState(0);
-  const [maxValue, setMaxValue] = useState(0);
-  const [minValue2, setMinValue2] = useState(0);
-  const [maxValue2, setMaxValue2] = useState(0);
+const PriceRangeSlider = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  const [priceRange, setPriceRange] = useState([0, 400]);
+  const [tempMinPrice, setTempMinPrice] = useState(0);
+  const [tempMaxPrice, setTempMaxPrice] = useState(400);
+
+  useEffect(() => {
+    let min = Number(searchParams.get("minPrice")) || 0;
+    let max = Number(searchParams.get("maxPrice")) || 400;
+
+    if (isNaN(min)) min = 0;
+    if (isNaN(max)) max = 400;
+
+    if (min > max) {
+      min = 0;
+      max = 400;
+      searchParams.set("maxPrice", max);
+      searchParams.set("minPrice", min);
+      setSearchParams(searchParams);
+      navigate(`?${searchParams.toString()}`);
+    }
+    if (min < 0) {
+      min = 0;
+      searchParams.set("minPrice", min);
+      setSearchParams(searchParams);
+      navigate(`?${searchParams.toString()}`);
+    }
+    if (max > 400) {
+      max = 400;
+      searchParams.set("maxPrice", max);
+      setSearchParams(searchParams);
+      navigate(`?${searchParams.toString()}`);
+    }
+    setPriceRange([min, max]);
+    setTempMinPrice(min);
+    setTempMaxPrice(max);
+  }, [searchParams, setSearchParams, navigate]);
+
+
+  const handlePriceRangeChange = () => {
+    let newMin = Math.max(0, Math.min(tempMinPrice, tempMaxPrice));
+    let newMax = Math.min(400, Math.max(tempMaxPrice, tempMinPrice));
+
+    setPriceRange([newMin, newMax]);
+    setTempMinPrice(newMin);
+    setTempMaxPrice(newMax);
+
+    searchParams.set("minPrice", newMin);
+    searchParams.set("maxPrice", newMax);
+    setSearchParams(searchParams);
+    navigate(`?${searchParams.toString()}`);
+  };
+
   return (
-    <div className="App">
-      <div>
-        <h1>multi-range-slider-react demo</h1>
-      </div>
-      <hr />
-      <div
-        className="multi-range-slider-container"
-        style={{ border: "solid 1px" }}
-      >
-        <h3> custom style </h3>
-        <hr />
-        <div>
-          style=" border: 'none', boxShadow: 'none', padding: '15px 10px' "
-        </div>
-        <div>label='false'</div>
-        <div>ruler='false'</div>
-        <div>canMinMaxValueSame={'{true}'}</div>
-        <div>barLeftColor='red'</div>
-        <div>barInnerColor='blue'</div>
-        <div>barRightColor='green'</div>
-        <div>thumbLeftColor='lime'</div>
-        <div>thumbRightColor='lime'</div>
-        <MultiRangeSlider
-          min={0}
-          max={100}
-          canMinMaxValueSame={true}
-          onInput={(e) => {
-            setMinValue(e.minValue);
-            setMaxValue(e.maxValue);
-          }}
-          onChange={(e) => {
-            setMinValue2(e.minValue);
-            setMaxValue2(e.maxValue);
-          }}
-          label={false}
-          ruler={false}
-          style={{ border: "none", boxShadow: "none", padding: "15px 10px" }}
-          barLeftColor="red"
-          barInnerColor="blue"
-          barRightColor="green"
-          thumbLeftColor="lime"
-          thumbRightColor="lime"
-        />
-        <div className="divOutput">
-          <div>onInput :</div>
-          <div>
-            <span>{minValue}</span>
-            <span>{maxValue}</span>
+    <div className="w-full">
+      <Range
+        step={10}
+        min={0}
+        max={400}
+        values={priceRange}
+        onChange={(values) => {
+          setPriceRange(values);
+          setTempMinPrice(values[0]);
+          setTempMaxPrice(values[1]);
+        }}
+        onFinalChange={(values) => {
+          searchParams.set("minPrice", values[0]);
+          searchParams.set("maxPrice", values[1]);
+          setSearchParams(searchParams);
+          navigate(`?${searchParams.toString()}`);
+        }}
+        renderTrack={({ props, children }) => {
+          const [minVal, maxVal] = priceRange;
+          const left = (minVal / 400) * 100;
+          const right = ((400 - maxVal) / 400) * 100;
+
+          return (
+            <div
+              {...props}
+              style={{
+                height: "6px",
+                width: "100%",
+                background: `linear-gradient(to right, 
+                  grey ${left}%, 
+                  black ${left}%, 
+                  black ${100 - right}%, 
+                  grey ${100 - right}%)`,
+                borderRadius: "4px",
+                position: "relative",
+                ...props.style,
+              }}
+            >
+              {children}
+            </div>
+          );
+        }}
+        renderThumb={({ props }) => (
+          <div
+            {...props}
+            style={{
+              height: "16px",
+              width: "16px",
+              background: "black",
+              borderRadius: "50%",
+              boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
+              ...props.style,
+            }}
+          />
+        )}
+      />
+      <div className="flex items-center gap-2 my-4 mt-8">
+        <div className="flex flex-row justify-between gap-2 w-full">
+          <div className="relative mb-4">
+            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600">
+              $
+            </span>
+            <input
+              type="number"
+              value={tempMinPrice}
+              onChange={(e) => setTempMinPrice(Number(e.target.value))}
+              onBlur={handlePriceRangeChange}
+              className="w-full max-w-48 pl-6 pr-3 p-2 bg-[#F5F5F5] border rounded-full focus:outline-none focus:ring-2 focus:ring-black text-right"
+            />
           </div>
-        </div>
-        <div className="divOutput">
-          <div>onChange :</div>
-          <div>
-            <span>{minValue2}</span>
-            <span>{maxValue2}</span>
+
+          <div className="flex items-center mb-4">
+            <span className="font-semibold">To</span>
+          </div>
+          <div className="relative mb-4">
+            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600">
+              $
+            </span>
+            <input
+              type="number"
+              value={tempMaxPrice}
+              onChange={(e) => setTempMaxPrice(Number(e.target.value))}
+              onBlur={handlePriceRangeChange}
+              className="w-full max-w-48 pl-6 pr-3 p-2 bg-[#F5F5F5] border rounded-full focus:outline-none focus:ring-2 focus:ring-black text-right"
+            />
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default PriceRangeSlider;

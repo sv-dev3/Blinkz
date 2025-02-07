@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import MultiRangeSlider, { ChangeResult } from "multi-range-slider-react";
-// import PriceRangeSlider from "./Range";
+import PriceRangeSlider from "./RangeFilter";
 
 const StockAndPriceFilter = () => {
   let [searchParams] = useSearchParams();
@@ -17,14 +15,6 @@ const StockAndPriceFilter = () => {
   const [isPriceOpen, setIsPriceOpen] = useState(true);
   const [isSizeOpen, setIsSizeOpen] = useState(true);
   const [isProductTypeOpen, setIsProductTypeOpen] = useState(true); // For product type accordion
-  const [minPrice, setMinPrice] = useState(
-    parseInt(searchParams.get("minPrice")) || 0
-  );
-  const [maxPrice, setMaxPrice] = useState(
-    parseInt(searchParams.get("maxPrice")) || 400
-  );
-  const [tempMinPrice, setTempMinPrice] = useState(minPrice);
-  const [tempMaxPrice, setTempMaxPrice] = useState(maxPrice);
 
   const [selectedSizes, setSelectedSizes] = useState([]); // To hold selected sizes
   const [selectedProductTypes, setSelectedProductTypes] = useState([]); // To hold selected product types
@@ -39,17 +29,6 @@ const StockAndPriceFilter = () => {
 
     const outOfStockParam = searchParams.get("outOfStock");
     setOutOfStock(outOfStockParam === "true");
-
-    const minPriceParam = parseInt(searchParams.get("minPrice")) || 0;
-    setMinPrice(minPriceParam);
-
-    const maxPriceParam = parseInt(searchParams.get("maxPrice")) || 400;
-    setMaxPrice(maxPriceParam);
-
-    if (minPriceParam === 0 && maxPriceParam === 400) {
-      setTempMinPrice(0);
-      setTempMaxPrice(400);
-    }
 
     // Set selected product types from searchParams
     const productTypesFromParams = searchParams.getAll("productType");
@@ -80,23 +59,6 @@ const StockAndPriceFilter = () => {
       ? window.location.pathname + "?" + searchParams.toString()
       : window.location.pathname;
     navigate(path);
-  };
-
-  const handlePriceRangeChange = () => {
-    if (tempMinPrice <= tempMaxPrice) {
-      setMinPrice(tempMinPrice);
-      setMaxPrice(tempMaxPrice);
-      searchParams.set("minPrice", tempMinPrice);
-      searchParams.set("maxPrice", tempMaxPrice);
-      const path = window.location.pathname + "?" + searchParams.toString();
-      navigate(path);
-    } else {
-      alert("Min price should be less than or equal to Max price");
-      const max = parseInt(searchParams.get("maxPrice")) || 400;
-      setTempMaxPrice(max);
-      const min = parseInt(searchParams.get("minPrice")) || 0;
-      setTempMinPrice(min);
-    }
   };
 
   const handleSizeChange = (e) => {
@@ -141,13 +103,6 @@ const StockAndPriceFilter = () => {
     navigate(path);
   };
 
-  // const handlePriceRangeChange = (e) => {
-  //   console.log("===============");
-  //   console.log(e);
-  //   console.log("================");
-  //   // navigate(path);
-  // };
-
   return (
     <div className="pt-4 pr-4">
       {/* {/ Stock Filter Section /} */}
@@ -159,7 +114,18 @@ const StockAndPriceFilter = () => {
           <h2 className="text-xl font-outfitMedium text-gray-800">
             Availability
           </h2>
-          {isStockOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+          <div className="relative w-5 h-5 flex items-center justify-center">
+            <div
+              className={`absolute w-5 h-[2px] bg-gray-800 transition-transform duration-300 ease-in-out ${
+                isStockOpen ? "rotate-0" : "rotate-[270deg]"
+              }`}
+            />
+            <div
+              className={`absolute h-[2px] w-5 bg-gray-800 transition-opacity duration-300 ease-in-out ${
+                isStockOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+          </div>
         </div>
         {isStockOpen && (
           <div className="mt-4">
@@ -200,81 +166,22 @@ const StockAndPriceFilter = () => {
           onClick={() => setIsPriceOpen(!isPriceOpen)}
         >
           <h2 className="text-xl font-outfitMedium text-gray-800">Price</h2>
-          {isPriceOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+          <div className="relative w-5 h-5 flex items-center justify-center">
+            <div
+              className={`absolute w-5 h-[2px] bg-gray-800 transition-transform duration-300 ease-in-out ${
+                isPriceOpen ? "rotate-0" : "rotate-[270deg]"
+              }`}
+            />
+            <div
+              className={`absolute h-[2px] w-5 bg-gray-800 transition-opacity duration-300 ease-in-out ${
+                isPriceOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+          </div>
         </div>
         {isPriceOpen && (
           <div className="mt-4 flex flex-col space-y-4">
-            <div className="flex flex-row justify-between">
-              <div className="mb-4 mr-2">
-                <label className="block text-gray-800 font-outfitRegular text-md mb-2">
-                  Min Price
-                </label>
-                <input
-                  type="number"
-                  value={tempMinPrice}
-                  onChange={(e) => setTempMinPrice(Number(e.target.value))}
-                  onBlur={handlePriceRangeChange}
-                  className="w-full p-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-black"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-800 font-outfitRegular text-md mb-2">
-                  Max Price
-                </label>
-                <input
-                  type="number"
-                  value={tempMaxPrice}
-                  onChange={(e) => setTempMaxPrice(Number(e.target.value))}
-                  onBlur={handlePriceRangeChange}
-                  className="w-full p-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-black"
-                />
-              </div>
-            </div>
-            {/* <div className="flex items-center">
-              <input
-                type="range"
-                min="0"
-                max="400"
-                value={tempMinPrice}
-                onChange={(e) => setTempMinPrice(Number(e.target.value))}
-                onMouseUp={handlePriceRangeChange}
-                className="w-full accent-black"
-              />
-              <input
-                type="range"
-                min="0"
-                max="400"
-                value={tempMaxPrice}
-                onChange={(e) => setTempMaxPrice(Number(e.target.value))}
-                onMouseUp={handlePriceRangeChange}
-                className="w-full accent-black"
-              />
-            </div> */}
-            <MultiRangeSlider
-              min={0}
-              max={100}
-              minValue={0}
-              maxValue={100}
-              canMinMaxValueSame={true}
-              onInput={(e) => {
-                console.log("Event : ", e);
-              }}
-              onChange={(e) => {
-                console.log("E : ", e);
-              }}
-              label={false}
-              ruler={false}
-              style={{
-                border: "none",
-                boxShadow: "none",
-                padding: "15px 10px",
-              }}
-              barLeftColor="#EFEFEF"
-              barInnerColor="black"
-              barRightColor="#EFEFEF"
-              thumbLeftColor="black"
-              thumbRightColor="black"
-            />
+            <PriceRangeSlider/>
           </div>
         )}
       </div>
@@ -286,7 +193,18 @@ const StockAndPriceFilter = () => {
           onClick={() => setIsSizeOpen(!isSizeOpen)}
         >
           <h2 className="text-xl font-outfitMedium text-gray-800">Size</h2>
-          {isSizeOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+          <div className="relative w-5 h-5 flex items-center justify-center">
+            <div
+              className={`absolute w-5 h-[2px] bg-gray-800 transition-transform duration-300 ease-in-out ${
+                isSizeOpen ? "rotate-0" : "rotate-[270deg]"
+              }`}
+            />
+            <div
+              className={`absolute h-[2px] w-5 bg-gray-800 transition-opacity duration-300 ease-in-out ${
+                isSizeOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+          </div>
         </div>
         {isSizeOpen && (
           <div className="mt-4 space-y-2">
@@ -318,11 +236,18 @@ const StockAndPriceFilter = () => {
           <h2 className="text-xl font-outfitSemiBold text-gray-800">
             Product Type
           </h2>
-          {isProductTypeOpen ? (
-            <ChevronUp size={20} />
-          ) : (
-            <ChevronDown size={20} />
-          )}
+          <div className="relative w-5 h-5 flex items-center justify-center">
+            <div
+              className={`absolute w-5 h-[2px] bg-gray-800 transition-transform duration-300 ease-in-out ${
+                isProductTypeOpen ? "rotate-0" : "rotate-[270deg]"
+              }`}
+            />
+            <div
+              className={`absolute h-[2px] w-5 bg-gray-800 transition-opacity duration-300 ease-in-out ${
+                isProductTypeOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+          </div>
         </div>
         {isProductTypeOpen && (
           <div className="mt-4 space-y-2">
