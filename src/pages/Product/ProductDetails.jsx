@@ -145,18 +145,25 @@ const ProductDetails = () => {
 
             {/* Horizontal Thumbnail Images */}
             {product.sliderImages && product.sliderImages.length > 0 && (
-              <div className="flex flex-row justify-between gap-2 mt-4 mb-0 lg:mb-16">
-                {product.sliderImages.map((img, index) => (
-                  <img
-                    key={index}
-                    src={img.imageUrl}
-                    alt={`Thumbnail ${index + 1}`}
-                    className={`w-1/2 object-cover rounded-xl cursor-pointer `}
-                    onClick={() => openModal(img.imageUrl)}
-                  />
-                ))}
-              </div>
-            )}
+  <div className="grid grid-cols-2 gap-2 mt-4 mb-0 lg:mb-16">
+    {product.sliderImages.map((img, index) => (
+      <div
+        key={index}
+        className={
+          index % 3 === 2 ? "col-span-2" : "col-span-1"
+        }
+      >
+        <img
+          src={img.imageUrl}
+          alt={`Thumbnail ${index + 1}`}
+          className="w-full object-cover rounded-xl cursor-pointer"
+          onClick={() => openModal(img.imageUrl)}
+        />
+      </div>
+    ))}
+  </div>
+)
+}
           </div>
 
           {/* Right Side - Product Details */}
