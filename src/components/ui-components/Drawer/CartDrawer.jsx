@@ -133,7 +133,9 @@ const CartDrawer = ({ isOpen, onClose }) => {
         </div>
 
         {/* Cart Items */}
-        <div className="overflow-auto h-[calc(100%-250px)] px-4 py-4 relative">
+        <div className="overflow-auto h-[calc(100%-250px)] px-4 py-4 relative      [&::-webkit-scrollbar]:w-1
+  [&::-webkit-scrollbar-track]:bg-white
+  [&::-webkit-scrollbar-thumb]:bg-gray-400">
           {cartData.length === 0 ? (
             <div className="h-full flex items-center justify-center">
               <h1 className=" text-2xl font-outfitRegular">Your cart is empty</h1>

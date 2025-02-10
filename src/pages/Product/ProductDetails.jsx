@@ -134,7 +134,7 @@ const ProductDetails = () => {
         </div>
         <div className="flex flex-col md:flex-row gap-8">
           {/* Left Side - Product Image */}
-          <div className="md:w-1/2 flex flex-col items-center">
+          <div className="w-full sm:w-1/2 flex flex-col items-center ">
             <img
               loading="lazy"
               src={product?.image}
@@ -145,13 +145,13 @@ const ProductDetails = () => {
 
             {/* Horizontal Thumbnail Images */}
             {product.sliderImages && product.sliderImages.length > 0 && (
-              <div className="flex flex-wrap justify-center gap-2 mt-4 mb-0 lg:mb-16">
+              <div className="flex flex-row justify-between gap-2 mt-4 mb-0 lg:mb-16">
                 {product.sliderImages.map((img, index) => (
                   <img
                     key={index}
                     src={img.imageUrl}
                     alt={`Thumbnail ${index + 1}`}
-                    className={`w-[110px] h-[110px] md:w-[150px] md:h-[150px] object-cover rounded-xl cursor-pointer `}
+                    className={`w-1/2 object-cover rounded-xl cursor-pointer `}
                     onClick={() => openModal(img.imageUrl)}
                   />
                 ))}
@@ -160,7 +160,8 @@ const ProductDetails = () => {
           </div>
 
           {/* Right Side - Product Details */}
-          <div className="md:w-1/2 relative ps-[0] lg:ps-[50px]">
+          <div className="w-full sm:w-1/2 ps-[0] lg:ps-[50px]">
+          <div className="sticky top-[calc(2rem+81px)]">
             <div className="space-r-2 flex flex-wrap gap-2 z-[100]">
               {product?.tags &&
                 product?.tags.map((tag, index) => {
@@ -338,24 +339,26 @@ const ProductDetails = () => {
               </button>
             </div>
           </div>
+          </div>
         </div>
         {modalOpen && (
           <div
             className="fixed bg-white inset-0 flex items-center justify-center z-[2000]"
             // onClick={() => setModalOpen(false)}
           >
-            <div className="mt-8 p-4 pb-8 rounded-lg relative max-w-[600px] max-h-[400px] w-full h-full flex justify-center items-center">
+            <div className="mt-8 p-4 pb-8 rounded-lg relative max-w-[1200px] max-h-[450px] w-full h-full flex justify-center items-center">
               <ChooseOptionSlider sliderImages={product?.sliderImages} />
             </div>
             <button
-              className="absolute top-10 right-10 text-gray-600 hover:text-black z-[20000]"
+              className="absolute top-10 right-10 text-gray-600 hover:text-black z-[20000] grid place-items-center"
               onClick={() => setModalOpen(false)}
             >
               <X size={24} />
             </button>
           </div>
         )}
-        <CartDrawer isOpen={isCartDrawerOpen} onClose={toggleCartDrawer} />
+        <CartDrawer isOpen={isCartDrawerOpen} onClose={toggleCartDrawer} /> 
+        <div className="py-20">
         <h1 className="text-[24px] text-center mt-8 leading-[normal] md:text-[36px] font-outfitSemiBold mb-3 ">
           You may also like
         </h1>
@@ -365,6 +368,7 @@ const ProductDetails = () => {
             sliderPerView={5}
             centeredSlide={true}
           />
+        </div>
         </div>
       </div>
       <Footer />

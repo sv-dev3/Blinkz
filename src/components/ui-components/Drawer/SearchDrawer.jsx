@@ -35,7 +35,11 @@ const SearchDrawer = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        <div className="overflow-auto h-full">
+        <div className="overflow-auto h-full 
+        [&::-webkit-scrollbar]:w-1
+  [&::-webkit-scrollbar-track]:bg-white
+  [&::-webkit-scrollbar-thumb]:bg-gray-400
+">
           {/* Search Box */}
           <div className="px-4 py-4  relative border-b">
             <input

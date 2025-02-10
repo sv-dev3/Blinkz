@@ -54,7 +54,7 @@ const ChooseOptionSlider = ({
               <img
                 src={item.imageUrl}
                 alt="product"
-                className="w-full rounded-xl h-72"
+                className=" rounded-xl"
               />
             </div>
           </SwiperSlide>
@@ -63,12 +63,12 @@ const ChooseOptionSlider = ({
       <div className="py-4">
         <div className="mx-auto p-0">
           <div className="flex justify-center mb-4">
-            <div className="flex justify-end items-center space-x-2 pb-4">
-              <button className="prevEl cursor-pointer">
-                <ChevronLeft className="prevEl w-6 h-6 cursor-pointer" />
+            <div className="flex justify-end items-center gap-x-6 pb-4">
+              <button className="prevEl cursor-pointer grid place-items-center p-4 rounded-full bg-black ">
+                <ChevronLeft className="prevEl w-6 h-6 cursor-pointer text-white" />
               </button>
-              <button className="nextEl cursor-pointer">
-                <ChevronRight className="nextEl w-6 h-6 cursor-pointer" />
+              <button className="nextEl cursor-pointer  grid place-items-center p-4 rounded-full  bg-black">
+                <ChevronRight className="nextEl w-6 h-6 cursor-pointer text-white" />
               </button>
             </div>
           </div>
