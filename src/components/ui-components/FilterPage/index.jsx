@@ -106,7 +106,7 @@ const StockAndPriceFilter = () => {
   return (
     <div className="pt-4 pr-4">
       {/* {/ Stock Filter Section /} */}
-      <div className="border-b pb-4">
+      <div className="border-b border-gray-300 pb-4">
         <div
           className="flex items-center justify-between cursor-pointer"
           onClick={() => setIsStockOpen(!isStockOpen)}
@@ -160,7 +160,7 @@ const StockAndPriceFilter = () => {
       </div>
 
       {/* {/ Price Filter Section /} */}
-      <div className="border-b pb-4">
+      <div className="border-b  border-gray-300 pb-4">
         <div
           className="flex items-center justify-between cursor-pointer mt-6"
           onClick={() => setIsPriceOpen(!isPriceOpen)}
@@ -187,7 +187,7 @@ const StockAndPriceFilter = () => {
       </div>
 
       {/* {/ Size Filter Section /} */}
-      <div className="border-b pb-4 mt-4">
+      <div className="border-b border-gray-300 pb-4 mt-4">
         <div
           className="flex items-center justify-between cursor-pointer"
           onClick={() => setIsSizeOpen(!isSizeOpen)}
@@ -228,7 +228,7 @@ const StockAndPriceFilter = () => {
       </div>
 
       {/* {/ Product Type Filter Section /} */}
-      <div className="border-b pb-4 mt-4">
+      <div className="border-b border-gray-300 pb-4 mt-4">
         <div
           className="flex items-center justify-between cursor-pointer"
           onClick={() => setIsProductTypeOpen(!isProductTypeOpen)}
